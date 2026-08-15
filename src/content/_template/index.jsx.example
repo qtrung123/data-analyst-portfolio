@@ -1,0 +1,67 @@
+/**
+ * TEMPLATE — copy this folder to `src/content/<your-slug>/`, rename the file
+ * to `index.jsx`, fill it in, then register it in `src/data/projects.js`:
+ *
+ *   import * as aiTutor from '../content/ai-tutor/index.jsx'
+ *   export const projectModules = [terrafirm, aiTutor]
+ *
+ * That's the whole process — no routes, no cards, no layout changes.
+ */
+import {
+  CaseSection,
+  Callout,
+  Bullets,
+  Steps,
+  DataTable,
+  CodeBlock,
+  Figure,
+} from '../../components/case/CaseBlocks.jsx'
+
+export const meta = {
+  slug: 'your-project-slug',            // becomes /projects/your-project-slug
+  title: 'Your Project Title',
+  subtitle: 'One line describing what it is',
+  summary: 'Two or three sentences: the problem, what you built, the result.',
+  category: 'Business Intelligence',    // also drives the Projects page filters
+  year: '2026',
+  status: 'live',                       // flagship | live | in-progress | archived
+  featured: false,                      // true = eligible for the homepage hero
+  tools: ['SQL', 'Python'],
+  metrics: [
+    { label: 'Metric', value: '00', note: 'optional context' },
+  ],
+  cover: { from: '#1e3a8a', to: '#0f172a', glyph: '📈' },
+  links: [{ label: 'Repository', href: 'https://github.com/' }],
+  sections: [
+    { id: 'context', label: 'Context' },
+    { id: 'problem', label: 'The problem' },
+    { id: 'approach', label: 'Approach' },
+    { id: 'outcome', label: 'Outcome' },
+  ],
+}
+
+export default function CaseStudy() {
+  return (
+    <>
+      <CaseSection id="context" eyebrow="Context" title="Context">
+        <p>Who this was for and why it mattered.</p>
+      </CaseSection>
+
+      <CaseSection id="problem" eyebrow="Problem" title="The problem">
+        <Bullets items={['First issue', 'Second issue']} />
+        <Callout tone="warn" title="The reframing">Optional pull-out.</Callout>
+      </CaseSection>
+
+      <CaseSection id="approach" eyebrow="Approach" title="How I built it">
+        <Steps steps={[{ title: 'Step one', body: 'What you did.' }]} />
+        <CodeBlock language="sql" code={`SELECT 1;`} />
+        <DataTable columns={['A', 'B']} rows={[['1', '2']]} />
+        <Figure alt="Screenshot description" caption="Optional caption." />
+      </CaseSection>
+
+      <CaseSection id="outcome" eyebrow="Outcome" title="What changed">
+        <Bullets items={['Result one', 'Result two']} />
+      </CaseSection>
+    </>
+  )
+}

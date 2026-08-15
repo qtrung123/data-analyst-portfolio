@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+.vite
+.env
+.env.local
+.env.*.local
+.netlify
+*.local
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-error.log*
+.idea
+.vscode/*
+!.vscode/extensions.json
