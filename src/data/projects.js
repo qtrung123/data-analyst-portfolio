@@ -11,6 +11,7 @@
  * meta shape:
  * {
  *   slug, title, subtitle, summary, category, year,
+ *   aliases?: string[],                   // extra URL segments that redirect to slug
  *   status: 'flagship' | 'live' | 'in-progress' | 'archived',
  *   tools: string[],
  *   metrics: [{ label, value, note? }],   // shown as the case-study stat row
@@ -30,6 +31,17 @@ export const featuredProjects = projects.filter((p) => p.featured)
 
 export function getProjectModule(slug) {
   return projectModules.find((m) => m.meta.slug === slug) ?? null
+}
+
+/**
+ * Resolves a URL segment to a canonical project slug, honouring any short
+ * aliases a project declares in `meta.aliases`. Returns null if unknown.
+ */
+export function resolveProjectSlug(slug) {
+  const match = projectModules.find(
+    (m) => m.meta.slug === slug || m.meta.aliases?.includes(slug),
+  )
+  return match?.meta.slug ?? null
 }
 
 export function getProject(slug) {

@@ -6,18 +6,24 @@ import {
   DataTable,
   CodeBlock,
   Figure,
+  FindingCards,
+  CompareBars,
+  DashboardPage,
+  EmbedPlaceholder,
 } from '../../components/case/CaseBlocks.jsx'
 
 /* ------------------------------------------------------------------
    Card + case-study header metadata.
-   Every figure below is taken from the delivered Power BI model.
+   Every figure in this file comes from the delivered Power BI model.
+   Nothing here is estimated or illustrative.
    ------------------------------------------------------------------ */
 export const meta = {
   slug: 'terrafirm-safety-analytics',
+  aliases: ['terrafirm'], // /projects/terrafirm redirects to the full slug
   title: 'TerraFirm Safety Analytics',
   subtitle: 'From safety outcomes to preventive risk signals',
   summary:
-    'Recordable injuries were falling, which made the safety programme look healthy. Consolidating nine operational datasets across ten sites into one Power BI model showed a second story underneath: the preventive activity meant to produce that improvement was running weak and unevenly, and most of the remaining risk sat at a single site.',
+    'Recordable injuries were down year over year, which made the safety programme look healthy. Consolidating 9 operational datasets across 10 sites into one Power BI model surfaced a second picture underneath: preventive work was running well below plan, on-time training readiness was weaker than completion rates suggested, and more than a third of all recordables sat at a single site.',
   category: 'Business Intelligence',
   year: '2025',
   status: 'flagship',
@@ -26,67 +32,125 @@ export const meta = {
   metrics: [
     { label: 'Work hours', value: '9.79M', note: 'exposure denominator' },
     { label: 'Incidents', value: '1,133', note: '106 recordable' },
-    { label: 'YTD recordables', value: '29 → 16', note: 'approx. 44.8% lower' },
+    { label: 'YTD recordables', value: '29 → 16', note: '~44.8% lower' },
     { label: 'Cadence compliance', value: '29.9%', note: 'company-wide' },
   ],
   cover: { from: '#0c4a6e', to: '#082f49', glyph: '🦺' },
   links: [
-    // Add the real repository / published report link here.
+    // Replace with the real repository link before publishing.
     { label: 'Power BI repository', href: 'https://github.com/' },
   ],
   sections: [
-    { id: 'context', label: 'Context' },
-    { id: 'data', label: 'Data & modelling' },
-    { id: 'outcomes', label: '1. Outcomes improved' },
-    { id: 'cadence', label: '2. Cadence stayed weak' },
-    { id: 'training', label: '3. Training readiness' },
-    { id: 'concentration', label: '4. Concentrated risk' },
-    { id: 'site360', label: '5. Site 360 drillthrough' },
-    { id: 'interpretation', label: 'Reading the signals' },
+    { id: 'problem', label: 'Business problem' },
+    { id: 'findings', label: 'Key findings' },
+    { id: 'model', label: 'Data & semantic model' },
+    { id: 'dashboard', label: 'Dashboard story' },
+    { id: 'technical', label: 'Technical implementation' },
+    { id: 'explore', label: 'Explore the dashboard' },
+    { id: 'reflection', label: 'What I learned' },
   ],
 }
+
+const IMG = '/projects/terrafirm'
 
 export default function TerraFirmCaseStudy() {
   return (
     <>
+      {/* ---------------- Business problem ---------------- */}
       <CaseSection
-        id="context"
-        eyebrow="Context"
+        id="problem"
+        eyebrow="Business problem"
         title="A falling injury count is not the same as a working safety programme"
       >
         <p>
-          TerraFirm runs work across ten sites. Safety data existed in volume —
-          incidents, inspections, observations, training records, hours worked —
-          but it lived in separate operational systems, each answering its own
-          narrow question. Nothing put outcomes and preventive activity in the
-          same frame.
+          TerraFirm runs work across <strong>10 sites</strong>. Safety data
+          existed in volume — incidents, inspections, observations, training
+          records, hours worked — but each dataset lived in its own system and
+          answered its own narrow question. Nothing put outcomes and preventive
+          activity in the same frame.
         </p>
         <p>
-          Year-to-date recordable injuries were down, and that was the headline
-          everyone repeated. The question the reporting could not answer was
-          whether the preventive programme underneath — inspection cadence,
-          observation quality, training readiness — was actually strong enough to
-          sustain it, or whether the improvement was sitting on thin foundations.
+          Year-to-date recordable injuries were down, and that was the number
+          everyone repeated. What the reporting could not answer was whether the
+          preventive programme underneath — inspection cadence, field
+          observation, training readiness — was strong enough to sustain the
+          improvement, or where the remaining risk actually sat.
         </p>
-        <Callout tone="neutral" title="What this project is">
-          A Power BI model over <strong>9 operational datasets</strong>, covering{' '}
-          <strong>10 sites</strong> and <strong>9.79M work hours</strong>,
-          delivered as <strong>6 report pages</strong> that read lagging outcomes
-          and leading indicators side by side.
+        <Callout tone="neutral" title="Scope">
+          <strong>9 operational datasets</strong> · <strong>10 sites</strong> ·{' '}
+          <strong>9.79M work hours</strong> · delivered as{' '}
+          <strong>6 report pages</strong>, from a company-level trend view down
+          to a single-site diagnostic.
         </Callout>
       </CaseSection>
 
-      <CaseSection id="data" eyebrow="Data & modelling" title="Nine datasets, one conformed model">
+      {/* ---------------- Key findings ---------------- */}
+      <CaseSection
+        id="findings"
+        eyebrow="Key findings"
+        title="Five things the consolidated model showed"
+      >
+        <FindingCards
+          findings={[
+            {
+              title: 'Lagging outcomes improved',
+              body: 'Year-to-date recordable incidents fell against the prior year — a real, measured improvement in the outcome the business tracks.',
+              evidence: '29 → 16 YTD · ~44.8% lower',
+            },
+            {
+              title: 'Preventive cadence remained weak',
+              body: 'The scheduled preventive work meant to underpin that improvement was completing well below plan across the company.',
+              evidence: 'Cadence Compliance 29.9%',
+            },
+            {
+              title: 'Completion masked readiness',
+              body: 'Training completion looked healthy on its own. Splitting timeliness out of it showed a materially weaker on-time picture.',
+              evidence: '~86.2% complete vs ~76.2% on time',
+            },
+            {
+              title: 'Risk was concentrated',
+              body: 'Recordables were not spread evenly across the ten sites. One site carried well over a third of the company total.',
+              evidence: 'Ironwood 40 of 106 · ~37.7%',
+            },
+            {
+              title: 'Weak signals co-occur',
+              body: 'At Ironwood, a higher recordable rate co-occurs with weaker cadence, weaker on-time training and a higher at-risk observation rate. Association, not proven cause.',
+              evidence: 'R12 rate 3.04 vs 1.61 company',
+            },
+            {
+              title: 'Site 360 makes it diagnosable',
+              body: 'A drillthrough page carries filter context to one site, so an outlier flagged anywhere in the report can be examined without leaving Power BI.',
+              evidence: 'Page 6 — Why is this site different?',
+            },
+          ]}
+        />
+
+        <Callout tone="warn" title="On causation">
+          These signals <strong>co-occur</strong>. Weak cadence, weaker on-time
+          training and a higher at-risk observation rate sit alongside a higher
+          recordable rate at the same site — a pattern that{' '}
+          <strong>warrants investigation</strong> and provides{' '}
+          <strong>diagnostic context</strong>. The model does not demonstrate
+          that any of these caused the incidents, and it is not presented as if
+          it does.
+        </Callout>
+      </CaseSection>
+
+      {/* ---------------- Data & semantic model ---------------- */}
+      <CaseSection
+        id="model"
+        eyebrow="Data & semantic model"
+        title="Nine datasets, one conformed model"
+      >
         <p>
-          The datasets arrive at four different grains — events, inspections,
-          observations, assignments — plus hours worked as the exposure
-          denominator. Flattening them together would double-count hours on every
-          incident row, so each stays as its own fact table and the shared
-          dimensions do the filtering.
+          The sources arrive at different grains — events, inspections,
+          observations, assignments, hours. Flattening them into one table would
+          double-count hours on every incident row, so each stays a fact table in
+          its own right and shared dimensions do the filtering.
         </p>
 
         <DataTable
-          caption="Volumes are the totals carried in the delivered model."
+          caption="Volumes carried in the delivered model."
           columns={['Fact area', 'Grain', 'Volume']}
           rows={[
             ['Incidents', 'One row per reported event', '1,133 (106 recordable)'],
@@ -97,30 +161,174 @@ export default function TerraFirmCaseStudy() {
           ]}
         />
 
+        <Figure
+          src={`${IMG}/semantic-model.png`}
+          alt="Semantic model relationship diagram"
+          caption="Conformed Site and Date dimensions let all nine datasets share one filter context."
+        />
+
+        <Bullets
+          items={[
+            'A central Site dimension reconciles identifiers that differed between source systems — the prerequisite for comparing any two datasets on the same page.',
+            'A marked Date table drives every time intelligence measure, including the rolling twelve-month view.',
+            'Work hours are carried as their own fact so rate measures are exposure-adjusted; without them, cross-site comparison collapses into raw counts that reward small sites.',
+            'Lagging and leading measures are kept as explicit, separate families — that separation is what lets the report show them diverging.',
+          ]}
+        />
+      </CaseSection>
+
+      {/* ---------------- Dashboard story ---------------- */}
+      <CaseSection
+        id="dashboard"
+        eyebrow="Dashboard story"
+        title="Six pages, each answering one question"
+      >
+        <p>
+          The report is sequenced as an argument: start with the outcome, test
+          whether the preventive work supports it, then narrow to where the risk
+          actually sits.
+        </p>
+
+        <DashboardPage
+          number={1}
+          question="Are we getting safer?"
+          title="Company-level outcome trend"
+          src={`${IMG}/page1.png`}
+          alt="Page 1 — company safety outcome trend"
+          points={[
+            'Year-to-date recordables of 16 against 29 in the prior year, approximately 44.8% lower.',
+            'Rolling twelve-month recordable rate of 1.61 company-wide gives the trend an exposure-adjusted baseline.',
+            'Sets up the question the next page tests: is the preventive programme behind this improvement running as designed?',
+          ]}
+        />
+
+        <DashboardPage
+          number={2}
+          question="Are sites doing the preventive work?"
+          title="Inspection cadence compliance"
+          src={`${IMG}/page2.png`}
+          alt="Page 2 — preventive inspection cadence by site"
+          points={[
+            'Cadence Compliance of 29.9% company-wide, across 9,195 completed inspections.',
+            'Compliance is broken out by site, which is where the spread becomes visible rather than averaged away.',
+            'The contrast with Page 1 is the report’s central tension: an improving outcome alongside preventive work running well below plan.',
+          ]}
+        />
+
+        <DashboardPage
+          number={3}
+          question="What are we seeing in the field?"
+          title="Safety observation volume and quality"
+          src={`${IMG}/page3.png`}
+          alt="Page 3 — field safety observations"
+          points={[
+            '15,846 observations recorded, split by at-risk versus safe conditions.',
+            'Company at-risk observation rate of 18.9% is the benchmark each site is read against.',
+            'Observation quality is treated as a leading signal — what the field is reporting before an incident occurs.',
+          ]}
+        />
+
+        <DashboardPage
+          number={4}
+          question="What actually happened?"
+          title="Incident detail and classification"
+          src={`${IMG}/page4.png`}
+          alt="Page 4 — incident detail and classification"
+          points={[
+            '1,133 incidents in total, of which 106 are recordable.',
+            'Classification and detail sit here so the summary pages stay readable and the specifics remain one click away.',
+            'This is the page that answers a follow-up question about a specific event rather than a trend.',
+          ]}
+        />
+
+        <DashboardPage
+          number={5}
+          question="Are people ready for the work?"
+          title="Training completion against on-time readiness"
+          src={`${IMG}/page5.png`}
+          alt="Page 5 — training completion and on-time readiness"
+          points={[
+            '7,750 training assignments, with completion at approximately 86.2%.',
+            'On-Time Training of approximately 76.2% is the same population measured against the date the training was required.',
+            'Reporting completion alone presents readiness as roughly ten points stronger than the timeliness view supports.',
+          ]}
+        />
+
+        <DashboardPage
+          number={6}
+          question="Why is this site different?"
+          title="Site 360 — drillthrough diagnosis"
+          src={`${IMG}/page6.png`}
+          alt="Page 6 — Site 360 drillthrough diagnostic"
+          points={[
+            'Drillthrough from any page carries filter context to a single site, so the site view always reconciles with the page it was opened from.',
+            'Outcome and preventive measures appear together for that site against the company benchmark.',
+            'Ironwood accounts for 40 of 106 recordables — approximately 37.7% — which is what the page was built to interrogate.',
+          ]}
+        />
+
+        <h3 className="mt-10 text-lg font-semibold text-ink-50">
+          Ironwood against the company benchmark
+        </h3>
+        <p className="mt-2">
+          The four measures Site 360 puts side by side for the site carrying the
+          largest share of recordables:
+        </p>
+
+        <CompareBars
+          seriesA="Ironwood"
+          seriesB="Company"
+          items={[
+            { label: 'R12 Recordable Rate', a: 3.04, b: 1.61, note: 'higher' },
+            { label: 'Cadence Compliance', a: 3.8, b: 29.9, unit: '%', note: 'lower' },
+            { label: 'At-Risk Observation Rate', a: 28.4, b: 18.9, unit: '%', note: 'higher' },
+            { label: 'On-Time Training', a: 64.3, b: 76.2, unit: '%', note: 'lower' },
+          ]}
+        />
+
+        <p>
+          Four signals point the same way at one site. That co-occurrence is
+          strong enough to justify where the safety team looks first, and not
+          strong enough to conclude why. The page is built to start that
+          investigation, not to end it.
+        </p>
+      </CaseSection>
+
+      {/* ---------------- Technical implementation ---------------- */}
+      <CaseSection
+        id="technical"
+        eyebrow="Technical implementation"
+        title="How it was built"
+      >
         <Steps
           steps={[
             {
-              title: 'Land each source unchanged',
-              body: 'Every dataset is staged as-is before any cleaning, so any figure on the report can be traced back to the row the source system actually holds.',
+              title: 'Stage each source unchanged',
+              body: 'Every dataset lands as-is before any cleaning, so any figure on the report traces back to the row the source system holds.',
             },
             {
-              title: 'Conform site and date',
-              body: 'Site identifiers differed between systems. A central site dimension and a marked date table give all nine datasets one shared filter context — the prerequisite for comparing outcomes against preventive activity on the same page.',
+              title: 'Conform site and date in Power Query',
+              body: 'Site identifiers are reconciled against the central Site dimension; unmatched rows surface rather than silently dropping out of the totals.',
             },
             {
-              title: 'Carry exposure as its own fact',
-              body: 'Work hours sit at their own grain and drive every rate measure. Without them, cross-site comparison reduces to raw counts, which reward small sites and punish busy ones.',
+              title: 'Model as a star with a separate exposure fact',
+              body: 'Work hours stay at their own grain and drive every rate measure, keeping cross-site comparison exposure-adjusted.',
             },
             {
-              title: 'Separate lagging from leading measures',
-              body: 'Recordable rate is the outcome. Cadence compliance, at-risk observation rate, and on-time training are the preventive signals. Keeping the two families explicit is what lets the report show them diverging.',
+              title: 'Wire drillthrough to Site 360',
+              body: 'Filter context follows the reader from any summary visual to the single-site page, so the two views never disagree.',
             },
           ]}
         />
 
+        <p className="mt-8">
+          The measure layer is deliberately small — a handful of base measures,
+          with everything on the report a variation on them.
+        </p>
+
         <CodeBlock
           language="dax"
-          caption="Recordable rate, normalised to 200,000 hours worked so sites of different sizes compare honestly. The rolling-12-month variant is what the report displays."
+          caption="Recordable rate, normalised to 200,000 hours worked so sites of different sizes compare honestly. The rolling twelve-month variant is what the report displays."
           code={`Recordable Rate =
 VAR Recordables =
     CALCULATE ( COUNTROWS ( Fact_Incident ), Fact_Incident[IsRecordable] = TRUE () )
@@ -128,145 +336,57 @@ VAR HoursWorked = SUM ( Fact_Exposure[HoursWorked] )
 RETURN
     DIVIDE ( Recordables * 200000, HoursWorked )`}
         />
-      </CaseSection>
 
-      <CaseSection id="outcomes" eyebrow="Finding 01" title="Lagging outcomes improved">
-        <p>
-          The outcome measures moved in the right direction. Year-to-date
-          recordable incidents fell from <strong>29 in the prior year to 16 in the
-          current year</strong> — approximately <strong>44.8% lower</strong>.
-        </p>
-        <p>
-          This is the number the organisation already knew, and the report does
-          not argue with it. What the report adds is context: it places that
-          improvement next to the preventive indicators rather than presenting it
-          alone, which is where the rest of the story comes from.
-        </p>
-        <Figure
-          alt="Overview page showing year-to-date recordable incident trend"
-          caption="Add report screenshots to public/projects/terrafirm/ and pass the path via the src prop."
+        <CodeBlock
+          language="dax"
+          caption="On-time training separates timeliness from completion — the split behind finding 03."
+          code={`On-Time Training % =
+DIVIDE (
+    CALCULATE (
+        COUNTROWS ( Fact_Training ),
+        Fact_Training[CompletedDate] <= Fact_Training[DueDate]
+    ),
+    CALCULATE (
+        COUNTROWS ( Fact_Training ),
+        NOT ISBLANK ( Fact_Training[CompletedDate] )
+    )
+)`}
         />
-      </CaseSection>
 
-      <CaseSection id="cadence" eyebrow="Finding 02" title="Preventive cadence remained weak">
-        <p>
-          Against that improving outcome, company-wide{' '}
-          <strong>Cadence Compliance sits at 29.9%</strong> — the share of
-          scheduled preventive activity completed on its intended rhythm. The
-          programme designed to prevent incidents is running well below its own
-          plan.
-        </p>
-        <p>
-          Two signals moving in opposite directions is the central tension of the
-          report. An improving injury count alongside weak preventive cadence
-          does not tell you the improvement is unearned — but it does mean the
-          improvement is not clearly explained by the preventive programme's
-          execution, and that is worth knowing before treating the trend as
-          secure.
-        </p>
-      </CaseSection>
-
-      <CaseSection id="training" eyebrow="Finding 03" title="Training completion masked weaker on-time readiness">
-        <p>
-          Training reporting had been run on completion alone, where the picture
-          looks reasonable: <strong>Training Completion is approximately 86.2%</strong>.
-        </p>
-        <p>
-          Splitting completion from timeliness changes what the number means.{' '}
-          <strong>On-Time Training is approximately 76.2%</strong> — roughly ten
-          points lower. Courses are being finished, but a meaningful share are
-          finished after the date they were required, which is a readiness gap
-          that a single completion percentage hides entirely.
-        </p>
-        <DataTable
-          columns={['Measure', 'Company-wide', 'What it tells you']}
-          rows={[
-            ['Training Completion', '~86.2%', 'Whether assigned training eventually gets done'],
-            ['On-Time Training', '~76.2%', 'Whether it was done by the date it was needed'],
-          ]}
-        />
-        <Callout title="Why the split matters">
-          Completion and timeliness answer different questions. Reporting only
-          the higher of the two makes readiness look stronger than the underlying
-          data supports.
+        <Callout tone="neutral" title="Adapt before reuse">
+          These follow the conventional 200,000-hour normalisation and a
+          due-date comparison. Both should be reconciled against your own
+          model's column names and business rules before being lifted.
         </Callout>
       </CaseSection>
 
-      <CaseSection id="concentration" eyebrow="Finding 04" title="Risk was concentrated, not evenly distributed">
-        <p>
-          Company averages hid how unevenly risk sat across the ten sites.{' '}
-          <strong>Ironwood accounts for 40 of the 106 recordable incidents —
-          approximately 37.7%</strong> of the company total from a single site.
-        </p>
-        <p>
-          Ironwood also sits on the weaker side of every preventive indicator the
-          model carries:
-        </p>
-
-        <DataTable
-          caption="Ironwood against company-wide values. R12 = rolling twelve months."
-          columns={['Measure', 'Ironwood', 'Company', 'Direction']}
-          rows={[
-            ['R12 Recordable Rate', '3.04', '1.61', 'Higher'],
-            ['Cadence Compliance', '3.8%', '29.9%', 'Lower'],
-            ['At-Risk Observation Rate', '28.4%', '18.9%', 'Higher'],
-            ['On-Time Training', '64.3%', '76.2%', 'Lower'],
-          ]}
-        />
-
-        <Callout tone="warn" title="Coexistence, not causation">
-          These four signals move together at Ironwood: weaker cadence, weaker
-          on-time training, and a higher at-risk observation rate coexist with a
-          recordable rate roughly double the company figure. The report presents
-          this as a pattern worth investigating, not as proof that the weak
-          preventive signals caused the higher incident rate. The data supports
-          the association; it does not establish the mechanism.
-        </Callout>
-
-        <p>
-          The practical value is prioritisation. A company average of 29.9%
-          cadence compliance invites a company-wide programme; the site view says
-          the first conversation belongs at one specific location.
-        </p>
-      </CaseSection>
-
-      <CaseSection id="site360" eyebrow="Finding 05" title="Site 360 turns a flag into a diagnosis">
-        <p>
-          Identifying Ironwood as an outlier is only useful if someone can then
-          ask <em>why</em> without opening five systems. The Site 360 page is a
-          drillthrough target: select a site anywhere in the report and land on a
-          single page holding that site's outcome and preventive measures
-          together.
-        </p>
-        <Bullets
-          items={[
-            'Outcome and leading indicators for the selected site appear side by side, so the comparison against the company figure is immediate rather than remembered.',
-            'Drillthrough carries the existing filter context, which means the site view always reconciles with the page the reader came from.',
-            'From the site view, incident and observation detail is one further step away — the narrative behind the number, not just the number.',
-            'The same page serves every site, so the diagnostic route is identical whichever outlier surfaces next.',
-          ]}
-        />
-        <Figure
-          alt="Site 360 drillthrough page for a selected site"
-          caption="Site 360: outcome measures and preventive indicators for one site in a single view."
+      {/* ---------------- Interactive ---------------- */}
+      <CaseSection
+        id="explore"
+        eyebrow="Explore"
+        title="Interactive dashboard"
+      >
+        <EmbedPlaceholder
+          title="Live report embed not yet published"
+          note="The Power BI report has not been published to a public workspace, so no embed URL exists. The six page walkthroughs above cover the same content; the embed will replace this panel once a publish-to-web link is available."
         />
       </CaseSection>
 
-      <CaseSection id="interpretation" eyebrow="Reading the signals" title="What the model does and does not claim">
+      {/* ---------------- Reflection ---------------- */}
+      <CaseSection
+        id="reflection"
+        eyebrow="Reflection"
+        title="What I learned"
+      >
         <Bullets
           items={[
-            'Recordable outcomes improved year over year. That is a measured result, taken directly from the incident data.',
-            'Cadence compliance, on-time training, and at-risk observation rates are weaker than the outcome trend alone would suggest. That is also measured.',
-            'Where those weaker preventive signals cluster, incident rates are higher — clearly so at Ironwood. This is an association observed in the data, not a demonstrated cause.',
-            'The report is built to prompt the next question rather than to close it: it shows where to look, and Site 360 is how the reader looks there.',
+            'An improving headline number is a starting point, not a conclusion. The most useful thing this model does is refuse to let the outcome trend be read on its own.',
+            'The exposure denominator does more analytical work than any visual. Without hours worked, every cross-site comparison silently rewards the smallest site.',
+            'Splitting one metric into two — completion versus on-time — changed the story more than any additional dataset did. It is worth asking what a single percentage is averaging over.',
+            'Writing findings as co-occurrence rather than cause is harder and slower, and it is what makes the report defensible when someone senior pushes back on it.',
+            'Building the drillthrough early shaped the summary pages for the better: knowing a diagnostic route existed meant the top-level pages did not have to try to explain everything.',
           ]}
         />
-        <p>
-          Framing it this way is deliberate. Safety analytics is an area where
-          overstating a causal link produces confident, wrong interventions. The
-          model is more useful to a safety lead as a well-evidenced set of
-          questions than as a set of conclusions the data cannot carry.
-        </p>
       </CaseSection>
     </>
   )

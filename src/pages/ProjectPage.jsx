@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import CaseStudyLayout from '../layouts/CaseStudyLayout.jsx'
 import NotFound from './NotFound.jsx'
-import { getProjectModule } from '../data/projects.js'
+import { getProjectModule, resolveProjectSlug } from '../data/projects.js'
 
 /**
  * Generic case-study route. Looks the project up in the registry and renders
@@ -11,7 +11,8 @@ import { getProjectModule } from '../data/projects.js'
  */
 export default function ProjectPage() {
   const { slug } = useParams()
-  const projectModule = getProjectModule(slug)
+  const canonical = resolveProjectSlug(slug)
+  const projectModule = canonical === slug ? getProjectModule(slug) : null
 
   useEffect(() => {
     if (projectModule) {
@@ -22,6 +23,10 @@ export default function ProjectPage() {
     }
   }, [projectModule])
 
+  // An alias (e.g. /projects/terrafirm) redirects to the canonical URL.
+  if (canonical && canonical !== slug) {
+    return <Navigate to={`/projects/${canonical}`} replace />
+  }
   if (!projectModule) return <NotFound />
 
   const { meta, default: CaseStudyBody } = projectModule
