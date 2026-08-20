@@ -427,7 +427,18 @@ export function CompareBars({ items, seriesA, seriesB }) {
  * One page of a dashboard walkthrough: the question it answers, a screenshot,
  * and a short caption.
  */
-export function DashboardPage({ number, question, src, alt, caption, width, height }) {
+export function DashboardPage({
+  number,
+  name,
+  question,
+  src,
+  alt,
+  caption,
+  width,
+  height,
+  shows,
+  takeaway,
+}) {
   const { t } = useLanguage()
   return (
     <section className="my-8 overflow-hidden rounded-xl bg-panel ring-1 ring-line">
@@ -435,10 +446,40 @@ export function DashboardPage({ number, question, src, alt, caption, width, heig
         <span className="font-mono text-xs text-muted">
           {t('case.page')} {number}
         </span>
+        {name && <span className="text-sm font-medium text-heading">{name}</span>}
         <h3 className="text-base font-semibold text-accent sm:text-lg">{question}</h3>
       </div>
+
       <div className="px-5 pb-5">
         <Figure src={src} alt={alt} caption={caption} width={width} height={height} />
+
+        {shows?.length > 0 && (
+          <div className="mt-1">
+            <p className="text-xs font-semibold uppercase tracking-wide text-faint">
+              {t('case.whatThisShows')}
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {shows.map((item, i) => (
+                <li key={i} className="flex gap-2.5 text-sm text-body">
+                  <span
+                    aria-hidden="true"
+                    className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {takeaway && (
+          <div className="mt-4 rounded-lg border-l-2 border-accent bg-accent-soft px-4 py-3">
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent">
+              {t('case.keyTakeaway')}
+            </p>
+            <p className="mt-1 text-sm font-medium text-heading">{takeaway}</p>
+          </div>
+        )}
       </div>
     </section>
   )

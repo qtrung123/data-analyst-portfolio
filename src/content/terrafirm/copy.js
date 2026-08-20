@@ -95,34 +95,82 @@ export const copy = {
       title: 'Six pages, each answering one question',
       pages: [
         {
+          name: 'Executive Overview',
           question: 'Are we getting safer?',
-          alt: 'Company safety outcome trend',
-          caption: 'YTD recordables against the prior year, with the rolling twelve-month rate as an exposure-adjusted baseline.',
+          alt: 'Executive overview — company safety outcome trend',
+          caption: 'Rolling TRIR, site ranking and the year-over-year YTD comparison.',
+          shows: [
+            'Rolling TRIR compares company performance with regions and prior year.',
+            'Site ranking shows where recordables are concentrated.',
+            'YTD comparison evaluates current recordables against the same point last year.',
+          ],
+          takeaway:
+            'YTD recordables fell from 29 to 16 (~44.8%), but risk remained concentrated at specific sites.',
         },
         {
+          name: 'Leading Performance',
           question: 'Are sites doing the preventive work?',
-          alt: 'Preventive inspection cadence by site',
-          caption: 'Cadence compliance by site, where the spread between sites is visible rather than averaged away.',
+          alt: 'Leading performance — preventive activity by site',
+          caption: 'Leading Indicator Score, the 26-week consistency heatmap and site ranking against target.',
+          shows: [
+            'Leading Indicator Score combines training, cadence, inspection score and safe observations.',
+            '26-week heatmap shows preventive consistency by site.',
+            'Site ranking compares preventive performance with target.',
+          ],
+          takeaway:
+            'Overall Leading Indicator Score is 68/100, with Weekly Activity contributing only 7.5/25 — the largest weakness.',
         },
         {
+          name: 'Field Quality & Culture',
           question: 'What are we seeing in the field?',
-          alt: 'Field safety observations',
-          caption: 'Observation volume and quality, split by at-risk versus safe conditions against the company benchmark.',
+          alt: 'Field quality and culture — inspections and observations',
+          caption: 'Inspection score against findings, observation metrics and the site by category matrix.',
+          shows: [
+            'Inspection score and findings are compared to surface divergence worth investigating.',
+            'Observation metrics identify at-risk categories and site differences.',
+            'Site × Category matrix highlights field-risk hotspots.',
+          ],
+          takeaway:
+            'At-Risk Observation Rate is ~18.9%, with meaningful differences across sites and categories.',
         },
         {
+          name: 'Incidents',
           question: 'What actually happened?',
-          alt: 'Incident detail and classification',
-          caption: 'Incident detail and classification — the page for a question about a specific event rather than a trend.',
+          alt: 'Incidents — severity, hazard categories and site concentration',
+          caption: 'Severity pyramid, hazard Pareto and site ranking with TRIR as exposure context.',
+          shows: [
+            'Severity pyramid shows progression from near misses to lost-time cases.',
+            'Pareto identifies the hazard categories contributing most incidents.',
+            'Site ranking shows recordable concentration with TRIR as exposure context.',
+          ],
+          takeaway:
+            '106 recordables occurred among 1,133 incidents, with Ironwood accounting for 40 (~37.7%).',
         },
         {
+          name: 'Training & Readiness',
           question: 'Are people ready for the work?',
-          alt: 'Training completion and on-time readiness',
-          caption: 'Completion shown against on-time readiness, separating work finished from work finished on time.',
+          alt: 'Training and readiness — completion against on-time performance',
+          caption: 'Completion against on-time, course and site analysis, and the follow-up action queue.',
+          shows: [
+            'Completion vs On-Time distinguishes eventual completion from readiness.',
+            'Course/site analysis identifies overdue concentrations.',
+            'Action queue identifies assignments requiring follow-up.',
+          ],
+          takeaway:
+            'Training Completion is ~86.2% vs ~76.2% On-Time, while all 1,068 open assignments are overdue.',
         },
         {
+          name: 'Site 360',
           question: 'Why is this site different?',
-          alt: 'Site 360 drillthrough diagnostic',
-          caption: 'Site 360: outcome and preventive measures for one site against the company benchmark, reached by drillthrough from any page.',
+          alt: 'Site 360 — single-site drillthrough diagnostic',
+          caption: 'Drillthrough view placing one site against company benchmarks, with supporting detail tables.',
+          shows: [
+            'Drillthrough compares the selected site with company benchmarks.',
+            'Outcome, cadence, field-risk and training signals are assessed together.',
+            'Detail tables provide incident and overdue-training context.',
+          ],
+          takeaway:
+            'Ironwood shows R12 Recordable Rate 3.04 vs company 1.61, Cadence 3.8% vs 29.9%, At-Risk Observations 28.4% vs 18.9%, and On-Time Training 64.3% vs 76.2%. These are diagnostic signals that warrant investigation, not evidence of causation.',
         },
       ],
     },
@@ -263,34 +311,82 @@ DIVIDE (
       title: 'Sáu trang, mỗi trang trả lời một câu hỏi',
       pages: [
         {
+          name: 'Tổng quan điều hành',
           question: 'Chúng ta có an toàn hơn không?',
-          alt: 'Xu hướng kết quả an toàn toàn công ty',
-          caption: 'Sự cố phải ghi nhận lũy kế so với cùng kỳ, kèm tỷ lệ trượt 12 tháng làm mốc đã điều chỉnh theo giờ công.',
+          alt: 'Tổng quan điều hành — xu hướng kết quả an toàn toàn công ty',
+          caption: 'TRIR trượt, xếp hạng công trường và so sánh YTD với cùng kỳ năm trước.',
+          shows: [
+            'TRIR trượt so sánh hiệu quả toàn công ty với các khu vực và với năm trước.',
+            'Xếp hạng công trường cho thấy sự cố phải ghi nhận tập trung ở đâu.',
+            'So sánh YTD đánh giá số sự cố hiện tại với cùng thời điểm năm ngoái.',
+          ],
+          takeaway:
+            'Sự cố phải ghi nhận lũy kế giảm từ 29 xuống 16 (~44,8%), nhưng rủi ro vẫn tập trung ở một số công trường cụ thể.',
         },
         {
+          name: 'Hiệu quả phòng ngừa',
           question: 'Các công trường có làm công tác phòng ngừa không?',
-          alt: 'Tần suất kiểm tra phòng ngừa theo công trường',
-          caption: 'Cadence compliance theo từng công trường, cho thấy khoảng cách giữa các nơi thay vì bị bình quân hóa.',
+          alt: 'Hiệu quả phòng ngừa — hoạt động phòng ngừa theo công trường',
+          caption: 'Leading Indicator Score, heatmap 26 tuần và xếp hạng công trường so với mục tiêu.',
+          shows: [
+            'Leading Indicator Score kết hợp đào tạo, cadence, điểm kiểm tra và quan sát an toàn.',
+            'Heatmap 26 tuần thể hiện mức độ đều đặn của công tác phòng ngừa theo công trường.',
+            'Xếp hạng công trường so sánh hiệu quả phòng ngừa với mục tiêu.',
+          ],
+          takeaway:
+            'Leading Indicator Score tổng thể đạt 68/100, trong đó Weekly Activity chỉ đóng góp 7,5/25 — điểm yếu lớn nhất.',
         },
         {
+          name: 'Chất lượng & văn hóa hiện trường',
           question: 'Hiện trường đang cho thấy điều gì?',
-          alt: 'Quan sát an toàn tại hiện trường',
-          caption: 'Số lượng và chất lượng quan sát, tách theo điều kiện rủi ro và an toàn, đối chiếu với mặt bằng công ty.',
+          alt: 'Chất lượng và văn hóa hiện trường — kiểm tra và quan sát',
+          caption: 'Điểm kiểm tra đối chiếu với số phát hiện, chỉ số quan sát và ma trận công trường × nhóm rủi ro.',
+          shows: [
+            'Điểm kiểm tra và số phát hiện được đối chiếu để lộ ra những khác biệt đáng xem xét.',
+            'Các chỉ số quan sát xác định nhóm rủi ro và khác biệt giữa các công trường.',
+            'Ma trận Công trường × Nhóm rủi ro làm nổi bật các điểm nóng rủi ro hiện trường.',
+          ],
+          takeaway:
+            'Tỷ lệ quan sát rủi ro ở mức ~18,9%, với khác biệt đáng kể giữa các công trường và nhóm rủi ro.',
         },
         {
+          name: 'Sự cố',
           question: 'Chuyện gì đã thực sự xảy ra?',
-          alt: 'Chi tiết và phân loại sự cố',
-          caption: 'Chi tiết và phân loại sự cố — trang dành cho câu hỏi về một sự việc cụ thể thay vì xu hướng.',
+          alt: 'Sự cố — mức độ nghiêm trọng, nhóm nguy cơ và mức tập trung theo công trường',
+          caption: 'Tháp mức độ nghiêm trọng, biểu đồ Pareto nhóm nguy cơ và xếp hạng công trường với TRIR làm bối cảnh phơi nhiễm.',
+          shows: [
+            'Tháp mức độ nghiêm trọng thể hiện diễn tiến từ suýt xảy ra đến ca mất ngày công.',
+            'Pareto xác định các nhóm nguy cơ chiếm tỷ trọng sự cố lớn nhất.',
+            'Xếp hạng công trường cho thấy mức tập trung sự cố phải ghi nhận, với TRIR làm bối cảnh phơi nhiễm.',
+          ],
+          takeaway:
+            'Có 106 ca phải ghi nhận trong tổng số 1.133 sự cố, riêng Ironwood chiếm 40 ca (~37,7%).',
         },
         {
+          name: 'Đào tạo & mức sẵn sàng',
           question: 'Con người đã sẵn sàng cho công việc chưa?',
-          alt: 'Hoàn thành đào tạo và mức sẵn sàng đúng hạn',
-          caption: 'Tỷ lệ hoàn thành đặt cạnh tỷ lệ đúng hạn, tách phần đã làm xong khỏi phần làm xong kịp thời hạn.',
+          alt: 'Đào tạo và mức sẵn sàng — hoàn thành so với đúng hạn',
+          caption: 'Tỷ lệ hoàn thành đối chiếu đúng hạn, phân tích theo khóa học và công trường, cùng hàng đợi cần theo dõi.',
+          shows: [
+            'Hoàn thành so với Đúng hạn phân biệt giữa việc hoàn tất và mức sẵn sàng thực sự.',
+            'Phân tích theo khóa học/công trường xác định nơi tập trung các khóa quá hạn.',
+            'Hàng đợi hành động xác định các phân công cần theo dõi tiếp.',
+          ],
+          takeaway:
+            'Tỷ lệ hoàn thành đào tạo ~86,2% so với ~76,2% đúng hạn, trong khi toàn bộ 1.068 phân công đang mở đều đã quá hạn.',
         },
         {
+          name: 'Site 360',
           question: 'Vì sao công trường này khác biệt?',
-          alt: 'Trang chẩn đoán drillthrough Site 360',
-          caption: 'Site 360: chỉ số kết quả và phòng ngừa của một công trường so với mặt bằng công ty, mở bằng drillthrough từ bất kỳ trang nào.',
+          alt: 'Site 360 — trang chẩn đoán drillthrough cho một công trường',
+          caption: 'Trang drillthrough đặt một công trường cạnh mặt bằng công ty, kèm các bảng chi tiết bổ trợ.',
+          shows: [
+            'Drillthrough so sánh công trường được chọn với mặt bằng toàn công ty.',
+            'Các tín hiệu kết quả, cadence, rủi ro hiện trường và đào tạo được đánh giá cùng nhau.',
+            'Các bảng chi tiết cung cấp bối cảnh về sự cố và đào tạo quá hạn.',
+          ],
+          takeaway:
+            'Ironwood có Tỷ lệ sự cố R12 3,04 so với 1,61 toàn công ty, Cadence 3,8% so với 29,9%, Quan sát rủi ro 28,4% so với 18,9%, và Đào tạo đúng hạn 64,3% so với 76,2%. Đây là các tín hiệu chẩn đoán đáng để điều tra, không phải bằng chứng về quan hệ nhân quả.',
         },
       ],
     },

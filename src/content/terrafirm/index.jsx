@@ -148,12 +148,15 @@ export default function TerraFirmCaseStudy({ lang = 'en' }) {
           <DashboardPage
             key={shot.n}
             number={shot.n}
+            name={c.dashboard.pages[i].name}
             question={c.dashboard.pages[i].question}
             src={`${IMG}/${shot.file}`}
             alt={c.dashboard.pages[i].alt}
             caption={c.dashboard.pages[i].caption}
             width={shot.w}
             height={shot.h}
+            shows={c.dashboard.pages[i].shows}
+            takeaway={c.dashboard.pages[i].takeaway}
           />
         ))}
       </CaseSection>

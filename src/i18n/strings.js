@@ -62,6 +62,8 @@ export const strings = {
   'case.enlargeImage': { en: 'Enlarge image', vi: 'Phóng to ảnh' },
   'case.closeViewer': { en: 'Close image viewer', vi: 'Đóng ảnh' },
   'case.addScreenshot': { en: '(add screenshot)', vi: '(chưa có ảnh)' },
+  'case.whatThisShows': { en: 'What this shows', vi: 'Trang này cho thấy gì' },
+  'case.keyTakeaway': { en: 'Key takeaway', vi: 'Điểm mấu chốt' },
   'case.page': { en: 'Page', vi: 'Trang' },
 
   'notFound.title': { en: 'Page not found', vi: 'Không tìm thấy trang' },
