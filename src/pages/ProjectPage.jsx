@@ -3,25 +3,29 @@ import { Navigate, useParams } from 'react-router-dom'
 import CaseStudyLayout from '../layouts/CaseStudyLayout.jsx'
 import NotFound from './NotFound.jsx'
 import { getProjectModule, resolveProjectSlug } from '../data/projects.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
+
+const SITE_TITLE = 'Quoc Trung Nguyen — Data Analyst | Business Intelligence'
 
 /**
  * Generic case-study route. Looks the project up in the registry and renders
- * its content component inside the shared layout — so adding a project never
- * means adding a route.
+ * its content inside the shared layout — adding a project never means adding
+ * a route.
  */
 export default function ProjectPage() {
   const { slug } = useParams()
+  const { lang, tr } = useLanguage()
   const canonical = resolveProjectSlug(slug)
   const projectModule = canonical === slug ? getProjectModule(slug) : null
 
   useEffect(() => {
     if (projectModule) {
-      document.title = `${projectModule.meta.title} — Case study`
+      document.title = `${tr(projectModule.meta.title)} — ${tr(projectModule.meta.subtitle)}`
     }
     return () => {
-      document.title = 'Quoc Trung — Data Analyst & BI Developer'
+      document.title = SITE_TITLE
     }
-  }, [projectModule])
+  }, [projectModule, tr, lang])
 
   // An alias (e.g. /projects/terrafirm) redirects to the canonical URL.
   if (canonical && canonical !== slug) {
@@ -33,7 +37,9 @@ export default function ProjectPage() {
 
   return (
     <CaseStudyLayout meta={meta}>
-      <CaseStudyBody />
+      {/* Content components receive the active language and render from
+          their own bilingual copy object. */}
+      <CaseStudyBody lang={lang} />
     </CaseStudyLayout>
   )
 }

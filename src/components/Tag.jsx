@@ -1,7 +1,7 @@
 const TONES = {
-  default: 'bg-ink-900 text-ink-300 ring-ink-800',
-  accent: 'bg-accent-500/10 text-accent-400 ring-accent-500/30',
-  muted: 'bg-transparent text-ink-400 ring-ink-800',
+  default: 'bg-panel-2 text-body ring-line',
+  accent: 'bg-accent-soft text-accent ring-accent-line',
+  muted: 'bg-transparent text-muted ring-line',
 }
 
 export default function Tag({ tone = 'default', className = '', children }) {

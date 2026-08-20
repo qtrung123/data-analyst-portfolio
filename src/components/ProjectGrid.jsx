@@ -1,10 +1,13 @@
 import ProjectCard from './ProjectCard.jsx'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export default function ProjectGrid({ projects, columns = 3, className = '' }) {
+  const { t } = useLanguage()
+
   if (!projects.length) {
     return (
-      <p className="rounded-xl border border-dashed border-ink-800 p-10 text-center text-sm text-ink-400">
-        No projects in this category yet.
+      <p className="rounded-xl border border-dashed border-line p-10 text-center text-sm text-muted">
+        {t('projects.empty')}
       </p>
     )
   }

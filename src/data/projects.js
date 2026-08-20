@@ -2,21 +2,28 @@
  * Project registry.
  *
  * Every project lives in its own folder under `src/content/<slug>/` and exports:
- *   - `meta`    : the card + case-study header metadata (see shape below)
+ *   - `meta`    : card + case-study header metadata (see shape below)
  *   - `default` : a React component rendering the case-study body
  *
  * To add a project: create the folder, then add one import + one entry here.
  * Nothing else in the site needs to change.
  *
+ * Any user-facing string in `meta` may be either a plain value (identical in
+ * both languages) or a `{ en, vi }` object — shared components resolve it via
+ * the `tr` helper, so no component contains project-specific language logic.
+ *
  * meta shape:
  * {
- *   slug, title, subtitle, summary, category, year,
- *   aliases?: string[],                   // extra URL segments that redirect to slug
+ *   slug, title, subtitle, summary,
+ *   aliases?: string[],                  // extra URL segments that redirect to slug
+ *   category, year,
  *   status: 'flagship' | 'live' | 'in-progress' | 'archived',
- *   tools: string[],
- *   metrics: [{ label, value, note? }],   // shown as the case-study stat row
- *   cover: { from, to, glyph },           // gradient card art, no image needed
- *   links: [{ label, href, external? }],
+ *   tools: string[],                     // product names, not translated
+ *   card: { problem, built, found },     // the three questions a card answers
+ *   metrics: [{ label, value, note? }],  // 3-4, shown on the card and header
+ *   cover: { from, to, glyph, image? },
+ *   links: [{ label, href }],
+ *   sections: [{ id, label }],
  *   featured: boolean,
  * }
  */
@@ -48,17 +55,22 @@ export function getProject(slug) {
   return projects.find((p) => p.slug === slug) ?? null
 }
 
-/** Adjacent projects, for the "next case study" footer link. */
+/** Adjacent projects, for the next/previous case-study links. */
 export function getProjectNeighbours(slug) {
   const i = projects.findIndex((p) => p.slug === slug)
   if (i === -1) return { prev: null, next: null }
-  return {
-    prev: projects[i - 1] ?? null,
-    next: projects[i + 1] ?? null,
-  }
+  return { prev: projects[i - 1] ?? null, next: projects[i + 1] ?? null }
 }
 
-/** Unique category list for filter chips on the projects page. */
+/**
+ * Unique categories for the filter chips.
+ * Keyed on the English value so a language switch never resets the filter.
+ */
 export function getCategories() {
-  return [...new Set(projects.map((p) => p.category))].sort()
+  const seen = new Map()
+  for (const p of projects) {
+    const key = typeof p.category === 'object' ? (p.category.en ?? '') : p.category
+    if (!seen.has(key)) seen.set(key, { key, value: p.category })
+  }
+  return [...seen.values()].sort((a, b) => a.key.localeCompare(b.key))
 }

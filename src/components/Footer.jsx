@@ -1,39 +1,47 @@
 import { Link } from 'react-router-dom'
 import Container from './Container.jsx'
 import site from '../data/site.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export default function Footer() {
+  const { t, tr } = useLanguage()
+
   return (
-    <footer className="border-t border-ink-800 bg-ink-900/30">
+    <footer className="border-t border-line bg-panel/50">
       <Container className="flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-semibold text-ink-100">{site.name}</p>
-          <p className="mt-1 text-sm text-ink-400">
-            {site.role} · {site.location}
+          <p className="font-semibold text-heading">{tr(site.name)}</p>
+          <p className="mt-1 text-sm text-muted">
+            {site.role} &middot; {tr(site.location)}
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-5 text-sm text-ink-400">
-          <Link to="/projects" className="hover:text-accent-400">
-            Projects
+        <div className="flex flex-wrap items-center gap-5 text-sm text-muted">
+          <Link to="/projects" className="hover:text-accent">
+            {t('nav.projects')}
           </Link>
-          <Link to="/about" className="hover:text-accent-400">
-            About
+          <Link to="/about" className="hover:text-accent">
+            {t('nav.about')}
           </Link>
-          <a href={`mailto:${site.email}`} className="hover:text-accent-400">
+          <a href={site.cvUrl} target="_blank" rel="noreferrer" className="hover:text-accent">
+            {t('nav.cv')}
+          </a>
+          <a
+            href={site.links.github}
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-accent"
+          >
+            {t('nav.github')}
+          </a>
+          <a href={`mailto:${site.email}`} className="hover:text-accent">
             Email
-          </a>
-          <a href={site.links.github} target="_blank" rel="noreferrer" className="hover:text-accent-400">
-            GitHub
-          </a>
-          <a href={site.links.linkedin} target="_blank" rel="noreferrer" className="hover:text-accent-400">
-            LinkedIn
           </a>
         </div>
       </Container>
-      <Container className="border-t border-ink-800/60 py-5">
-        <p className="text-xs text-ink-500">
-          © {new Date().getFullYear()} {site.name}. Built with React, Vite and Tailwind CSS.
+      <Container className="border-t border-line py-5">
+        <p className="text-xs text-faint">
+          &copy; {new Date().getFullYear()} {tr(site.name)}. {t('footer.built')}
         </p>
       </Container>
     </footer>

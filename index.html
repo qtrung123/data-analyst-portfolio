@@ -3,12 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quoc Trung — Data Analyst &amp; BI Developer</title>
+    <title>Quoc Trung Nguyen — Data Analyst | Business Intelligence</title>
     <meta
       name="description"
-      content="Portfolio of data analytics and business intelligence work: Power BI, SQL, and analytics engineering case studies."
+      content="Data analytics and business intelligence portfolio: Power BI, SQL, Python and data modeling case studies."
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      // Applies the stored or system theme before first paint, so there is no
+      // flash of the wrong theme. ThemeProvider takes over from here.
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme')
+          var dark =
+            stored === 'dark' ||
+            (stored !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+          var lang = localStorage.getItem('portfolio-lang')
+          if (lang === 'en' || lang === 'vi') document.documentElement.lang = lang
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

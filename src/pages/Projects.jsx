@@ -2,38 +2,42 @@ import { useState } from 'react'
 import Container from '../components/Container.jsx'
 import ProjectGrid from '../components/ProjectGrid.jsx'
 import { projects, getCategories } from '../data/projects.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
-const ALL = 'All'
+const ALL = '__all__'
 
 export default function Projects() {
-  const categories = [ALL, ...getCategories()]
+  const { t, tr } = useLanguage()
   const [filter, setFilter] = useState(ALL)
 
-  const visible = filter === ALL ? projects : projects.filter((p) => p.category === filter)
+  // Categories may be bilingual objects; group by the English key so the
+  // filter keeps working when the language changes.
+  const categories = getCategories()
+  const visible =
+    filter === ALL ? projects : projects.filter((p) => categoryKey(p.category) === filter)
 
   return (
-    <Container className="py-16 sm:py-20">
-      <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Projects</h1>
-      <p className="mt-3 max-w-2xl text-ink-300">
-        Each project is written up as a case study: the question behind it, the
-        data model, the build, and what changed as a result.
-      </p>
+    <Container className="py-12 sm:py-16">
+      <h1 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
+        {t('projects.title')}
+      </h1>
+      <p className="mt-3 max-w-2xl text-body">{t('projects.intro')}</p>
 
-      {categories.length > 2 && (
+      {categories.length > 1 && (
         <div className="mt-8 flex flex-wrap gap-2">
-          {categories.map((c) => (
+          {[{ key: ALL, label: t('projects.all') }, ...categories].map((c) => (
             <button
-              key={c}
+              key={c.key}
               type="button"
-              onClick={() => setFilter(c)}
-              aria-pressed={filter === c}
+              onClick={() => setFilter(c.key)}
+              aria-pressed={filter === c.key}
               className={`rounded-full px-3.5 py-1.5 text-sm font-medium ring-1 transition ${
-                filter === c
-                  ? 'bg-accent-500/10 text-accent-400 ring-accent-500/40'
-                  : 'text-ink-300 ring-ink-800 hover:text-white'
+                filter === c.key
+                  ? 'bg-accent-soft text-accent ring-accent-line'
+                  : 'text-body ring-line hover:text-heading'
               }`}
             >
-              {c}
+              {c.label ?? tr(c.value)}
             </button>
           ))}
         </div>
@@ -42,4 +46,8 @@ export default function Projects() {
       <ProjectGrid projects={visible} className="mt-10" />
     </Container>
   )
+}
+
+function categoryKey(category) {
+  return typeof category === 'object' ? (category.en ?? '') : category
 }

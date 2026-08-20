@@ -1,67 +1,107 @@
 /**
  * TEMPLATE — copy this folder to `src/content/<your-slug>/`, rename the file
- * to `index.jsx`, fill it in, then register it in `src/data/projects.js`:
+ * to `index.jsx`, add a `copy.js` beside it (see terrafirm/copy.js), then
+ * register it in `src/data/projects.js`:
  *
  *   import * as aiTutor from '../content/ai-tutor/index.jsx'
  *   export const projectModules = [terrafirm, aiTutor]
  *
- * That's the whole process — no routes, no cards, no layout changes.
+ * That's the whole process — no routes, no cards, no layout changes, and no
+ * language handling to wire up.
+ *
+ * Bilingual convention:
+ *   - `meta` fields are either a plain value (same in both languages, e.g. a
+ *     tool name) or a `{ en, vi }` object. Shared components resolve them.
+ *   - Long-form body copy lives in `copy.js` as `{ en: {...}, vi: {...} }`,
+ *     and the component below picks the active language once. One component,
+ *     two languages, no duplicated markup.
  */
 import {
   CaseSection,
   Callout,
   Bullets,
-  Steps,
-  DataTable,
+  FlowLine,
+  FactStrip,
+  FindingCards,
+  DashboardPage,
   CodeBlock,
-  Figure,
+  Expandable,
+  EmbedPlaceholder,
 } from '../../components/case/CaseBlocks.jsx'
+import { copy } from './copy.js'
 
 export const meta = {
-  slug: 'your-project-slug',            // becomes /projects/your-project-slug
+  slug: 'your-project-slug', // becomes /projects/your-project-slug
   title: 'Your Project Title',
-  subtitle: 'One line describing what it is',
-  summary: 'Two or three sentences: the problem, what you built, the result.',
-  category: 'Business Intelligence',    // also drives the Projects page filters
+  subtitle: { en: 'One line on what it is', vi: 'Một dòng mô tả dự án' },
+  summary: {
+    en: 'One or two sentences: what you built and what it connects.',
+    vi: 'Một hoặc hai câu: bạn đã xây dựng gì và nó kết nối những gì.',
+  },
+  category: { en: 'Business Intelligence', vi: 'Business Intelligence' },
   year: '2026',
-  status: 'live',                       // flagship | live | in-progress | archived
-  featured: false,                      // true = eligible for the homepage hero
-  tools: ['SQL', 'Python'],
+  status: 'live', // flagship | live | in-progress | archived
+  featured: false, // true = eligible for the homepage feature slot
+  tools: ['SQL', 'Python'], // product names — not translated
+
+  // The three questions every card answers in a few seconds.
+  card: {
+    problem: { en: 'What was broken.', vi: 'Vấn đề là gì.' },
+    built: { en: 'What you built.', vi: 'Bạn đã xây dựng gì.' },
+    found: { en: 'What it surfaced.', vi: 'Phát hiện được gì.' },
+  },
+
+  // Three or four only — the card and the case-study header share these.
   metrics: [
-    { label: 'Metric', value: '00', note: 'optional context' },
+    {
+      label: { en: 'Metric', vi: 'Chỉ số' },
+      value: '00',
+      note: { en: 'context', vi: 'ngữ cảnh' },
+    },
   ],
+
   cover: { from: '#1e3a8a', to: '#0f172a', glyph: '📈' },
-  links: [{ label: 'Repository', href: 'https://github.com/' }],
+  links: [{ label: { en: 'Repository', vi: 'Repository' }, href: 'https://github.com/' }],
   sections: [
-    { id: 'context', label: 'Context' },
-    { id: 'problem', label: 'The problem' },
-    { id: 'approach', label: 'Approach' },
-    { id: 'outcome', label: 'Outcome' },
+    { id: 'problem', label: { en: 'Problem', vi: 'Vấn đề' } },
+    { id: 'built', label: { en: 'What I built', vi: 'Giải pháp' } },
+    { id: 'findings', label: { en: 'Key findings', vi: 'Phát hiện chính' } },
+    { id: 'learned', label: { en: 'What I learned', vi: 'Bài học' } },
   ],
 }
 
-export default function CaseStudy() {
+export default function CaseStudy({ lang = 'en' }) {
+  const c = copy[lang] ?? copy.en
+
   return (
     <>
-      <CaseSection id="context" eyebrow="Context" title="Context">
-        <p>Who this was for and why it mattered.</p>
+      <CaseSection id="problem" eyebrow={c.sections.problem} title={c.problem.title}>
+        {c.problem.body.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
       </CaseSection>
 
-      <CaseSection id="problem" eyebrow="Problem" title="The problem">
-        <Bullets items={['First issue', 'Second issue']} />
-        <Callout tone="warn" title="The reframing">Optional pull-out.</Callout>
+      <CaseSection id="built" eyebrow={c.sections.built} title={c.built.title}>
+        <FlowLine steps={c.built.flow} />
+        <FactStrip facts={c.built.facts} />
       </CaseSection>
 
-      <CaseSection id="approach" eyebrow="Approach" title="How I built it">
-        <Steps steps={[{ title: 'Step one', body: 'What you did.' }]} />
-        <CodeBlock language="sql" code={`SELECT 1;`} />
-        <DataTable columns={['A', 'B']} rows={[['1', '2']]} />
-        <Figure alt="Screenshot description" caption="Optional caption." />
+      <CaseSection id="findings" eyebrow={c.sections.findings} title={c.findings.title} wide>
+        <FindingCards findings={c.findings.cards} />
+        <Callout title={c.findings.caveat?.title}>
+          <p>{c.findings.caveat?.body}</p>
+        </Callout>
       </CaseSection>
 
-      <CaseSection id="outcome" eyebrow="Outcome" title="What changed">
-        <Bullets items={['Result one', 'Result two']} />
+      <CaseSection id="learned" eyebrow={c.sections.learned} title={c.learned.title}>
+        <Bullets items={c.learned.items} />
       </CaseSection>
     </>
   )
 }
+
+/* Other blocks available from CaseBlocks.jsx:
+ *   <DashboardPage number question src alt caption width height />
+ *   <Expandable label={...}><CodeBlock language code caption /></Expandable>
+ *   <EmbedPlaceholder title note />
+ */

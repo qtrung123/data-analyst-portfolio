@@ -1,0 +1,67 @@
+/**
+ * TEMPLATE — bilingual case-study copy. Rename to `copy.js`.
+ *
+ * One object per language, same shape in both. The content component picks
+ * the active language once, so there is no duplicated markup.
+ */
+export const copy = {
+  en: {
+    sections: {
+      problem: 'Problem',
+      built: 'What I built',
+      findings: 'Key findings',
+      learned: 'What I learned',
+    },
+    problem: {
+      title: 'One line naming the real problem',
+      body: ['Two or three sentences. No more.'],
+    },
+    built: {
+      title: 'Short architecture summary',
+      flow: ['Source', 'Transform', 'Model', 'Report'],
+      facts: [{ value: '000', label: 'Rows' }],
+    },
+    findings: {
+      title: 'What the work surfaced',
+      cards: [
+        { title: 'Finding', body: 'One or two sentences.', evidence: 'the number' },
+      ],
+      caveat: { title: 'Caveat', body: 'State associations as co-occurrence.' },
+    },
+    learned: {
+      title: 'What I learned',
+      items: ['Maximum three bullets.'],
+    },
+  },
+
+  vi: {
+    sections: {
+      problem: 'Vấn đề',
+      built: 'Giải pháp đã xây dựng',
+      findings: 'Phát hiện chính',
+      learned: 'Bài học rút ra',
+    },
+    problem: {
+      title: 'Một dòng nêu đúng vấn đề',
+      body: ['Hai đến ba câu. Không dài hơn.'],
+    },
+    built: {
+      title: 'Tóm tắt kiến trúc ngắn gọn',
+      flow: ['Nguồn', 'Biến đổi', 'Mô hình', 'Báo cáo'],
+      facts: [{ value: '000', label: 'Bản ghi' }],
+    },
+    findings: {
+      title: 'Những gì công việc này phát hiện',
+      cards: [
+        { title: 'Phát hiện', body: 'Một đến hai câu.', evidence: 'con số' },
+      ],
+      caveat: { title: 'Lưu ý', body: 'Trình bày mối liên hệ là cùng xuất hiện.' },
+    },
+    learned: {
+      title: 'Bài học rút ra',
+      items: ['Tối đa ba gạch đầu dòng.'],
+    },
+  },
+}
+
+export default copy
