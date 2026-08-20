@@ -35,7 +35,12 @@ export const meta = {
     { label: 'YTD recordables', value: '29 → 16', note: '~44.8% lower' },
     { label: 'Cadence compliance', value: '29.9%', note: 'company-wide' },
   ],
-  cover: { from: '#0c4a6e', to: '#082f49', glyph: '🦺' },
+  cover: {
+    from: '#0c4a6e',
+    to: '#082f49',
+    glyph: '🦺',
+    image: '/projects/terrafirm/page1.png',
+  },
   links: [
     // Replace with the real repository link before publishing.
     { label: 'Power BI repository', href: 'https://github.com/' },
@@ -182,6 +187,7 @@ export default function TerraFirmCaseStudy() {
         id="dashboard"
         eyebrow="Dashboard story"
         title="Six pages, each answering one question"
+        wide
       >
         <p>
           The report is sequenced as an argument: start with the outcome, test
@@ -195,6 +201,9 @@ export default function TerraFirmCaseStudy() {
           title="Company-level outcome trend"
           src={`${IMG}/page1.png`}
           alt="Page 1 — company safety outcome trend"
+          caption="Company-level outcome trend: year-to-date recordables against the prior year, with the rolling twelve-month rate as the exposure-adjusted baseline."
+          width={1696}
+          height={961}
           points={[
             'Year-to-date recordables of 16 against 29 in the prior year, approximately 44.8% lower.',
             'Rolling twelve-month recordable rate of 1.61 company-wide gives the trend an exposure-adjusted baseline.',
@@ -208,6 +217,9 @@ export default function TerraFirmCaseStudy() {
           title="Inspection cadence compliance"
           src={`${IMG}/page2.png`}
           alt="Page 2 — preventive inspection cadence by site"
+          caption="Inspection cadence compliance broken out by site, where the spread between sites is visible rather than averaged away."
+          width={1693}
+          height={868}
           points={[
             'Cadence Compliance of 29.9% company-wide, across 9,195 completed inspections.',
             'Compliance is broken out by site, which is where the spread becomes visible rather than averaged away.',
@@ -221,6 +233,9 @@ export default function TerraFirmCaseStudy() {
           title="Safety observation volume and quality"
           src={`${IMG}/page3.png`}
           alt="Page 3 — field safety observations"
+          caption="Field observation volume and quality, split by at-risk versus safe conditions against the company benchmark."
+          width={1702}
+          height={931}
           points={[
             '15,846 observations recorded, split by at-risk versus safe conditions.',
             'Company at-risk observation rate of 18.9% is the benchmark each site is read against.',
@@ -234,6 +249,9 @@ export default function TerraFirmCaseStudy() {
           title="Incident detail and classification"
           src={`${IMG}/page4.png`}
           alt="Page 4 — incident detail and classification"
+          caption="Incident detail and classification — the page that answers a question about a specific event rather than a trend."
+          width={1693}
+          height={921}
           points={[
             '1,133 incidents in total, of which 106 are recordable.',
             'Classification and detail sit here so the summary pages stay readable and the specifics remain one click away.',
@@ -247,6 +265,9 @@ export default function TerraFirmCaseStudy() {
           title="Training completion against on-time readiness"
           src={`${IMG}/page5.png`}
           alt="Page 5 — training completion and on-time readiness"
+          caption="Training completion shown against on-time readiness, the split that separates work finished from work finished on time."
+          width={1702}
+          height={925}
           points={[
             '7,750 training assignments, with completion at approximately 86.2%.',
             'On-Time Training of approximately 76.2% is the same population measured against the date the training was required.',
@@ -260,6 +281,9 @@ export default function TerraFirmCaseStudy() {
           title="Site 360 — drillthrough diagnosis"
           src={`${IMG}/page6.png`}
           alt="Page 6 — Site 360 drillthrough diagnostic"
+          caption="Site 360: outcome and preventive measures for one site against the company benchmark, reached by drillthrough from any page."
+          width={1705}
+          height={948}
           points={[
             'Drillthrough from any page carries filter context to a single site, so the site view always reconciles with the page it was opened from.',
             'Outcome and preventive measures appear together for that site against the company benchmark.',

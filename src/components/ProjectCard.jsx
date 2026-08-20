@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Tag from './Tag.jsx'
 import StatusBadge from './StatusBadge.jsx'
@@ -12,6 +13,10 @@ import StatusBadge from './StatusBadge.jsx'
 export default function ProjectCard({ project, variant = 'grid' }) {
   const feature = variant === 'feature'
   const { cover = {} } = project
+  // A real screenshot is used as cover art when the project supplies one;
+  // the gradient + glyph stays as the fallback for projects without images.
+  const [coverFailed, setCoverFailed] = useState(false)
+  const showCoverImage = Boolean(cover.image) && !coverFailed
 
   return (
     <Link
@@ -32,9 +37,27 @@ export default function ProjectCard({ project, variant = 'grid' }) {
         }}
       >
         <div className="absolute inset-0 opacity-25 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:14px_14px]" />
-        <span className="absolute bottom-3 left-4 text-4xl leading-none opacity-90 md:text-5xl">
-          {cover.glyph ?? '📊'}
-        </span>
+        {showCoverImage && (
+          <>
+            <img
+              src={cover.image}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              onError={() => setCoverFailed(true)}
+              className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+            />
+            {/* Keeps the glyph and card edge legible over a bright screenshot. */}
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/25 to-transparent" />
+          </>
+        )}
+        {/* The glyph stands in for cover art; a real screenshot replaces it. */}
+        {!showCoverImage && (
+          <span className="absolute bottom-3 left-4 text-4xl leading-none opacity-90 md:text-5xl">
+            {cover.glyph ?? '📊'}
+          </span>
+        )}
       </div>
 
       <div className={`flex flex-1 flex-col p-6 ${feature ? 'md:p-8' : ''}`}>

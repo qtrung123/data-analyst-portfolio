@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
  * Building blocks for case-study bodies.
@@ -7,8 +7,12 @@ import { useState } from 'react'
  * project reads consistently and none of them need custom CSS.
  */
 
-/** A titled section. `id` becomes an anchor target for the side nav. */
-export function CaseSection({ id, eyebrow, title, children }) {
+/**
+ * A titled section. `id` becomes an anchor target for the side nav.
+ * `wide` drops the prose measure cap — use it for sections carrying
+ * screenshots or wide visuals rather than long-form text.
+ */
+export function CaseSection({ id, eyebrow, title, wide = false, children }) {
   return (
     <section id={id} className="scroll-mt-28 border-t border-ink-800/80 py-12 first:border-0 first:pt-0">
       {eyebrow && (
@@ -17,7 +21,7 @@ export function CaseSection({ id, eyebrow, title, children }) {
         </p>
       )}
       <h2 className="mt-2 text-2xl font-semibold text-ink-50 sm:text-3xl">{title}</h2>
-      <div className="prose-case mt-5 max-w-3xl">{children}</div>
+      <div className={`prose-case mt-5 ${wide ? '' : 'max-w-3xl'}`}>{children}</div>
     </section>
   )
 }
@@ -142,37 +146,145 @@ export function CodeBlock({ language = 'sql', code, caption }) {
 }
 
 /**
- * Screenshot / visual placeholder.
- * Drop a file in `public/projects/<slug>/` and pass `src` to show the real
- * image; without `src` it renders a labelled placeholder so the layout still
- * reads correctly before assets exist.
+ * Full-screen viewer for a screenshot. Closes on Escape or a backdrop click,
+ * locks background scrolling, and restores focus to the trigger on close.
  */
-export function Figure({ src, alt, caption, ratio = 'aspect-[16/9]' }) {
-  // The placeholder is always rendered as the base layer and the image sits on
-  // top of it. A screenshot that is missing, still loading, or broken therefore
-  // degrades to the labelled placeholder rather than an empty box.
+function Lightbox({ src, alt, caption, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', onKey)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [onClose])
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-ink-950/95 p-4 backdrop-blur-sm sm:p-8"
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close image viewer"
+        className="absolute right-4 top-4 rounded-lg bg-ink-900/80 px-3 py-1.5 text-sm text-ink-200 ring-1 ring-ink-700 transition hover:text-white"
+      >
+        Close ✕
+      </button>
+      <img
+        src={src}
+        alt={alt}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[85vh] w-auto max-w-full rounded-lg object-contain shadow-2xl ring-1 ring-ink-700"
+      />
+      {caption && (
+        <p className="max-w-2xl text-center text-xs text-ink-400">{caption}</p>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Screenshot / visual placeholder.
+ *
+ * Drop a file in `public/projects/<slug>/` and pass `src` to show the real
+ * image; without `src` (or if it fails to load) a labelled placeholder keeps
+ * the layout intact.
+ *
+ * Pass the image's intrinsic `width`/`height` to size the frame by its own
+ * aspect ratio — nothing is cropped and the space is reserved before the image
+ * loads, so there is no layout shift. Real screenshots are click-to-enlarge.
+ */
+export function Figure({
+  src,
+  alt,
+  caption,
+  width,
+  height,
+  ratio = 'aspect-[16/9]',
+  zoomable = true,
+}) {
+  // The placeholder is always the base layer and the image sits on top of it,
+  // so a missing, loading, or broken screenshot degrades to the label rather
+  // than an empty box.
   const [failed, setFailed] = useState(false)
+  const [open, setOpen] = useState(false)
+  const triggerRef = useRef(null)
+
+  const hasImage = Boolean(src) && !failed
+  const natural = width && height
+  const canZoom = hasImage && zoomable
+
+  const close = useCallback(() => {
+    setOpen(false)
+    triggerRef.current?.focus()
+  }, [])
+
+  const frame = (
+    <div
+      className={`relative overflow-hidden rounded-xl bg-ink-900 ring-1 ring-ink-800 ${
+        natural ? '' : ratio
+      }`}
+      style={natural ? { aspectRatio: `${width} / ${height}` } : undefined}
+    >
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center">
+        <span className="text-2xl" aria-hidden="true">
+          🖼️
+        </span>
+        <span className="text-xs text-ink-400">
+          {alt} <span className="text-ink-500">(add screenshot)</span>
+        </span>
+      </div>
+      {hasImage && (
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+          className="absolute inset-0 h-full w-full bg-ink-900 object-contain"
+        />
+      )}
+      {canZoom && (
+        <span className="pointer-events-none absolute right-3 top-3 rounded-md bg-ink-950/75 px-2 py-1 text-xs text-ink-200 opacity-0 ring-1 ring-ink-700 transition group-hover:opacity-100">
+          Click to enlarge
+        </span>
+      )}
+    </div>
+  )
 
   return (
     <figure className="my-6">
-      <div className={`relative overflow-hidden rounded-xl bg-ink-900 ring-1 ring-ink-800 ${ratio}`}>
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center">
-          <span className="text-2xl" aria-hidden="true">🖼️</span>
-          <span className="text-xs text-ink-400">
-            {alt} <span className="text-ink-500">(add screenshot)</span>
-          </span>
-        </div>
-        {src && !failed && (
-          <img
-            src={src}
-            alt={alt}
-            className="absolute inset-0 h-full w-full bg-ink-900 object-cover"
-            loading="lazy"
-            onError={() => setFailed(true)}
-          />
-        )}
-      </div>
-      {caption && <figcaption className="mt-2 text-xs text-ink-400">{caption}</figcaption>}
+      {canZoom ? (
+        <button
+          ref={triggerRef}
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={`Enlarge image: ${alt}`}
+          className="group block w-full cursor-zoom-in rounded-xl transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+        >
+          {frame}
+        </button>
+      ) : (
+        frame
+      )}
+      {caption && (
+        <figcaption className="mt-2 text-xs text-ink-400">
+          {caption}
+          {canZoom && <span className="text-ink-500"> · Click to enlarge</span>}
+        </figcaption>
+      )}
+      {open && <Lightbox src={src} alt={alt} caption={caption} onClose={close} />}
     </figure>
   )
 }
@@ -271,7 +383,17 @@ export function CompareBars({ items, seriesA, seriesB }) {
  * One page of a dashboard walkthrough: the question it answers, a screenshot,
  * and what the reader should take from it.
  */
-export function DashboardPage({ number, question, title, src, alt, points }) {
+export function DashboardPage({
+  number,
+  question,
+  title,
+  src,
+  alt,
+  caption,
+  width,
+  height,
+  points,
+}) {
   return (
     <section className="my-8 overflow-hidden rounded-xl bg-ink-900/40 ring-1 ring-ink-800">
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-ink-800 px-5 py-4">
@@ -280,7 +402,13 @@ export function DashboardPage({ number, question, title, src, alt, points }) {
       </div>
       <div className="p-5">
         <p className="text-sm font-medium text-ink-100">{title}</p>
-        <Figure src={src} alt={alt} />
+        <Figure
+          src={src}
+          alt={alt}
+          caption={caption}
+          width={width}
+          height={height}
+        />
         {points?.length > 0 && (
           <ul className="mt-4 space-y-2 text-sm text-ink-300">
             {points.map((p, i) => (
