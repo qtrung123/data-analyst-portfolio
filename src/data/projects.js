@@ -28,9 +28,10 @@
  * }
  */
 import * as terrafirm from '../content/terrafirm/index.jsx'
+import * as onlineTicketBooking from '../content/online-ticket-booking/index.jsx'
 
 // Order here = order on the site.
-export const projectModules = [terrafirm]
+export const projectModules = [terrafirm, onlineTicketBooking]
 
 export const projects = projectModules.map((m) => m.meta)
 

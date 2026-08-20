@@ -308,7 +308,8 @@ export function Figure({
   )
 
   return (
-    <figure className="my-6">
+    // Capped at the image's own width so a small chart is never upscaled.
+    <figure className="my-6" style={natural ? { maxWidth: `${width}px` } : undefined}>
       {canZoom ? (
         <button
           ref={triggerRef}
@@ -497,6 +498,34 @@ export function EmbedPlaceholder({ title, note }) {
       </span>
       <p className="mt-3 font-semibold text-heading">{title}</p>
       {note && <p className="mx-auto mt-2 max-w-md text-sm text-muted">{note}</p>}
+    </div>
+  )
+}
+
+/**
+ * Two-column grid for notebook charts. Each child keeps its own natural
+ * width cap, so exported plots stay sharp instead of being stretched.
+ */
+export function ChartGrid({ children, columns = 2 }) {
+  const cols = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-2 lg:grid-cols-3' }[columns]
+  return <div className={`my-6 grid grid-cols-1 gap-x-6 ${cols}`}>{children}</div>
+}
+
+/** Closing call to action — a single prominent outbound link. */
+export function LinkCTA({ title, note, label, href }) {
+  return (
+    <div className="my-6 rounded-xl border border-line bg-panel p-6 sm:p-8">
+      <p className="text-lg font-semibold text-heading">{title}</p>
+      {note && <p className="mt-2 max-w-xl text-sm text-muted">{note}</p>}
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-5 inline-flex items-center gap-2 rounded-lg bg-accent-solid px-5 py-2.5 text-sm font-semibold text-on-accent transition hover:opacity-90"
+      >
+        {label}
+        <span aria-hidden="true">&#8599;</span>
+      </a>
     </div>
   )
 }
