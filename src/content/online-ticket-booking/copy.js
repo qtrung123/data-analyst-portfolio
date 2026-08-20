@@ -11,12 +11,14 @@
 // Charts exported from the notebooks. Intrinsic sizes keep them from being
 // upscaled; update these if a notebook is re-run at a different figure size.
 export const charts = {
-  cohort2019: { file: 'cohort-2019.png', w: 1276, h: 790 },
-  cohort2022: { file: 'cohort-2022.png', w: 1289, h: 790 },
-  purchaseByHour: { file: 'purchase-by-hour.png', w: 569, h: 458 },
+  ageGroups: { file: 'age-groups.png', w: 686, h: 470 },
+  dayHour: { file: 'day-hour-heatmap.png', w: 614, h: 436 },
+  monthlyTrend: { file: 'monthly-trend.png', w: 1003, h: 409 },
+  platform: { file: 'platform-tickets-revenue.png', w: 1189, h: 390 },
   promotionMix: { file: 'promotion-mix.png', w: 686, h: 581 },
   paymentSuccess: { file: 'payment-success-rate.png', w: 1489, h: 390 },
-  failureReasons: { file: 'failure-reasons.png', w: 989, h: 490 },
+  cohort2019: { file: 'cohort-2019.png', w: 1276, h: 790 },
+  cohort2022: { file: 'cohort-2022.png', w: 1289, h: 790 },
 }
 
 export const copy = {
@@ -26,8 +28,9 @@ export const copy = {
       pipeline: 'Data pipeline',
       questions: 'Analysis questions',
       findings: 'Key findings',
+      eda: 'Exploratory analysis',
+      journey: 'Customer journey',
       retention: 'Retention & cohorts',
-      charts: 'Selected charts',
       technical: 'Technical highlights',
       learned: 'What I learned',
       repo: 'Repository',
@@ -77,7 +80,7 @@ export const copy = {
       cards: [
         {
           title: 'Repeat rates were close between the two groups',
-          body: 'Among 2022 first-time buyers, both groups returned at a similar rate — a gap of 0.89 percentage points.',
+          body: 'Among 2022 first-time buyers, both groups returned at a similar rate.',
           evidence: '13.09% vs 12.20%',
         },
         {
@@ -87,12 +90,12 @@ export const copy = {
         },
         {
           title: 'Most payment failures originate outside the platform',
-          body: 'Of 21,046 failed orders, external errors dominate; internal errors barely register.',
+          body: 'Of 21,046 failed orders, external errors dominate.',
           evidence: 'external 74.52% · customer 24.29% · internal 1.19%',
         },
         {
           title: 'A placeholder birth date distorts age analysis',
-          body: 'One default date of birth creates most of the apparent 56-year-old group, so age segmentation needs it excluded.',
+          body: 'One default date of birth creates most of the apparent 56-year-old group.',
           evidence: '13,951 rows dated 1970-01-01',
         },
       ],
@@ -123,32 +126,71 @@ export const copy = {
       chart2022: 'The same view for 2022, on a much larger base.',
     },
 
-    charts: {
-      title: 'Selected charts from the notebooks',
-      items: [
+    eda: {
+      title: 'What the data looked like before the retention question',
+      intro:
+        'Five notebooks profiled the customer base, purchase timing, platform and campaign mix. These are the charts that framed the later analysis.',
+      charts: [
         {
-          key: 'purchaseByHour',
-          caption: 'Purchases by hour — activity peaks in the evening.',
-          alt: 'Bar chart of purchase distribution by hour of day',
+          key: 'ageGroups',
+          question: 'Who actually buys tickets?',
+          alt: 'Bar chart of customer distribution by age group',
+          description:
+            'Share of transactions by age band, with gender split alongside: Female 71,421, Male 67,558, Not verified 15,744.',
+          takeaway:
+            '25–34 accounts for 59.19% of transactions and 35–44 for 21.12% — but the 55+ band at 10.03% is inflated by 13,951 rows carrying a 1970-01-01 placeholder date of birth.',
+        },
+        {
+          key: 'dayHour',
+          question: 'When do people buy?',
+          alt: 'Heatmap of purchases by day of week and hour of day',
+          description:
+            'Transaction counts cross-tabulated by day of week and hour, so time-of-day and weekday effects are visible together rather than separately.',
+        },
+        {
+          key: 'monthlyTrend',
+          question: 'How has demand moved over four years?',
+          alt: 'Line chart of purchase volume by month, 2019 to 2022',
+          description:
+            'Monthly transaction volume across the full 2019–2022 window, covering both the mid-period decline and the 2022 recovery.',
+        },
+        {
+          key: 'platform',
+          question: 'Mobile or website?',
+          alt: 'Bar charts of ticket count and revenue by platform',
+          description:
+            'Ticket counts beside revenue for each platform, so channel share is read on both volume and value.',
+          takeaway:
+            'Mobile carries 138,134 of 154,723 tickets against 16,511 on web, and 1,076,424.67 in revenue against 123,028.53 — the two measures agree.',
         },
         {
           key: 'promotionMix',
-          caption: 'Promotion mix: direct discount 79,828, none 63,097, voucher 7,619, reward point 4,179.',
-          alt: 'Bar chart of the distribution of promotion programs',
-        },
-        {
-          key: 'paymentSuccess',
-          caption: 'Monthly orders against payment success rate, 2019–2022.',
-          alt: 'Combined bar and line chart of payment success rate by month',
-        },
-        {
-          key: 'failureReasons',
-          caption: 'Failed orders: external 15,683, customer 5,112, internal 251.',
-          alt: 'Bar chart of main failure reasons by error group',
+          question: 'How much of the platform runs on promotions?',
+          alt: 'Pie chart of the distribution of promotion programs',
+          description:
+            'Transaction share by campaign type, which sets up the promotion-versus-organic comparison later.',
+          takeaway:
+            'Direct discount 79,828 and no campaign 63,097 dominate; voucher 7,619 and reward point 4,179 are marginal by comparison.',
         },
       ],
+      paymentNote:
+        'Payment method splits the same population again — Bank/Card 88,141 transactions against In-app 66,580.',
     },
 
+    journey: {
+      title: 'From broad patterns to a single customer',
+      body: [
+        'The exploratory work describes the platform in aggregate — none of it follows one customer across time. So the next step re-orders the same data per customer: first checking whether their orders completed, then numbering their purchases.',
+      ],
+      chart: {
+        question: 'Do orders actually complete?',
+        alt: 'Combined bar and line chart of payment success rate by month',
+        description:
+          'Monthly order volume against payment success rate, which is what decides whether a first purchase exists to be repeated at all.',
+        takeaway:
+          'Failures concentrate outside the platform: of 21,046 failed orders, external 74.52%, customer 24.29%, internal 1.19%.',
+      },
+    },
     technical: {
       title: 'How it was built',
       items: [
@@ -184,8 +226,9 @@ export const copy = {
       pipeline: 'Pipeline dữ liệu',
       questions: 'Câu hỏi phân tích',
       findings: 'Phát hiện chính',
+      eda: 'Phân tích khám phá',
+      journey: 'Hành trình khách hàng',
       retention: 'Giữ chân & cohort',
-      charts: 'Biểu đồ tiêu biểu',
       technical: 'Điểm kỹ thuật nổi bật',
       learned: 'Bài học rút ra',
       repo: 'Repository',
@@ -235,7 +278,7 @@ export const copy = {
       cards: [
         {
           title: 'Tỷ lệ mua lại của hai nhóm khá gần nhau',
-          body: 'Trong nhóm khách mua lần đầu năm 2022, cả hai nhóm quay lại với tỷ lệ tương đương — chênh 0,89 điểm phần trăm.',
+          body: 'Trong nhóm khách mua lần đầu năm 2022, cả hai nhóm quay lại với tỷ lệ tương đương.',
           evidence: '13,09% so với 12,20%',
         },
         {
@@ -245,12 +288,12 @@ export const copy = {
         },
         {
           title: 'Phần lớn lỗi thanh toán đến từ bên ngoài nền tảng',
-          body: 'Trong 21.046 đơn thất bại, lỗi external áp đảo; lỗi internal gần như không đáng kể.',
+          body: 'Trong 21.046 đơn thất bại, lỗi external áp đảo.',
           evidence: 'external 74,52% · customer 24,29% · internal 1,19%',
         },
         {
           title: 'Một giá trị ngày sinh mặc định làm méo phân tích độ tuổi',
-          body: 'Một ngày sinh mặc định tạo ra phần lớn nhóm 56 tuổi, nên phân khúc theo tuổi cần loại giá trị này.',
+          body: 'Một ngày sinh mặc định tạo ra phần lớn nhóm 56 tuổi.',
           evidence: '13.951 dòng có ngày sinh 01-01-1970',
         },
       ],
@@ -281,32 +324,71 @@ export const copy = {
       chart2022: 'Cùng cách xem cho năm 2022, trên tập khách lớn hơn nhiều.',
     },
 
-    charts: {
-      title: 'Biểu đồ tiêu biểu từ notebook',
-      items: [
+    eda: {
+      title: 'Dữ liệu trông ra sao trước khi đặt câu hỏi về giữ chân',
+      intro:
+        'Năm notebook đã khảo sát tệp khách hàng, thời điểm mua, nền tảng và cơ cấu chiến dịch. Đây là những biểu đồ định hình phần phân tích phía sau.',
+      charts: [
         {
-          key: 'purchaseByHour',
-          caption: 'Lượt mua theo giờ — đạt đỉnh vào buổi tối.',
-          alt: 'Biểu đồ cột phân bố lượt mua theo giờ trong ngày',
+          key: 'ageGroups',
+          question: 'Ai thực sự mua vé?',
+          alt: 'Biểu đồ cột phân bố khách hàng theo nhóm tuổi',
+          description:
+            'Tỷ trọng giao dịch theo nhóm tuổi, kèm phân bố giới tính: Nữ 71.421, Nam 67.558, Chưa xác thực 15.744.',
+          takeaway:
+            'Nhóm 25–34 chiếm 59,19% giao dịch và nhóm 35–44 chiếm 21,12% — nhưng nhóm 55+ ở mức 10,03% bị thổi phồng bởi 13.951 dòng mang ngày sinh mặc định 01-01-1970.',
+        },
+        {
+          key: 'dayHour',
+          question: 'Khách mua vào lúc nào?',
+          alt: 'Heatmap lượt mua theo thứ trong tuần và giờ trong ngày',
+          description:
+            'Số giao dịch được lập bảng chéo theo thứ trong tuần và giờ, nên hiệu ứng khung giờ và ngày trong tuần hiện lên cùng lúc thay vì tách rời.',
+        },
+        {
+          key: 'monthlyTrend',
+          question: 'Nhu cầu thay đổi ra sao trong bốn năm?',
+          alt: 'Biểu đồ đường lượt mua theo tháng, 2019 đến 2022',
+          description:
+            'Sản lượng giao dịch theo tháng trong toàn giai đoạn 2019–2022, bao gồm cả giai đoạn sụt giảm giữa kỳ và phục hồi năm 2022.',
+        },
+        {
+          key: 'platform',
+          question: 'Mobile hay website?',
+          alt: 'Biểu đồ cột số vé và doanh thu theo nền tảng',
+          description:
+            'Số vé đặt cạnh doanh thu của từng nền tảng, để đọc tỷ trọng kênh trên cả sản lượng lẫn giá trị.',
+          takeaway:
+            'Mobile chiếm 138.134 trên 154.723 vé so với 16.511 vé trên web, và 1.076.424,67 doanh thu so với 123.028,53 — hai thước đo cùng chỉ một hướng.',
         },
         {
           key: 'promotionMix',
-          caption: 'Cơ cấu khuyến mãi: giảm giá trực tiếp 79.828, không chiến dịch 63.097, voucher 7.619, điểm thưởng 4.179.',
-          alt: 'Biểu đồ cột phân bố các chương trình khuyến mãi',
-        },
-        {
-          key: 'paymentSuccess',
-          caption: 'Số đơn theo tháng và tỷ lệ thanh toán thành công, 2019–2022.',
-          alt: 'Biểu đồ kết hợp cột và đường về tỷ lệ thanh toán thành công theo tháng',
-        },
-        {
-          key: 'failureReasons',
-          caption: 'Đơn thất bại: external 15.683, customer 5.112, internal 251.',
-          alt: 'Biểu đồ cột các nguyên nhân thất bại chính theo nhóm lỗi',
+          question: 'Bao nhiêu phần nền tảng vận hành nhờ khuyến mãi?',
+          alt: 'Biểu đồ tròn phân bố các chương trình khuyến mãi',
+          description:
+            'Tỷ trọng giao dịch theo loại chiến dịch, làm nền cho phép so sánh khuyến mãi và tự nhiên ở phần sau.',
+          takeaway:
+            'Giảm giá trực tiếp 79.828 và không chiến dịch 63.097 chiếm ưu thế; voucher 7.619 và điểm thưởng 4.179 chỉ ở mức thứ yếu.',
         },
       ],
+      paymentNote:
+        'Phương thức thanh toán chia tệp này thêm một lần nữa — Bank/Card 88.141 giao dịch so với In-app 66.580.',
     },
 
+    journey: {
+      title: 'Từ bức tranh tổng thể đến từng khách hàng',
+      body: [
+        'Phần khám phá mô tả nền tảng ở mức tổng thể — chưa có gì theo dấu một khách hàng qua thời gian. Vì vậy bước tiếp theo sắp xếp lại chính dữ liệu đó theo từng khách: trước hết kiểm tra đơn có hoàn tất không, rồi đánh số các lần mua.',
+      ],
+      chart: {
+        question: 'Đơn hàng có thực sự hoàn tất không?',
+        alt: 'Biểu đồ kết hợp cột và đường về tỷ lệ thanh toán thành công theo tháng',
+        description:
+          'Số đơn theo tháng đặt cạnh tỷ lệ thanh toán thành công — yếu tố quyết định liệu có tồn tại một lần mua đầu tiên để nói đến chuyện mua lại hay không.',
+        takeaway:
+          'Lỗi tập trung bên ngoài nền tảng: trong 21.046 đơn thất bại, external 74,52%, customer 24,29%, internal 1,19%.',
+      },
+    },
     technical: {
       title: 'Cách xây dựng',
       items: [

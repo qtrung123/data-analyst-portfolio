@@ -7,7 +7,7 @@ import {
   FindingCards,
   CompareBars,
   DataTable,
-  ChartGrid,
+  EdaChart,
   Figure,
   LinkCTA,
 } from '../../components/case/CaseBlocks.jsx'
@@ -30,8 +30,8 @@ export const meta = {
     vi: 'Khách hàng có được nhờ khuyến mãi có quay lại không?',
   },
   summary: {
-    en: 'A Python and Pandas study joining five raw booking tables into one 154,723-row analytical dataset, then comparing repeat-purchase behaviour between customers whose first order used a promotion and those whose did not.',
-    vi: 'Nghiên cứu bằng Python và Pandas, ghép năm bảng đặt vé thô thành một bộ dữ liệu 154.723 dòng, rồi so sánh hành vi mua lại giữa nhóm khách có đơn đầu tiên dùng khuyến mãi và nhóm không dùng.',
+    en: 'A Python and Pandas study joining five raw booking tables into one 154,723-row analytical dataset, then working from broad exploratory analysis through to a promotion-versus-organic retention comparison.',
+    vi: 'Nghiên cứu bằng Python và Pandas, ghép năm bảng đặt vé thô thành bộ dữ liệu 154.723 dòng, đi từ phân tích khám phá tổng thể đến so sánh giữ chân giữa nhóm khuyến mãi và nhóm tự nhiên.',
   },
   category: { en: 'Data Analysis', vi: 'Phân tích dữ liệu' },
   year: '2025',
@@ -90,8 +90,9 @@ export const meta = {
     { id: 'pipeline', label: { en: 'Data pipeline', vi: 'Pipeline dữ liệu' } },
     { id: 'questions', label: { en: 'Analysis questions', vi: 'Câu hỏi phân tích' } },
     { id: 'findings', label: { en: 'Key findings', vi: 'Phát hiện chính' } },
+    { id: 'eda', label: { en: 'Exploratory analysis', vi: 'Phân tích khám phá' } },
+    { id: 'journey', label: { en: 'Customer journey', vi: 'Hành trình khách hàng' } },
     { id: 'retention', label: { en: 'Retention & cohorts', vi: 'Giữ chân & cohort' } },
-    { id: 'charts', label: { en: 'Selected charts', vi: 'Biểu đồ tiêu biểu' } },
     { id: 'technical', label: { en: 'Technical', vi: 'Kỹ thuật' } },
     { id: 'learned', label: { en: 'What I learned', vi: 'Bài học' } },
     { id: 'repo', label: { en: 'Repository', vi: 'Repository' } },
@@ -101,6 +102,9 @@ export const meta = {
 /**
  * Case-study body. Receives the active language from ProjectPage and renders
  * from `copy` — one component, two languages.
+ *
+ * The reading order is deliberate: broad exploratory analysis, then the
+ * customer journey, then retention. Each section hands off to the next.
  */
 export default function OnlineTicketBookingCaseStudy({ lang = 'en' }) {
   const c = copy[lang] ?? copy.en
@@ -120,10 +124,7 @@ export default function OnlineTicketBookingCaseStudy({ lang = 'en' }) {
         <h3 className="mt-8 text-lg font-semibold text-heading">
           {c.pipeline.cleaningTitle}
         </h3>
-        <DataTable
-          columns={c.pipeline.cleaningColumns}
-          rows={c.pipeline.cleaning}
-        />
+        <DataTable columns={c.pipeline.cleaningColumns} rows={c.pipeline.cleaning} />
       </CaseSection>
 
       <CaseSection id="questions" eyebrow={c.sections.questions} title={c.questions.title}>
@@ -137,6 +138,48 @@ export default function OnlineTicketBookingCaseStudy({ lang = 'en' }) {
         </Callout>
       </CaseSection>
 
+      {/* ---- Broad EDA ---- */}
+      <CaseSection id="eda" eyebrow={c.sections.eda} title={c.eda.title} wide>
+        <p>{c.eda.intro}</p>
+        <div className="mt-8">
+          {c.eda.charts.map((item) => {
+            const chart = charts[item.key]
+            return (
+              <EdaChart
+                key={item.key}
+                question={item.question}
+                src={`${IMG}/${chart.file}`}
+                alt={item.alt}
+                description={item.description}
+                takeaway={item.takeaway}
+                width={chart.w}
+                height={chart.h}
+              />
+            )
+          })}
+        </div>
+        <p className="text-sm text-muted">{c.eda.paymentNote}</p>
+      </CaseSection>
+
+      {/* ---- Transition: aggregate patterns to a single customer ---- */}
+      <CaseSection id="journey" eyebrow={c.sections.journey} title={c.journey.title} wide>
+        {c.journey.body.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+        <div className="mt-6">
+          <EdaChart
+            question={c.journey.chart.question}
+            src={`${IMG}/${charts.paymentSuccess.file}`}
+            alt={c.journey.chart.alt}
+            description={c.journey.chart.description}
+            takeaway={c.journey.chart.takeaway}
+            width={charts.paymentSuccess.w}
+            height={charts.paymentSuccess.h}
+          />
+        </div>
+      </CaseSection>
+
+      {/* ---- The deeper business question ---- */}
       <CaseSection id="retention" eyebrow={c.sections.retention} title={c.retention.title} wide>
         {c.retention.body.map((p, i) => (
           <p key={i}>{p}</p>
@@ -169,24 +212,6 @@ export default function OnlineTicketBookingCaseStudy({ lang = 'en' }) {
         />
       </CaseSection>
 
-      <CaseSection id="charts" eyebrow={c.sections.charts} title={c.charts.title} wide>
-        <ChartGrid>
-          {c.charts.items.map((item) => {
-            const chart = charts[item.key]
-            return (
-              <Figure
-                key={item.key}
-                src={`${IMG}/${chart.file}`}
-                alt={item.alt}
-                caption={item.caption}
-                width={chart.w}
-                height={chart.h}
-              />
-            )
-          })}
-        </ChartGrid>
-      </CaseSection>
-
       <CaseSection id="technical" eyebrow={c.sections.technical} title={c.technical.title}>
         <Bullets items={c.technical.items} />
       </CaseSection>
@@ -196,12 +221,7 @@ export default function OnlineTicketBookingCaseStudy({ lang = 'en' }) {
       </CaseSection>
 
       <CaseSection id="repo" eyebrow={c.sections.repo} title={c.repo.title}>
-        <LinkCTA
-          title={c.repo.title}
-          note={c.repo.note}
-          label={c.repo.label}
-          href={REPO}
-        />
+        <LinkCTA title={c.repo.title} note={c.repo.note} label={c.repo.label} href={REPO} />
       </CaseSection>
     </>
   )

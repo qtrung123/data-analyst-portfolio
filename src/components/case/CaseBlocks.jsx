@@ -529,3 +529,26 @@ export function LinkCTA({ title, note, label, href }) {
     </div>
   )
 }
+
+/**
+ * One exploratory chart: a question as the title, a single sentence on what
+ * the chart shows, and an optional one-line takeaway. Deliberately lighter
+ * than DashboardPage — an EDA section carries several of these, so each one
+ * has to stay compact.
+ */
+export function EdaChart({ question, src, alt, description, takeaway, width, height }) {
+  const { t } = useLanguage()
+  return (
+    <section className="mb-8">
+      <h3 className="text-base font-semibold text-heading">{question}</h3>
+      <Figure src={src} alt={alt} width={width} height={height} />
+      {description && <p className="text-sm text-body">{description}</p>}
+      {takeaway && (
+        <p className="mt-2 border-l-2 border-accent bg-accent-soft px-3 py-2 text-sm text-heading">
+          <span className="font-semibold text-accent">{t('case.keyTakeaway')}: </span>
+          {takeaway}
+        </p>
+      )}
+    </section>
+  )
+}
