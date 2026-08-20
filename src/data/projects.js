@@ -29,9 +29,10 @@
  */
 import * as terrafirm from '../content/terrafirm/index.jsx'
 import * as onlineTicketBooking from '../content/online-ticket-booking/index.jsx'
+import * as sqlDataWarehouse from '../content/sql-data-warehouse/index.jsx'
 
 // Order here = order on the site.
-export const projectModules = [terrafirm, onlineTicketBooking]
+export const projectModules = [terrafirm, onlineTicketBooking, sqlDataWarehouse]
 
 export const projects = projectModules.map((m) => m.meta)
 

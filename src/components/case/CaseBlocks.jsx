@@ -552,3 +552,130 @@ export function EdaChart({ question, src, alt, description, takeaway, width, hei
     </section>
   )
 }
+
+/**
+ * Responsive pipeline diagram, built in HTML/CSS rather than an image so it
+ * stays sharp, themeable and readable at any width. Stages flow left-to-right
+ * on desktop and stack top-to-bottom on mobile.
+ *
+ * A stage marked `planned` renders dashed and muted — used for a stage that
+ * is not actually present in the source repository.
+ */
+export function PipelineDiagram({ stages, caption }) {
+  return (
+    <figure className="my-6">
+      <ol className="flex flex-col gap-2 md:flex-row md:items-stretch">
+        {stages.map((stage, i) => (
+          <li key={stage.title} className="flex flex-1 flex-col md:flex-row md:items-stretch">
+            <div
+              className={`flex-1 rounded-xl p-4 ring-1 ${
+                stage.planned
+                  ? 'border border-dashed border-line bg-transparent ring-transparent'
+                  : 'bg-panel ring-line'
+              }`}
+            >
+              <p
+                className={`text-xs font-semibold uppercase tracking-wide ${
+                  stage.planned ? 'text-faint' : 'text-accent'
+                }`}
+              >
+                {stage.title}
+              </p>
+              {stage.subtitle && (
+                <p className="mt-1 text-xs text-muted">{stage.subtitle}</p>
+              )}
+              {stage.items?.length > 0 && (
+                <ul className="mt-3 space-y-1">
+                  {stage.items.map((item) => (
+                    <li
+                      key={item}
+                      className={`font-mono text-[0.7rem] leading-snug ${
+                        stage.planned ? 'text-faint' : 'text-body'
+                      }`}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {stage.note && (
+                <p className="mt-3 text-[0.7rem] italic text-faint">{stage.note}</p>
+              )}
+            </div>
+            {i < stages.length - 1 && (
+              <span
+                aria-hidden="true"
+                className="flex shrink-0 items-center justify-center py-1 text-faint md:px-2 md:py-0"
+              >
+                <span className="md:hidden">&darr;</span>
+                <span className="hidden md:inline">&rarr;</span>
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+      {caption && (
+        <figcaption className="mt-3 text-xs text-muted">{caption}</figcaption>
+      )}
+    </figure>
+  )
+}
+
+/**
+ * Star-schema diagram: dimensions either side of the fact table on desktop,
+ * stacked on mobile. Built in HTML/CSS for the same reasons as the pipeline.
+ */
+export function SchemaDiagram({ fact, dimensions, caption }) {
+  const Card = ({ table, tone }) => (
+    <div
+      className={`flex-1 overflow-hidden rounded-xl ring-1 ${
+        tone === 'fact' ? 'ring-accent-line bg-accent-soft' : 'ring-line bg-panel'
+      }`}
+    >
+      <div className="border-b border-line px-4 py-2">
+        <p className="font-mono text-xs font-semibold text-heading">{table.name}</p>
+        {table.role && <p className="mt-0.5 text-[0.7rem] text-muted">{table.role}</p>}
+      </div>
+      <ul className="px-4 py-3">
+        {table.columns.map((col) => (
+          <li
+            key={col.name}
+            className="flex items-baseline justify-between gap-3 py-0.5 font-mono text-[0.7rem]"
+          >
+            <span className={col.key ? 'font-semibold text-accent' : 'text-body'}>
+              {col.name}
+            </span>
+            {col.key && (
+              <span className="shrink-0 text-[0.65rem] uppercase text-faint">
+                {col.key}
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+
+  return (
+    <figure className="my-6">
+      <div className="flex flex-col items-stretch gap-3 lg:flex-row">
+        {dimensions[0] && <Card table={dimensions[0]} />}
+        <div className="flex items-center justify-center lg:w-24 lg:flex-col">
+          <span aria-hidden="true" className="text-xs text-faint">
+            {dimensions[0]?.joinOn}
+          </span>
+        </div>
+        <Card table={fact} tone="fact" />
+        <div className="flex items-center justify-center lg:w-24 lg:flex-col">
+          <span aria-hidden="true" className="text-xs text-faint">
+            {dimensions[1]?.joinOn}
+          </span>
+        </div>
+        {dimensions[1] && <Card table={dimensions[1]} />}
+      </div>
+      {caption && (
+        <figcaption className="mt-3 text-xs text-muted">{caption}</figcaption>
+      )}
+    </figure>
+  )
+}
