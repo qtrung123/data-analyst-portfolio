@@ -68,6 +68,7 @@ export const strings = {
   'case.whatThisShows': { en: 'What this shows', vi: 'Trang này cho thấy gì' },
   'case.keyTakeaway': { en: 'Key takeaway', vi: 'Điểm mấu chốt' },
   'case.skillsPracticed': { en: 'Skills practiced', vi: 'Kỹ năng đã luyện tập' },
+  'case.dataInsights': { en: 'Key data insights', vi: 'Phát hiện dữ liệu chính' },
   'case.page': { en: 'Page', vi: 'Trang' },
 
   'notFound.title': { en: 'Page not found', vi: 'Không tìm thấy trang' },

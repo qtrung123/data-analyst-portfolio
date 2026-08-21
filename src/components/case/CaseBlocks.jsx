@@ -439,6 +439,7 @@ export function DashboardPage({
   width,
   height,
   shows,
+  insights,
   skills,
   takeaway,
 }) {
@@ -464,6 +465,25 @@ export function DashboardPage({
             <ul className="mt-2 space-y-1.5">
               {shows.map((item, i) => (
                 <li key={i} className="flex gap-2.5 text-sm text-body">
+                  <span
+                    aria-hidden="true"
+                    className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {insights?.length > 0 && (
+          <div className="mt-4 rounded-lg border-l-2 border-accent bg-accent-soft px-4 py-3">
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent">
+              {t('case.dataInsights')}
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {insights.map((item, i) => (
+                <li key={i} className="flex gap-2.5 text-sm text-heading">
                   <span
                     aria-hidden="true"
                     className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent"

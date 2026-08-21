@@ -1,5 +1,6 @@
 import {
   CaseSection,
+  Callout,
   Bullets,
   FlowLine,
   FactStrip,
@@ -15,9 +16,10 @@ const REPO = 'https://github.com/'
 /* ------------------------------------------------------------------
    Card + case-study header metadata.
    Structural counts (pages, visuals, measures, tables) were extracted from
-   the .pbix file itself — Report/Layout and DiagramLayout, decoded as
-   UTF-16 JSON. No business finding is claimed: the dataset was a practice
-   dataset and was never analysed for insights.
+   the .pbix report layout and model diagram. Every number under "Key data
+   insights" on the dashboard walkthrough was computed directly against the
+   model's real tables (via pbixray) by reproducing each verified DAX
+   measure's own logic — not inferred from a visual title.
    ------------------------------------------------------------------ */
 export const meta = {
   slug: 'hptana',
@@ -68,17 +70,19 @@ export const meta = {
     { id: 'objective', label: { en: 'Objective', vi: 'Mục tiêu' } },
     { id: 'built', label: { en: 'What I built', vi: 'Đã xây dựng' } },
     { id: 'dashboard', label: { en: 'Dashboard walkthrough', vi: 'Tham quan dashboard' } },
-    { id: 'skills', label: { en: 'Skills developed', vi: 'Kỹ năng phát triển' } },
     { id: 'improve', label: { en: 'What I would improve', vi: 'Điều sẽ cải thiện' } },
     { id: 'progression', label: { en: 'HPTANA → TerraFirm', vi: 'HPTANA → TerraFirm' } },
+    { id: 'taught', label: { en: 'What this taught me', vi: 'Bài học rút ra' } },
     { id: 'repo', label: { en: 'Repository', vi: 'Repository' } },
   ],
 }
 
 /**
- * Case-study body. A full portfolio project, positioned as the foundation
- * TerraFirm later built on — confident about what was practised, specific
- * about what would be done differently now.
+ * Case-study body. Two layers of insight, kept visually distinct throughout:
+ * the "Key data insights" box on each dashboard page states what the real
+ * model data showed; the closing "What this project taught me" section
+ * states what building it taught the author as an analyst. The Callout at
+ * the top of that section says so explicitly.
  */
 export default function HptanaCaseStudy({ lang = 'en' }) {
   const c = copy[lang] ?? copy.en
@@ -109,14 +113,11 @@ export default function HptanaCaseStudy({ lang = 'en' }) {
               src={`${IMG}/${p.file}`}
               alt={pc.title}
               shows={pc.shows}
+              insights={pc.insights}
               skills={pc.skills}
             />
           )
         })}
-      </CaseSection>
-
-      <CaseSection id="skills" eyebrow={c.sections.skills} title={c.skills.title}>
-        <Bullets items={c.skills.items} />
       </CaseSection>
 
       <CaseSection id="improve" eyebrow={c.sections.improve} title={c.improve.title}>
@@ -131,6 +132,13 @@ export default function HptanaCaseStudy({ lang = 'en' }) {
       >
         <p>{c.progression.body}</p>
         <DataTable columns={c.progression.table.columns} rows={c.progression.table.rows} />
+      </CaseSection>
+
+      <CaseSection id="taught" eyebrow={c.sections.taught} title={c.taught.title}>
+        <Callout tone="neutral" title={c.taught.calloutTitle}>
+          <p>{c.taught.calloutBody}</p>
+        </Callout>
+        <Bullets items={c.taught.items} />
       </CaseSection>
 
       <CaseSection id="repo" eyebrow={c.sections.repo} title={c.repo.title}>
