@@ -40,9 +40,7 @@ export const strings = {
     vi: 'Chưa có dự án nào trong nhóm này.',
   },
   'projects.all': { en: 'All', vi: 'Tất cả' },
-  'card.problem': { en: 'Problem', vi: 'Vấn đề' },
-  'card.built': { en: 'Built', vi: 'Đã xây dựng' },
-  'card.found': { en: 'Found', vi: 'Phát hiện' },
+  'card.outcome': { en: 'Key outcome', vi: 'Kết quả chính' },
   'projects.viewCaseStudy': { en: 'View Case Study', vi: 'Xem case study' },
 
   'about.title': { en: 'About', vi: 'Giới thiệu' },

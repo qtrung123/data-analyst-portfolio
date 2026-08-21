@@ -35,18 +35,16 @@ export const meta = {
   featured: false,
   tools: ['SQL Server', 'T-SQL', 'ETL', 'Medallion Architecture', 'Star Schema', 'Data Quality'],
 
+  // Card content: one sentence on what I did, the core skills, one outcome.
   card: {
-    problem: {
-      en: 'A CRM and an ERP describe the same customers and products with different keys, formats and date types.',
-      vi: 'CRM và ERP mô tả cùng khách hàng và sản phẩm nhưng khác khóa, định dạng và kiểu ngày.',
+    skills: ['SQL Server', 'T-SQL', 'ETL', 'Data Modeling', 'Data Quality'],
+    did: {
+      en: 'Built an end-to-end SQL Server warehouse integrating CRM and ERP data through Bronze, Silver and Gold layers into an analytics-ready star schema.',
+      vi: 'Xây dựng data warehouse SQL Server end-to-end, tích hợp dữ liệu CRM và ERP qua các tầng Bronze, Silver, Gold thành star schema sẵn sàng phân tích.',
     },
-    built: {
-      en: 'Bronze, Silver and Gold layers in SQL Server: BULK INSERT ingestion, a cleansing ETL procedure, and three Gold views.',
-      vi: 'Ba tầng Bronze, Silver, Gold trên SQL Server: nạp bằng BULK INSERT, procedure ETL làm sạch và ba view Gold.',
-    },
-    found: {
-      en: 'One star schema — fact_sales with customer and product dimensions — plus zero-row quality tests on both layers.',
-      vi: 'Một star schema — fact_sales cùng dimension khách hàng và sản phẩm — kèm kiểm thử zero-row cho cả hai tầng.',
+    hook: {
+      en: 'Raw multi-source data → validated analytical model with reusable ETL and quality checks.',
+      vi: 'Dữ liệu thô đa nguồn → mô hình phân tích đã kiểm định, kèm ETL tái sử dụng và kiểm tra chất lượng.',
     },
   },
 

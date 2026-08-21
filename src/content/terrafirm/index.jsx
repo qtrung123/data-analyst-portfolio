@@ -37,19 +37,16 @@ export const meta = {
   featured: true,
   tools: ['Power BI', 'DAX', 'Power Query (M)', 'SQL', 'Star schema', 'Deneb'],
 
-  // The three questions the card answers at a glance.
+  // Card content: one sentence on what I did, the core skills, one outcome.
   card: {
-    problem: {
-      en: 'Safety data sat in 9 separate systems across 10 sites, so outcomes and prevention were never read together.',
-      vi: 'Dữ liệu an toàn nằm rải rác ở 9 hệ thống tại 10 công trường, nên kết quả và phòng ngừa chưa bao giờ được đọc cùng nhau.',
+    skills: ['Power BI', 'DAX', 'Power Query', 'Star Schema', 'Deneb'],
+    did: {
+      en: 'Built a 6-page Power BI solution from 9 operational datasets to connect safety outcomes with preventive activity, training readiness and site-level risk.',
+      vi: 'Xây dựng giải pháp Power BI 6 trang từ 9 nguồn dữ liệu vận hành, kết nối kết quả an toàn với hoạt động phòng ngừa, mức sẵn sàng đào tạo và rủi ro theo công trường.',
     },
-    built: {
-      en: 'One star-schema semantic model and a 6-page report covering outcomes, cadence, field risk and training.',
-      vi: 'Một semantic model star schema và báo cáo 6 trang bao quát kết quả, tần suất phòng ngừa, rủi ro hiện trường và đào tạo.',
-    },
-    found: {
-      en: 'Injuries fell while preventive cadence stayed weak — and one site carried ~37.7% of all recordables.',
-      vi: 'Sự cố giảm trong khi tần suất phòng ngừa vẫn yếu — và một công trường chiếm ~37,7% tổng số ca phải ghi nhận.',
+    hook: {
+      en: '29 → 16 YTD recordables, while preventive cadence remained only 29.9%.',
+      vi: 'Sự cố phải ghi nhận YTD giảm 29 → 16, trong khi tần suất phòng ngừa chỉ đạt 29,9%.',
     },
   },
 

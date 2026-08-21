@@ -39,18 +39,16 @@ export const meta = {
   featured: false,
   tools: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Jupyter', 'Cohort analysis'],
 
+  // Card content: one sentence on what I did, the core skills, one outcome.
   card: {
-    problem: {
-      en: 'Booking data sat in five unjoined tables, so nobody could tell whether promotions brought customers back.',
-      vi: 'Dữ liệu đặt vé nằm ở năm bảng chưa ghép, nên không ai biết khuyến mãi có đưa khách quay lại hay không.',
+    skills: ['Python', 'Pandas', 'EDA', 'Cohort Analysis', 'Customer Retention'],
+    did: {
+      en: 'Cleaned and analyzed multi-table booking data in Python to understand customer behavior, purchase patterns and repeat retention.',
+      vi: 'Làm sạch và phân tích dữ liệu đặt vé đa bảng bằng Python để hiểu hành vi khách hàng, mẫu hình mua và tỷ lệ quay lại.',
     },
-    built: {
-      en: 'A Pandas cleaning and join pipeline into one fact table, plus five notebooks of EDA, segmentation and cohort analysis.',
-      vi: 'Pipeline làm sạch và ghép bằng Pandas thành một bảng fact, cùng năm notebook EDA, phân khúc và phân tích cohort.',
-    },
-    found: {
-      en: 'Promotion and non-promotion first-buyers returned at almost the same rate — 13.09% vs 12.20%.',
-      vi: 'Khách mua lần đầu có và không có khuyến mãi quay lại với tỷ lệ gần như nhau — 13,09% so với 12,20%.',
+    hook: {
+      en: 'Second-purchase rates were 13.09% with promotion vs 12.20% without promotion.',
+      vi: 'Tỷ lệ mua lần hai đạt 13,09% khi có khuyến mãi so với 12,20% khi không khuyến mãi.',
     },
   },
 

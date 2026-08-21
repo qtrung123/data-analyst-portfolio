@@ -5,12 +5,17 @@ import StatusBadge from './StatusBadge.jsx'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 /**
- * Reusable project card. Renders purely from a project `meta` object, so any
- * future project gets the same card for free. Bilingual fields are resolved
- * through `tr` — the card knows nothing about a specific project.
+ * Reusable project card, built to be read in a few seconds.
  *
- * variant="feature" is the wide card used for the flagship project;
- * variant="grid" is the standard card used everywhere else.
+ * Four elements, always in the same order:
+ *   title → what I did (one sentence) → skill tags → key outcome → CTA
+ *
+ * Renders purely from a project `meta` object, so any future project gets the
+ * same card for free. Bilingual fields resolve through `tr`, so the card knows
+ * nothing about a specific project.
+ *
+ * variant="feature" is the wide card used for the flagship project; it differs
+ * only in scale and layout, never in what it says.
  */
 export default function ProjectCard({ project, variant = 'grid' }) {
   const { t, tr } = useLanguage()
@@ -19,12 +24,10 @@ export default function ProjectCard({ project, variant = 'grid' }) {
   const [coverFailed, setCoverFailed] = useState(false)
   const showCoverImage = Boolean(cover.image) && !coverFailed
 
-  // The three questions a recruiter should be able to answer in seconds.
-  const facts = [
-    { label: t('card.problem'), value: tr(card.problem) },
-    { label: t('card.built'), value: tr(card.built) ?? tr(project.summary) },
-    { label: t('card.found'), value: tr(card.found) },
-  ].filter((f) => f.value)
+  // A project may name its own card skills; otherwise fall back to its tools.
+  const skills = (card.skills ?? project.tools ?? []).slice(0, 6)
+  const did = tr(card.did) ?? tr(project.summary)
+  const hook = tr(card.hook)
 
   return (
     <Link
@@ -35,7 +38,7 @@ export default function ProjectCard({ project, variant = 'grid' }) {
     >
       <div
         className={`relative shrink-0 overflow-hidden ${
-          feature ? 'h-44 md:h-auto md:w-2/5' : 'h-36'
+          feature ? 'h-44 md:h-auto md:w-2/5' : 'h-32'
         }`}
         style={{
           backgroundImage: `linear-gradient(135deg, ${cover.from ?? '#1e293b'}, ${
@@ -71,53 +74,40 @@ export default function ProjectCard({ project, variant = 'grid' }) {
           <StatusBadge status={project.status} />
         </div>
 
+        {/* 1. Title */}
         <h3
-          className={`mt-3 font-semibold text-heading ${
+          className={`mt-2 font-semibold text-heading ${
             feature ? 'text-2xl md:text-3xl' : 'text-lg'
           }`}
         >
           {tr(project.title)}
         </h3>
-        {project.subtitle && (
-          <p className="mt-1 text-sm font-medium text-accent">{tr(project.subtitle)}</p>
+
+        {/* 2. What I did — one sentence, about two lines */}
+        {did && (
+          <p className={`mt-2 text-body ${feature ? 'text-base' : 'text-sm'}`}>{did}</p>
         )}
 
-        <dl className="mt-4 space-y-1.5 text-sm">
-          {facts.map((f) => (
-            <div key={f.label} className="flex gap-2">
-              <dt className="shrink-0 text-xs font-semibold uppercase tracking-wide text-faint">
-                {f.label}
-              </dt>
-              <dd className="min-w-0 text-body">{f.value}</dd>
-            </div>
-          ))}
-        </dl>
-
-        {project.metrics?.length > 0 && (
-          <dl
-            className={`mt-5 grid gap-4 ${
-              feature ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-2'
-            }`}
-          >
-            {project.metrics.slice(0, 4).map((m) => (
-              <div key={tr(m.label)}>
-                <dt className="text-xs text-muted">{tr(m.label)}</dt>
-                <dd className="text-base font-semibold text-heading">{tr(m.value)}</dd>
-              </div>
+        {/* 3. Skill tags */}
+        {skills.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {skills.map((skill) => (
+              <Tag key={skill}>{skill}</Tag>
             ))}
-          </dl>
+          </div>
         )}
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.tools.slice(0, feature ? 6 : 4).map((tool) => (
-            <Tag key={tool}>{tool}</Tag>
-          ))}
-          {project.tools.length > (feature ? 6 : 4) && (
-            <Tag tone="muted">+{project.tools.length - (feature ? 6 : 4)}</Tag>
-          )}
-        </div>
+        {/* 4. Key outcome — the one number or result worth remembering */}
+        {hook && (
+          <p className="mt-4 border-l-2 border-accent bg-accent-soft px-3 py-2 text-sm text-heading">
+            <span className="mr-1 text-xs font-semibold uppercase tracking-wide text-accent">
+              {t('card.outcome')}
+            </span>
+            {hook}
+          </p>
+        )}
 
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-accent">
           {t('projects.viewCaseStudy')}
           <span aria-hidden="true" className="transition group-hover:translate-x-0.5">
             &rarr;
