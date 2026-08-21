@@ -22,9 +22,13 @@ export const strings = {
     en: 'Data Analyst | Business Intelligence',
     vi: 'Data Analyst | Business Intelligence',
   },
-  'hero.tagline': {
-    en: 'I turn operational data into clear business insights using Power BI, SQL, Python and data modeling.',
-    vi: 'Tôi biến dữ liệu vận hành thành insight rõ ràng phục vụ quyết định kinh doanh bằng Power BI, SQL, Python và data modeling.',
+  'hero.quote1': {
+    en: 'I build data solutions that turn raw operational data into clear business insights — using Power BI, SQL, Python and data modeling across data cleaning, analysis, dashboards and reporting.',
+    vi: 'Tôi xây dựng các giải pháp dữ liệu bằng Power BI, SQL, Python và data modeling — từ làm sạch, phân tích đến dashboard, nhằm chuyển dữ liệu vận hành thành insight rõ ràng phục vụ quyết định kinh doanh.',
+  },
+  'hero.quote2': {
+    en: 'Currently focused on building practical analytics projects and developing toward Data Analyst / BI roles.',
+    vi: 'Hiện tôi tập trung phát triển các dự án phân tích thực tế và định hướng theo Data Analyst / Business Intelligence.',
   },
 
   'home.featured': { en: 'Selected Projects', vi: 'Dự án chọn lọc' },

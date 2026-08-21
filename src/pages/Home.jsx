@@ -2,15 +2,19 @@ import { Link } from 'react-router-dom'
 import Container from '../components/Container.jsx'
 import ProjectCard from '../components/ProjectCard.jsx'
 import ProjectGrid from '../components/ProjectGrid.jsx'
+import Tag from '../components/Tag.jsx'
+import site from '../data/site.js'
 import { projects, featuredProjects } from '../data/projects.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 /**
- * Compact hero, then straight into the work. No biography above the projects —
- * the About page carries that.
+ * Compact hero (name, role, a two-line pitch, skill chips), then straight
+ * into the work. Recruiter-facing summary only — no biography; the About
+ * page carries the longer version. Projects stay the visually dominant
+ * section below.
  */
 export default function Home() {
-  const { t } = useLanguage()
+  const { t, tr } = useLanguage()
   const flagship = featuredProjects[0] ?? projects[0]
   // Primary work: everything except the flagship and anything tagged 'practice'.
   const rest = projects.filter((p) => p.slug !== flagship?.slug && p.tier !== 'practice')
@@ -20,14 +24,30 @@ export default function Home() {
   return (
     <>
       <section className="border-b border-line">
-        <Container className="py-12 sm:py-16">
+        <Container className="py-10 sm:py-14">
           <h1 className="text-3xl font-bold tracking-tight text-heading sm:text-5xl">
             {t('hero.name')}
           </h1>
           <p className="mt-2 text-base font-medium text-accent sm:text-lg">
             {t('hero.role')}
           </p>
-          <p className="mt-4 max-w-2xl text-body">{t('hero.tagline')}</p>
+          <p className="mt-4 max-w-2xl text-body">{t('hero.quote1')}</p>
+          <p className="mt-2 max-w-2xl text-body">{t('hero.quote2')}</p>
+
+          <div className="mt-6 space-y-3">
+            {site.homeSkills.map((g) => (
+              <div key={g.group} className="flex flex-col gap-2 sm:flex-row sm:gap-4">
+                <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-faint sm:w-36 sm:pt-1">
+                  {tr(g.group)}
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {g.items.map((item) => (
+                    <Tag key={item}>{item}</Tag>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </Container>
       </section>
 

@@ -9,10 +9,9 @@ export const site = {
   location: { en: 'Vietnam · Open to remote', vi: 'Việt Nam · Sẵn sàng làm remote' },
   email: 'quoctrung121212@gmail.com',
 
-  // Drop cv.pdf into /public, then flip this to true to show the CV link
-  // across Navbar, Footer and About. Kept false to avoid a 404 CTA.
+  // public/cv.pdf is the finalized Data Analyst | Business Intelligence CV.
   cvUrl: '/cv.pdf',
-  cvEnabled: false,
+  cvEnabled: true,
   links: {
     github: 'https://github.com/qtrung123',
     linkedin: 'https://www.linkedin.com/',
@@ -41,6 +40,29 @@ export const site = {
     {
       group: { en: 'Engineering', vi: 'Kỹ thuật' },
       items: ['Python', 'pandas', 'Git', 'Microsoft Fabric'],
+    },
+  ],
+
+  // Compact skill rows for the homepage About Me section — grouped
+  // differently from `skills` above (which drives the fuller About page
+  // toolkit), so each stays independently editable. Group labels are the
+  // same in both languages, so they're written once as plain strings.
+  homeSkills: [
+    {
+      group: 'Analytics',
+      items: ['Python', 'Pandas', 'EDA', 'Cohort Analysis'],
+    },
+    {
+      group: 'BI & Reporting',
+      items: ['Power BI', 'DAX', 'Power Query', 'Excel'],
+    },
+    {
+      group: 'Data & SQL',
+      items: ['SQL', 'SQL Server', 'ETL', 'Data Modeling', 'Star Schema'],
+    },
+    {
+      group: 'Tools',
+      items: ['Git', 'GitHub', 'Jupyter Notebook'],
     },
   ],
 }
