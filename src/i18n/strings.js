@@ -27,7 +27,7 @@ export const strings = {
     vi: 'Tôi biến dữ liệu vận hành thành insight rõ ràng phục vụ quyết định kinh doanh bằng Power BI, SQL, Python và data modeling.',
   },
 
-  'home.featured': { en: 'Featured Projects', vi: 'Dự án tiêu biểu' },
+  'home.featured': { en: 'Selected Projects', vi: 'Dự án chọn lọc' },
   'home.allProjects': { en: 'All projects', vi: 'Tất cả dự án' },
 
   'projects.title': { en: 'Projects', vi: 'Dự án' },
@@ -67,6 +67,7 @@ export const strings = {
   'case.addScreenshot': { en: '(add screenshot)', vi: '(chưa có ảnh)' },
   'case.whatThisShows': { en: 'What this shows', vi: 'Trang này cho thấy gì' },
   'case.keyTakeaway': { en: 'Key takeaway', vi: 'Điểm mấu chốt' },
+  'case.skillsPracticed': { en: 'Skills practiced', vi: 'Kỹ năng đã luyện tập' },
   'case.page': { en: 'Page', vi: 'Trang' },
 
   'notFound.title': { en: 'Page not found', vi: 'Không tìm thấy trang' },

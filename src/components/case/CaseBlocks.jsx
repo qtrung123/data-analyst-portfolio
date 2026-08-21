@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Tag from '../Tag.jsx'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 
 /**
@@ -438,6 +439,7 @@ export function DashboardPage({
   width,
   height,
   shows,
+  skills,
   takeaway,
 }) {
   const { t } = useLanguage()
@@ -470,6 +472,21 @@ export function DashboardPage({
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {skills?.length > 0 && (
+          <div className="mt-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-faint">
+              {t('case.skillsPracticed')}
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {skills.map((skill) => (
+                <Tag key={skill} tone="accent">
+                  {skill}
+                </Tag>
+              ))}
+            </div>
           </div>
         )}
 

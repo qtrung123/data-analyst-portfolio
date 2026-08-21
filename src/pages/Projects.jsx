@@ -43,7 +43,7 @@ export default function Projects() {
         </div>
       )}
 
-      <ProjectGrid projects={visible} columns={2} className="mt-10" />
+      <ProjectGrid projects={visible} columns={3} className="mt-10" />
     </Container>
   )
 }

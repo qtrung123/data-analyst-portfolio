@@ -21,10 +21,10 @@ const STATUS = {
     dot: 'bg-faint',
     text: 'text-muted',
   },
-  practice: {
-    label: { en: 'Practice project', vi: 'Dự án luyện tập' },
-    dot: 'bg-faint',
-    text: 'text-muted',
+  learning: {
+    label: { en: 'Power BI Learning Project', vi: 'Dự án học Power BI' },
+    dot: 'bg-violet-500',
+    text: 'text-violet-600 dark:text-violet-400',
   },
 }
 

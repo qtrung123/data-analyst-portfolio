@@ -51,7 +51,7 @@ export default function Home() {
             </div>
           )}
 
-          {rest.length > 0 && <ProjectGrid projects={rest} columns={2} className="mt-6" />}
+          {rest.length > 0 && <ProjectGrid projects={rest} columns={3} className="mt-6" />}
         </Container>
       </section>
 

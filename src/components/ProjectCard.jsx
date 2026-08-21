@@ -124,7 +124,8 @@ export default function ProjectCard({ project, variant = 'grid' }) {
       <div className={`flex flex-1 flex-col p-6 ${feature ? 'md:p-8' : ''}`}>
         <div className="flex items-center justify-between gap-3">
           <span className="text-xs font-medium uppercase tracking-wider text-muted">
-            {tr(project.category)} &middot; {project.year}
+            {tr(project.category)}
+            {project.year && <> &middot; {project.year}</>}
           </span>
           <StatusBadge status={project.status} />
         </div>
