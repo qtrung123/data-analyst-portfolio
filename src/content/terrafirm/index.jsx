@@ -79,13 +79,8 @@ export const meta = {
     glyph: '🦺',
     image: `${IMG}/page1.png`,
   },
-  links: [
-    // Replace with the real repository link before publishing.
-    {
-      label: { en: 'Power BI repository', vi: 'Repository Power BI' },
-      href: 'https://github.com/',
-    },
-  ],
+  // No repository link yet — the real URL will be added later.
+  links: [],
   sections: [
     { id: 'problem', label: { en: 'Problem', vi: 'Vấn đề' } },
     { id: 'built', label: { en: 'What I built', vi: 'Giải pháp' } },

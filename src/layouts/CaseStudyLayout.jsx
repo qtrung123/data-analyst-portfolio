@@ -6,6 +6,7 @@ import { StatRow } from '../components/case/CaseBlocks.jsx'
 import { getProjectNeighbours } from '../data/projects.js'
 import useActiveSection from '../hooks/useActiveSection.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { trackGithubClick } from '../lib/analytics.js'
 
 /**
  * Reusable case-study shell: header, stat row, sticky section nav, body, and
@@ -64,6 +65,7 @@ export default function CaseStudyLayout({ meta, children }) {
                   href={l.href}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackGithubClick('project_repo', meta.slug)}
                   className="rounded-lg bg-panel-2 px-4 py-2 text-sm font-medium text-heading ring-1 ring-line transition hover:ring-accent-line"
                 >
                   {tr(l.label)} <span aria-hidden="true">&#8599;</span>

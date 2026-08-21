@@ -98,11 +98,30 @@ src/
 - Report screenshots live in `public/projects/<slug>/`. See
   `public/projects/terrafirm/README.md` for the filename map and the
   intrinsic-dimensions rule.
-- **The navbar CV link expects `public/cv.pdf`** — drop the file in, or change
-  `cvUrl` in [`src/data/site.js`](src/data/site.js). Until then the link 404s.
+- **The CV link is hidden** (Navbar, Footer, About) until `public/cv.pdf`
+  exists — drop the file in, then flip `cvEnabled` to `true` in
+  [`src/data/site.js`](src/data/site.js).
+
+## Analytics (GA4)
+
+`src/lib/analytics.js` is a small, dependency-free GA4 wrapper:
+
+- The measurement ID comes from the Vite env var `VITE_GA_MEASUREMENT_ID`
+  (see `.env.example`) — never hardcoded. Leave it unset to disable analytics
+  entirely; nothing else needs to change.
+- `src/components/Analytics.jsx` mounts once in `App.jsx` and sends a
+  `page_view` event on every route change (React Router doesn't reload the
+  page, so gtag's own automatic pageview is disabled in favour of this).
+- Custom events already wired in: `project_open` (case-study opened, with
+  `project_slug`/`project_name`), `cv_download`, `github_click` (with a
+  `link_context` and, for project repo links, `project_slug`), and
+  `contact_click`.
+- Every call is wrapped in try/catch and no-ops if GA4 isn't configured or
+  the script is blocked — analytics can never break the site.
 
 ## Deploying to Netlify
 
 `netlify.toml` is configured (`npm run build` → `dist`, with an SPA fallback so
 deep links to case studies resolve). Connect the repo and accept the detected
-settings.
+settings, then add `VITE_GA_MEASUREMENT_ID` under Site settings →
+Environment variables if you want GA4 tracking.

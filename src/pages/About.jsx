@@ -2,6 +2,7 @@ import Container from '../components/Container.jsx'
 import Tag from '../components/Tag.jsx'
 import site from '../data/site.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { trackContactClick, trackCvDownload, trackGithubClick } from '../lib/analytics.js'
 
 export default function About() {
   const { t, tr } = useLanguage()
@@ -45,22 +46,28 @@ export default function About() {
         <div className="mt-5 flex flex-wrap gap-3">
           <a
             href={`mailto:${site.email}`}
+            onClick={() => trackContactClick('email')}
             className="rounded-lg bg-accent-solid px-5 py-2.5 text-sm font-semibold text-on-accent transition hover:opacity-90"
           >
             {site.email}
           </a>
-          <a
-            href={site.cvUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-lg px-5 py-2.5 text-sm font-semibold text-heading ring-1 ring-line transition hover:ring-accent-line"
-          >
-            {t('nav.cv')} &#8599;
-          </a>
+          {/* Hidden until site.cvEnabled is true (i.e. public/cv.pdf exists). */}
+          {site.cvEnabled && (
+            <a
+              href={site.cvUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={trackCvDownload}
+              className="rounded-lg px-5 py-2.5 text-sm font-semibold text-heading ring-1 ring-line transition hover:ring-accent-line"
+            >
+              {t('nav.cv')} &#8599;
+            </a>
+          )}
           <a
             href={site.links.github}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackGithubClick('about')}
             className="rounded-lg px-5 py-2.5 text-sm font-semibold text-heading ring-1 ring-line transition hover:ring-accent-line"
           >
             {t('nav.github')} &#8599;

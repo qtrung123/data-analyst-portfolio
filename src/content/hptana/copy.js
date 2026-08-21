@@ -16,10 +16,10 @@
  */
 
 export const pages = [
-  { key: 'overview', file: 'overview.png' },
-  { key: 'sales', file: 'sales.png' },
-  { key: 'production', file: 'production.png' },
-  { key: 'inventory', file: 'inventory.png' },
+  { key: 'overview', file: 'overview.png', width: 1834, height: 964 },
+  { key: 'sales', file: 'sales.png', width: 1758, height: 975 },
+  { key: 'production', file: 'production.png', width: 1804, height: 982 },
+  { key: 'inventory', file: 'inventory.png', width: 1774, height: 978 },
 ]
 
 export const copy = {
@@ -31,7 +31,6 @@ export const copy = {
       improve: 'What I would improve today',
       progression: 'From HPTANA to TerraFirm',
       taught: 'What this project taught me',
-      repo: 'Repository',
     },
 
     objective: {
@@ -168,12 +167,6 @@ export const copy = {
         'These habits — reusable measures, an explicit KPI-then-detail layout, and pages scoped to a question — are what carried into TerraFirm, which is why that project could add a sixth page and a drillthrough without the structure breaking down.',
       ],
     },
-
-    repo: {
-      title: 'Power BI file on GitHub',
-      note: 'The .pbix file for this project.',
-      label: 'View the repository',
-    },
   },
 
   vi: {
@@ -184,7 +177,6 @@ export const copy = {
       improve: 'Điều tôi sẽ cải thiện hôm nay',
       progression: 'Từ HPTANA đến TerraFirm',
       taught: 'Bài học từ dự án này',
-      repo: 'Repository',
     },
 
     objective: {
@@ -304,12 +296,6 @@ export const copy = {
         'Trang nên được thiết kế xoay quanh một câu hỏi kinh doanh, không phải một bảng nguồn — Overview, Sales, Production và Inventory đọc như bốn câu hỏi, không phải bốn bảng.',
         'Những thói quen này — measure tái sử dụng, bố cục KPI-rồi-đến-chi-tiết rõ ràng, và trang được giới hạn theo một câu hỏi — chính là những gì tôi mang sang TerraFirm, và là lý do dự án đó có thể thêm trang thứ sáu cùng drillthrough mà cấu trúc không bị vỡ.',
       ],
-    },
-
-    repo: {
-      title: 'File Power BI trên GitHub',
-      note: 'File .pbix của dự án này.',
-      label: 'Xem repository',
     },
   },
 }

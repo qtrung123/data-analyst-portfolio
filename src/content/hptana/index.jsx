@@ -6,12 +6,10 @@ import {
   FactStrip,
   DashboardPage,
   DataTable,
-  LinkCTA,
 } from '../../components/case/CaseBlocks.jsx'
 import { copy, pages } from './copy.js'
 
 const IMG = '/projects/hptana'
-const REPO = 'https://github.com/'
 
 /* ------------------------------------------------------------------
    Card + case-study header metadata.
@@ -61,10 +59,8 @@ export const meta = {
   ],
 
   cover: { from: '#334155', to: '#0f172a', glyph: '📈' },
-  links: [
-    // Replace with the real repository link before publishing.
-    { label: { en: 'GitHub repository', vi: 'Repository GitHub' }, href: REPO },
-  ],
+  // No repository link yet — the real URL will be added later.
+  links: [],
 
   sections: [
     { id: 'objective', label: { en: 'Objective', vi: 'Mục tiêu' } },
@@ -73,7 +69,6 @@ export const meta = {
     { id: 'improve', label: { en: 'What I would improve', vi: 'Điều sẽ cải thiện' } },
     { id: 'progression', label: { en: 'HPTANA → TerraFirm', vi: 'HPTANA → TerraFirm' } },
     { id: 'taught', label: { en: 'What this taught me', vi: 'Bài học rút ra' } },
-    { id: 'repo', label: { en: 'Repository', vi: 'Repository' } },
   ],
 }
 
@@ -112,6 +107,8 @@ export default function HptanaCaseStudy({ lang = 'en' }) {
               question={pc.question}
               src={`${IMG}/${p.file}`}
               alt={pc.title}
+              width={p.width}
+              height={p.height}
               shows={pc.shows}
               insights={pc.insights}
               skills={pc.skills}
@@ -139,10 +136,6 @@ export default function HptanaCaseStudy({ lang = 'en' }) {
           <p>{c.taught.calloutBody}</p>
         </Callout>
         <Bullets items={c.taught.items} />
-      </CaseSection>
-
-      <CaseSection id="repo" eyebrow={c.sections.repo} title={c.repo.title}>
-        <LinkCTA title={c.repo.title} note={c.repo.note} label={c.repo.label} href={REPO} />
       </CaseSection>
     </>
   )

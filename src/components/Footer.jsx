@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Container from './Container.jsx'
 import site from '../data/site.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { trackContactClick, trackCvDownload, trackGithubClick } from '../lib/analytics.js'
 
 export default function Footer() {
   const { t, tr } = useLanguage()
@@ -23,18 +24,32 @@ export default function Footer() {
           <Link to="/about" className="hover:text-accent">
             {t('nav.about')}
           </Link>
-          <a href={site.cvUrl} target="_blank" rel="noreferrer" className="hover:text-accent">
-            {t('nav.cv')}
-          </a>
+          {/* Hidden until site.cvEnabled is true (i.e. public/cv.pdf exists). */}
+          {site.cvEnabled && (
+            <a
+              href={site.cvUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={trackCvDownload}
+              className="hover:text-accent"
+            >
+              {t('nav.cv')}
+            </a>
+          )}
           <a
             href={site.links.github}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackGithubClick('footer')}
             className="hover:text-accent"
           >
             {t('nav.github')}
           </a>
-          <a href={`mailto:${site.email}`} className="hover:text-accent">
+          <a
+            href={`mailto:${site.email}`}
+            onClick={() => trackContactClick('email')}
+            className="hover:text-accent"
+          >
             Email
           </a>
         </div>

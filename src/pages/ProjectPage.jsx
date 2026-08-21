@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import CaseStudyLayout from '../layouts/CaseStudyLayout.jsx'
 import NotFound from './NotFound.jsx'
 import { getProjectModule, resolveProjectSlug } from '../data/projects.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { trackProjectOpen } from '../lib/analytics.js'
 
 const SITE_TITLE = 'Quoc Trung Nguyen — Data Analyst | Business Intelligence'
 
@@ -18,7 +19,9 @@ export default function ProjectPage() {
   const canonical = resolveProjectSlug(slug)
   const projectModule = canonical === slug ? getProjectModule(slug) : null
 
-  useEffect(() => {
+  // Layout effect so document.title is already updated by the time
+  // Analytics' pageview effect (a plain useEffect) reads it.
+  useLayoutEffect(() => {
     if (projectModule) {
       document.title = `${tr(projectModule.meta.title)} — ${tr(projectModule.meta.subtitle)}`
     }
@@ -26,6 +29,14 @@ export default function ProjectPage() {
       document.title = SITE_TITLE
     }
   }, [projectModule, tr, lang])
+
+  useEffect(() => {
+    if (projectModule) {
+      trackProjectOpen(projectModule.meta.slug, tr(projectModule.meta.title))
+    }
+    // Fires once per case-study open, not on every language toggle.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectModule])
 
   // An alias (e.g. /projects/terrafirm) redirects to the canonical URL.
   if (canonical && canonical !== slug) {

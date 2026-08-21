@@ -9,10 +9,12 @@ export const site = {
   location: { en: 'Vietnam · Open to remote', vi: 'Việt Nam · Sẵn sàng làm remote' },
   email: 'quoctrung121212@gmail.com',
 
-  // Drop cv.pdf into /public to activate the CV link in the navbar.
+  // Drop cv.pdf into /public, then flip this to true to show the CV link
+  // across Navbar, Footer and About. Kept false to avoid a 404 CTA.
   cvUrl: '/cv.pdf',
+  cvEnabled: false,
   links: {
-    github: 'https://github.com/',
+    github: 'https://github.com/qtrung123',
     linkedin: 'https://www.linkedin.com/',
   },
 

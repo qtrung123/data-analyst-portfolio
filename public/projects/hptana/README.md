@@ -5,21 +5,20 @@ directly — dropping a file in here is all that is needed.
 
 | File | Page | Status |
 | --- | --- | --- |
-| `overview.png` | Overview | ⬜ not yet supplied |
-| `sales.png` | Sales | ⬜ not yet supplied |
-| `production.png` | Production | ⬜ not yet supplied |
-| `inventory.png` | Inventory | ⬜ not yet supplied |
+| `overview.png` | Overview | ✅ supplied (1834×964) |
+| `sales.png` | Sales | ✅ supplied (1758×975) |
+| `production.png` | Production | ✅ supplied (1804×982) |
+| `inventory.png` | Inventory | ✅ supplied (1774×978) |
 
-Until a file is present, `Figure` renders a labelled placeholder rather than a
-broken image.
+If a file is ever removed, `Figure` falls back to a labelled placeholder
+rather than a broken image.
 
 ## Notes
 
-- Unlike the other case studies, no `width`/`height` are set on these
-  `Figure` calls (real dimensions weren't available yet). Once you add the
-  screenshots, pass their intrinsic pixel size in
-  `src/content/hptana/index.jsx` so the frame matches each image's own aspect
-  ratio instead of the generic 16:9 fallback.
-- The repository link in `src/content/hptana/index.jsx` is a placeholder
-  (`https://github.com/`) — replace it with the real HPTANA repository URL
-  before publishing.
+- Real intrinsic pixel dimensions are set in `src/content/hptana/copy.js`
+  (the `pages` array) and passed through `src/content/hptana/index.jsx` to
+  each `DashboardPage`, so every frame matches its own image's aspect ratio
+  instead of the generic 16:9 fallback.
+- The repository CTA is hidden for now (`meta.links` is `[]` in
+  `src/content/hptana/index.jsx`) since no real HPTANA repository URL exists
+  yet. Add one to `meta.links` once the repo is public.

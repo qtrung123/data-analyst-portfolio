@@ -5,6 +5,7 @@ import LanguageToggle from './LanguageToggle.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import site from '../data/site.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { trackCvDownload, trackGithubClick } from '../lib/analytics.js'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -17,8 +18,15 @@ export default function Navbar() {
     { to: '/about', label: t('nav.about') },
   ]
   const external = [
-    { href: site.cvUrl, label: t('nav.cv') },
-    { href: site.links.github, label: t('nav.github') },
+    // Hidden until site.cvEnabled is true (i.e. public/cv.pdf exists).
+    ...(site.cvEnabled
+      ? [{ href: site.cvUrl, label: t('nav.cv'), onClick: trackCvDownload }]
+      : []),
+    {
+      href: site.links.github,
+      label: t('nav.github'),
+      onClick: () => trackGithubClick('navbar'),
+    },
   ]
 
   const linkClass = ({ isActive }) =>
@@ -55,6 +63,7 @@ export default function Navbar() {
                 href={n.href}
                 target="_blank"
                 rel="noreferrer"
+                onClick={n.onClick}
                 className="text-sm font-medium text-muted transition hover:text-heading"
               >
                 {n.label}
@@ -101,7 +110,10 @@ export default function Navbar() {
                 href={n.href}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  n.onClick?.()
+                  setOpen(false)
+                }}
                 className="rounded-lg px-2 py-2 text-sm text-body hover:bg-panel-2"
               >
                 {n.label} &#8599;
