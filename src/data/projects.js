@@ -17,7 +17,9 @@
  *   slug, title, subtitle, summary,
  *   aliases?: string[],                  // extra URL segments that redirect to slug
  *   category, year,
- *   status: 'flagship' | 'live' | 'in-progress' | 'archived',
+ *   status: 'flagship' | 'live' | 'in-progress' | 'archived' | 'practice',
+ *   tier?: 'practice',            // omit for primary work; 'practice' = shown
+ *                                  // small, in the homepage More Work section
  *   tools: string[],                     // product names, not translated
  *   card: { problem, built, found },     // the three questions a card answers
  *   metrics: [{ label, value, note? }],  // 3-4, shown on the card and header
@@ -30,9 +32,10 @@
 import * as terrafirm from '../content/terrafirm/index.jsx'
 import * as onlineTicketBooking from '../content/online-ticket-booking/index.jsx'
 import * as sqlDataWarehouse from '../content/sql-data-warehouse/index.jsx'
+import * as hptana from '../content/hptana/index.jsx'
 
 // Order here = order on the site.
-export const projectModules = [terrafirm, onlineTicketBooking, sqlDataWarehouse]
+export const projectModules = [terrafirm, onlineTicketBooking, sqlDataWarehouse, hptana]
 
 export const projects = projectModules.map((m) => m.meta)
 

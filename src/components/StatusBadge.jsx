@@ -21,6 +21,11 @@ const STATUS = {
     dot: 'bg-faint',
     text: 'text-muted',
   },
+  practice: {
+    label: { en: 'Practice project', vi: 'Dự án luyện tập' },
+    dot: 'bg-faint',
+    text: 'text-muted',
+  },
 }
 
 export default function StatusBadge({ status }) {

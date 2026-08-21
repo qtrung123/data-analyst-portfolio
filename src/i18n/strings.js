@@ -41,6 +41,11 @@ export const strings = {
   },
   'projects.all': { en: 'All', vi: 'Tất cả' },
   'card.outcome': { en: 'Key outcome', vi: 'Kết quả chính' },
+  'home.moreWork': { en: 'More Work', vi: 'Dự án khác' },
+  'home.moreWorkIntro': {
+    en: 'Earlier practice work that shows how my Power BI skills progressed.',
+    vi: 'Các dự án luyện tập trước đây cho thấy quá trình phát triển kỹ năng Power BI của tôi.',
+  },
   'projects.viewCaseStudy': { en: 'View Case Study', vi: 'Xem case study' },
 
   'about.title': { en: 'About', vi: 'Giới thiệu' },

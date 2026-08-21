@@ -32,7 +32,8 @@ export default function CaseStudyLayout({ meta, children }) {
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="text-xs font-medium uppercase tracking-widest text-muted">
-              {tr(meta.category)} &middot; {meta.year}
+              {tr(meta.category)}
+              {meta.year && <> &middot; {meta.year}</>}
             </span>
             <StatusBadge status={meta.status} />
           </div>

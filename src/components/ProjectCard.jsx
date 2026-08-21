@@ -14,20 +14,75 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
  * same card for free. Bilingual fields resolve through `tr`, so the card knows
  * nothing about a specific project.
  *
- * variant="feature" is the wide card used for the flagship project; it differs
- * only in scale and layout, never in what it says.
+ * Variants:
+ *   feature — the wide card used for the flagship project
+ *   grid    — the standard card used for other primary work
+ *   compact — a smaller, lower-emphasis card for secondary/practice projects;
+ *             says the same four things, just without the accent-highlighted
+ *             outcome box or the cover-art panel
  */
 export default function ProjectCard({ project, variant = 'grid' }) {
   const { t, tr } = useLanguage()
   const feature = variant === 'feature'
+  const compact = variant === 'compact'
   const { cover = {}, card = {} } = project
   const [coverFailed, setCoverFailed] = useState(false)
   const showCoverImage = Boolean(cover.image) && !coverFailed
 
   // A project may name its own card skills; otherwise fall back to its tools.
-  const skills = (card.skills ?? project.tools ?? []).slice(0, 6)
+  const skills = (card.skills ?? project.tools ?? []).slice(0, compact ? 4 : 6)
   const did = tr(card.did) ?? tr(project.summary)
   const hook = tr(card.hook)
+
+  if (compact) {
+    return (
+      <Link
+        to={`/projects/${project.slug}`}
+        className="group flex items-start gap-4 rounded-xl bg-panel p-4 ring-1 ring-line transition
+          hover:ring-accent-line focus:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:p-5"
+      >
+        <span
+          aria-hidden="true"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-lg text-xl ring-1 ring-line"
+          style={{
+            backgroundImage: `linear-gradient(135deg, ${cover.from ?? '#1e293b'}, ${
+              cover.to ?? '#0f172a'
+            })`,
+          }}
+        >
+          {cover.glyph ?? '📊'}
+        </span>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <h3 className="font-semibold text-heading">{tr(project.title)}</h3>
+            <StatusBadge status={project.status} />
+          </div>
+
+          {did && <p className="mt-1 text-sm text-muted">{did}</p>}
+
+          {skills.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {skills.map((skill) => (
+                <Tag key={skill} tone="muted" className="text-[0.7rem]">
+                  {skill}
+                </Tag>
+              ))}
+            </div>
+          )}
+
+          {hook && <p className="mt-2 text-xs text-faint">{hook}</p>}
+
+          <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-accent">
+            {t('projects.viewCaseStudy')}
+            <span aria-hidden="true" className="transition group-hover:translate-x-0.5">
+              &rarr;
+            </span>
+          </span>
+        </div>
+      </Link>
+    )
+  }
 
   return (
     <Link

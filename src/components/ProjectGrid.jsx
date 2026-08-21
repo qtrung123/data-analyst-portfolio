@@ -20,7 +20,9 @@ export default function ProjectGrid({ projects, columns = 3, className = '' }) {
   return (
     <div className={`grid grid-cols-1 gap-6 ${cols} ${className}`}>
       {projects.map((p) => (
-        <ProjectCard key={p.slug} project={p} />
+        // A project tagged 'practice' always renders as the lower-emphasis
+        // compact card, regardless of which grid it appears in.
+        <ProjectCard key={p.slug} project={p} variant={p.tier === 'practice' ? 'compact' : 'grid'} />
       ))}
     </div>
   )

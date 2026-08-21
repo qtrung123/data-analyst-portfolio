@@ -12,7 +12,10 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 export default function Home() {
   const { t } = useLanguage()
   const flagship = featuredProjects[0] ?? projects[0]
-  const rest = projects.filter((p) => p.slug !== flagship?.slug)
+  // Primary work: everything except the flagship and anything tagged 'practice'.
+  const rest = projects.filter((p) => p.slug !== flagship?.slug && p.tier !== 'practice')
+  // Secondary/earlier-stage work, shown with far less visual weight below.
+  const moreWork = projects.filter((p) => p.tier === 'practice')
 
   return (
     <>
@@ -51,6 +54,20 @@ export default function Home() {
           {rest.length > 0 && <ProjectGrid projects={rest} columns={2} className="mt-6" />}
         </Container>
       </section>
+
+      {moreWork.length > 0 && (
+        <section className="border-t border-line py-10 sm:py-12">
+          <Container>
+            <h2 className="text-lg font-semibold text-heading">{t('home.moreWork')}</h2>
+            <p className="mt-1 text-sm text-muted">{t('home.moreWorkIntro')}</p>
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {moreWork.map((p) => (
+                <ProjectCard key={p.slug} project={p} variant="compact" />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
     </>
   )
 }
