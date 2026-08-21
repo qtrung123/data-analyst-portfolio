@@ -98,9 +98,11 @@ src/
 - Report screenshots live in `public/projects/<slug>/`. See
   `public/projects/terrafirm/README.md` for the filename map and the
   intrinsic-dimensions rule.
-- **The CV link is hidden** (Navbar, Footer, About) until `public/cv.pdf`
-  exists — drop the file in, then flip `cvEnabled` to `true` in
-  [`src/data/site.js`](src/data/site.js).
+- **The CV link** (Navbar, Footer, About) points at `cvUrl` in
+  [`src/data/site.js`](src/data/site.js), currently
+  `public/cv/NGUYEN_QUOC_TRUNG_PM_CV.pdf`. It's shown only while `cvEnabled`
+  is `true`; `cvType` is passed to the `cv_download` GA4 event so downloads
+  can be attributed to the right CV variant.
 
 ## Analytics (GA4)
 

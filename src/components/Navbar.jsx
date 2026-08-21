@@ -18,9 +18,9 @@ export default function Navbar() {
     { to: '/about', label: t('nav.about') },
   ]
   const external = [
-    // Hidden until site.cvEnabled is true (i.e. public/cv.pdf exists).
+    // Hidden until site.cvEnabled is true (i.e. site.cvUrl's file exists).
     ...(site.cvEnabled
-      ? [{ href: site.cvUrl, label: t('nav.cv'), onClick: trackCvDownload }]
+      ? [{ href: site.cvUrl, label: t('nav.cv'), onClick: () => trackCvDownload(site.cvType) }]
       : []),
     {
       href: site.links.github,

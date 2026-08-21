@@ -24,13 +24,13 @@ export default function Footer() {
           <Link to="/about" className="hover:text-accent">
             {t('nav.about')}
           </Link>
-          {/* Hidden until site.cvEnabled is true (i.e. public/cv.pdf exists). */}
+          {/* Hidden until site.cvEnabled is true (i.e. site.cvUrl's file exists). */}
           {site.cvEnabled && (
             <a
               href={site.cvUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={trackCvDownload}
+              onClick={() => trackCvDownload(site.cvType)}
               className="hover:text-accent"
             >
               {t('nav.cv')}

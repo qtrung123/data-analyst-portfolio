@@ -67,9 +67,9 @@ export function trackProjectOpen(slug, name) {
   send('project_open', { project_slug: slug, project_name: name })
 }
 
-/** The CV was downloaded/opened. */
-export function trackCvDownload() {
-  send('cv_download')
+/** The CV was downloaded/opened. `cvType` identifies which CV (e.g. "product_management"). */
+export function trackCvDownload(cvType) {
+  send('cv_download', cvType ? { cv_type: cvType } : undefined)
 }
 
 /** An outbound GitHub link was clicked. `context` identifies where (e.g. "navbar", "footer", "project_repo"). */

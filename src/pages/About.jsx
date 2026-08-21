@@ -51,13 +51,13 @@ export default function About() {
           >
             {site.email}
           </a>
-          {/* Hidden until site.cvEnabled is true (i.e. public/cv.pdf exists). */}
+          {/* Hidden until site.cvEnabled is true (i.e. site.cvUrl's file exists). */}
           {site.cvEnabled && (
             <a
               href={site.cvUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={trackCvDownload}
+              onClick={() => trackCvDownload(site.cvType)}
               className="rounded-lg px-5 py-2.5 text-sm font-semibold text-heading ring-1 ring-line transition hover:ring-accent-line"
             >
               {t('nav.cv')} &#8599;
