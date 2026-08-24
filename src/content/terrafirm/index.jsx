@@ -9,9 +9,12 @@ import {
   DashboardPage,
   CodeBlock,
   Expandable,
-  EmbedPlaceholder,
+  InteractiveReport,
+  RoleSummary,
 } from '../../components/case/CaseBlocks.jsx'
 import { copy, shots } from './copy.js'
+import { pick } from '../../i18n/pick.js'
+import { trackInteractiveReportOpen } from '../../lib/analytics.js'
 
 const IMG = '/projects/terrafirm'
 
@@ -81,6 +84,29 @@ export const meta = {
   },
   // No repository link yet — the real URL will be added later.
   links: [],
+
+  roleSummary: {
+    role: {
+      en: 'Individual project — end-to-end BI development',
+      vi: 'Dự án cá nhân — phát triển BI end-to-end',
+    },
+    skills: [
+      'Data preparation',
+      'Semantic modeling',
+      'DAX',
+      'Analysis',
+      'Dashboard design',
+      'Validation',
+    ],
+  },
+
+  // Public "Publish to Web" URL only (https://app.powerbi.com/view?r=...).
+  // Never the authenticated /groups/me/... workspace link. Left null until
+  // a public embed exists — InteractiveReport falls back to a subtle note.
+  interactiveReport: {
+    embedUrl: null,
+  },
+
   sections: [
     { id: 'problem', label: { en: 'Problem', vi: 'Vấn đề' } },
     { id: 'built', label: { en: 'What I built', vi: 'Giải pháp' } },
@@ -101,6 +127,8 @@ export default function TerraFirmCaseStudy({ lang = 'en' }) {
 
   return (
     <>
+      <RoleSummary role={pick(meta.roleSummary.role, lang)} skills={meta.roleSummary.skills} />
+
       <CaseSection id="problem" eyebrow={c.sections.problem} title={c.problem.title}>
         {c.problem.body.map((p, i) => (
           <p key={i}>{p}</p>
@@ -170,9 +198,12 @@ export default function TerraFirmCaseStudy({ lang = 'en' }) {
       </CaseSection>
 
       <CaseSection id="report" eyebrow={c.sections.report} title={c.report.title}>
-        <EmbedPlaceholder
-          title={c.report.placeholderTitle}
-          note={c.report.placeholderNote}
+        <InteractiveReport
+          embedUrl={meta.interactiveReport.embedUrl}
+          unavailableNote={c.report.unavailableNote}
+          openLabel={c.report.openLabel}
+          mobileNote={c.report.mobileNote}
+          onOpen={() => trackInteractiveReportOpen(meta.slug)}
         />
       </CaseSection>
 

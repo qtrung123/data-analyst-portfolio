@@ -218,9 +218,10 @@ DIVIDE (
     },
     report: {
       title: 'Interactive report',
-      placeholderTitle: 'Live embed not yet published',
-      placeholderNote:
-        'The report has not been published to a public workspace, so no embed URL exists yet. The six pages above cover the same content.',
+      unavailableNote:
+        'Not yet published to a public workspace, so no live embed exists — the six pages above cover the same content.',
+      openLabel: 'Open Interactive Report',
+      mobileNote: 'Best viewed on a larger screen — use the button below to open it directly.',
     },
     learned: {
       title: 'What I learned',
@@ -434,9 +435,10 @@ DIVIDE (
     },
     report: {
       title: 'Báo cáo tương tác',
-      placeholderTitle: 'Chưa publish bản nhúng trực tiếp',
-      placeholderNote:
-        'Báo cáo chưa được publish lên workspace công khai nên chưa có embed URL. Sáu trang phía trên đã bao quát cùng nội dung.',
+      unavailableNote:
+        'Chưa được publish lên workspace công khai nên chưa có bản nhúng trực tiếp — sáu trang phía trên đã bao quát cùng nội dung.',
+      openLabel: 'Mở báo cáo tương tác',
+      mobileNote: 'Xem tốt nhất trên màn hình lớn hơn — dùng nút bên dưới để mở trực tiếp.',
     },
     learned: {
       title: 'Bài học rút ra',

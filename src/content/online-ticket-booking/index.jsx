@@ -10,8 +10,10 @@ import {
   EdaChart,
   Figure,
   LinkCTA,
+  RoleSummary,
 } from '../../components/case/CaseBlocks.jsx'
 import { copy, charts } from './copy.js'
+import { pick } from '../../i18n/pick.js'
 
 const IMG = '/projects/online-ticket-booking'
 const REPO =
@@ -83,6 +85,20 @@ export const meta = {
   },
   links: [{ label: { en: 'GitHub repository', vi: 'Repository GitHub' }, href: REPO }],
 
+  roleSummary: {
+    role: {
+      en: 'Individual data analysis project',
+      vi: 'Dự án phân tích dữ liệu cá nhân',
+    },
+    skills: [
+      'Data cleaning',
+      'EDA',
+      'Customer journey analysis',
+      'Cohort analysis',
+      'Interpretation',
+    ],
+  },
+
   sections: [
     { id: 'problem', label: { en: 'Problem', vi: 'Vấn đề' } },
     { id: 'pipeline', label: { en: 'Data pipeline', vi: 'Pipeline dữ liệu' } },
@@ -109,6 +125,8 @@ export default function OnlineTicketBookingCaseStudy({ lang = 'en' }) {
 
   return (
     <>
+      <RoleSummary role={pick(meta.roleSummary.role, lang)} skills={meta.roleSummary.skills} />
+
       <CaseSection id="problem" eyebrow={c.sections.problem} title={c.problem.title}>
         {c.problem.body.map((p, i) => (
           <p key={i}>{p}</p>

@@ -51,19 +51,19 @@ export const site = {
   homeSkills: [
     {
       group: 'Analytics',
-      items: ['Python', 'Pandas', 'EDA', 'Cohort Analysis'],
+      items: ['Python', 'Pandas', 'EDA'],
     },
     {
       group: 'BI & Reporting',
-      items: ['Power BI', 'DAX', 'Power Query', 'Excel'],
+      items: ['Power BI', 'DAX', 'Power Query'],
     },
     {
-      group: 'Data & SQL',
-      items: ['SQL', 'SQL Server', 'ETL', 'Data Modeling', 'Star Schema'],
+      group: 'Data',
+      items: ['SQL', 'SQL Server', 'Data Modeling'],
     },
     {
       group: 'Tools',
-      items: ['Git', 'GitHub', 'Jupyter Notebook'],
+      items: ['Excel', 'Git', 'Jupyter Notebook'],
     },
   ],
 }

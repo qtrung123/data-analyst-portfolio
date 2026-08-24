@@ -84,3 +84,8 @@ export function trackGithubClick(context, projectSlug) {
 export function trackContactClick(method) {
   send('contact_click', { contact_method: method })
 }
+
+/** The external interactive Power BI report was opened for a project. */
+export function trackInteractiveReportOpen(projectSlug) {
+  send('interactive_report_open', { project_slug: projectSlug })
+}

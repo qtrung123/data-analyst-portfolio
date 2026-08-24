@@ -6,12 +6,13 @@ import Tag from '../components/Tag.jsx'
 import site from '../data/site.js'
 import { projects, featuredProjects } from '../data/projects.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { trackContactClick, trackGithubClick } from '../lib/analytics.js'
 
 /**
- * Compact hero (name, role, a two-line pitch, skill chips), then straight
- * into the work. Recruiter-facing summary only — no biography; the About
- * page carries the longer version. Projects stay the visually dominant
- * section below.
+ * Compact hero (name, role, a one-paragraph About Me, skill chips), then
+ * straight into the work, closing with a short recruiter CTA. Recruiter-
+ * facing summary only — no biography; the About page carries the longer
+ * version. Projects stay the visually dominant section on the page.
  */
 export default function Home() {
   const { t, tr } = useLanguage()
@@ -31,8 +32,10 @@ export default function Home() {
           <p className="mt-2 text-base font-medium text-accent sm:text-lg">
             {t('hero.role')}
           </p>
-          <p className="mt-4 max-w-2xl text-body">{t('hero.quote1')}</p>
-          <p className="mt-2 max-w-2xl text-body">{t('hero.quote2')}</p>
+          <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-faint">
+            {t('home.aboutMe')}
+          </p>
+          <p className="mt-2 max-w-2xl text-body">{t('hero.aboutMe')}</p>
 
           <div className="mt-6 space-y-3">
             {site.homeSkills.map((g) => (
@@ -88,6 +91,33 @@ export default function Home() {
           </Container>
         </section>
       )}
+
+      <section className="border-t border-line py-12 sm:py-16">
+        <Container className="text-center">
+          <h2 className="text-xl font-semibold text-heading sm:text-2xl">
+            {t('home.ctaEyebrow')}
+          </h2>
+          <p className="mx-auto mt-2 max-w-xl text-body">{t('home.ctaBody')}</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={`mailto:${site.email}`}
+              onClick={() => trackContactClick('home_cta')}
+              className="rounded-lg bg-accent-solid px-5 py-2.5 text-sm font-semibold text-on-accent transition hover:opacity-90"
+            >
+              {t('home.ctaEmail')}
+            </a>
+            <a
+              href={site.links.github}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackGithubClick('home_cta')}
+              className="rounded-lg px-5 py-2.5 text-sm font-semibold text-heading ring-1 ring-line transition hover:ring-accent-line"
+            >
+              {t('nav.github')}
+            </a>
+          </div>
+        </Container>
+      </section>
     </>
   )
 }

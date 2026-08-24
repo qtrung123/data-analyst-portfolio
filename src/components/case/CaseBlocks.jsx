@@ -34,6 +34,32 @@ export function CaseSection({ id, eyebrow, title, wide = false, children }) {
   )
 }
 
+/**
+ * "My Role" strip — sits before the first CaseSection so recruiters see at a
+ * glance what was individually owned, without reading the full case study.
+ * Deliberately not a CaseSection itself: no border-top, no nav anchor, one
+ * line plus chips. `role` is an already-resolved string; `skills` is a flat
+ * list shown as compact chips (no percentages, ever).
+ */
+export function RoleSummary({ role, skills }) {
+  const { t } = useLanguage()
+  return (
+    <div className="mb-8 rounded-lg bg-panel-2 px-4 py-3 ring-1 ring-line">
+      <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+        {t('case.myRole')}
+      </p>
+      <p className="mt-1 text-sm font-medium text-heading">{role}</p>
+      {skills?.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {skills.map((s) => (
+            <Tag key={s}>{s}</Tag>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 /** Headline numbers. Used in the case-study header and inline in sections. */
 export function StatRow({ stats, className = '' }) {
   return (
@@ -535,6 +561,66 @@ export function EmbedPlaceholder({ title, note }) {
       </span>
       <p className="mt-3 font-semibold text-heading">{title}</p>
       {note && <p className="mx-auto mt-2 max-w-md text-sm text-muted">{note}</p>}
+    </div>
+  )
+}
+
+// Only Power BI's public "Publish to Web" embed looks like this. An
+// authenticated /groups/me/... workspace URL never matches, so it can never
+// be embedded here even by accident.
+const POWERBI_PUBLIC_VIEW_PATTERN = /^https:\/\/app\.powerbi\.com\/view\?r=/i
+
+/**
+ * Interactive Power BI report slot, config-driven: pass the project's public
+ * `Publish to Web` URL (`https://app.powerbi.com/view?r=...`) via
+ * `embedUrl` — never an authenticated `/groups/me/...` link. Until a valid
+ * public URL exists, this renders a single subtle line of text, not a large
+ * placeholder box; the project's own screenshots remain the primary
+ * walkthrough. Once a URL is set, it renders a lazy-loaded ~16:9 iframe on
+ * larger screens plus an always-available "open in a new tab" fallback —
+ * on small screens the iframe is skipped entirely in favour of that fallback,
+ * since an embedded Power BI report is rarely usable at phone width.
+ */
+export function InteractiveReport({ embedUrl, unavailableNote, openLabel, mobileNote, onOpen }) {
+  const isPublicEmbed =
+    typeof embedUrl === 'string' &&
+    POWERBI_PUBLIC_VIEW_PATTERN.test(embedUrl) &&
+    !embedUrl.includes('/groups/me/')
+
+  if (!isPublicEmbed) {
+    return <p className="my-4 text-sm text-muted">{unavailableNote}</p>
+  }
+
+  return (
+    <div className="my-6">
+      <div
+        className="hidden overflow-hidden rounded-xl bg-panel-2 ring-1 ring-line sm:block"
+        style={{ aspectRatio: '16 / 9' }}
+      >
+        <iframe
+          src={embedUrl}
+          title="Interactive Power BI report"
+          loading="lazy"
+          allowFullScreen
+          className="h-full w-full border-0"
+        />
+      </div>
+
+      {mobileNote && (
+        <div className="rounded-xl bg-panel-2 p-6 text-center ring-1 ring-line sm:hidden">
+          <p className="text-sm text-muted">{mobileNote}</p>
+        </div>
+      )}
+
+      <a
+        href={embedUrl}
+        target="_blank"
+        rel="noreferrer"
+        onClick={onOpen}
+        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-panel-2 px-4 py-2 text-sm font-medium text-heading ring-1 ring-line transition hover:ring-accent-line"
+      >
+        {openLabel} <span aria-hidden="true">&#8599;</span>
+      </a>
     </div>
   )
 }

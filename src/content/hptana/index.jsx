@@ -6,8 +6,10 @@ import {
   FactStrip,
   DashboardPage,
   DataTable,
+  RoleSummary,
 } from '../../components/case/CaseBlocks.jsx'
 import { copy, pages } from './copy.js'
+import { pick } from '../../i18n/pick.js'
 
 const IMG = '/projects/hptana'
 
@@ -62,6 +64,14 @@ export const meta = {
   // No repository link yet — the real URL will be added later.
   links: [],
 
+  roleSummary: {
+    role: {
+      en: 'Individual Power BI learning project',
+      vi: 'Dự án học Power BI cá nhân',
+    },
+    skills: ['Data modeling', 'DAX', 'Report design', 'KPI development', 'Interactive reporting'],
+  },
+
   sections: [
     { id: 'objective', label: { en: 'Objective', vi: 'Mục tiêu' } },
     { id: 'built', label: { en: 'What I built', vi: 'Đã xây dựng' } },
@@ -84,6 +94,8 @@ export default function HptanaCaseStudy({ lang = 'en' }) {
 
   return (
     <>
+      <RoleSummary role={pick(meta.roleSummary.role, lang)} skills={meta.roleSummary.skills} />
+
       <CaseSection id="objective" eyebrow={c.sections.objective} title={c.objective.title}>
         {c.objective.body.map((p, i) => (
           <p key={i}>{p}</p>

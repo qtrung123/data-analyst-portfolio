@@ -22,17 +22,21 @@ export const strings = {
     en: 'Data Analyst | Business Intelligence',
     vi: 'Data Analyst | Business Intelligence',
   },
-  'hero.quote1': {
-    en: 'I build data solutions that turn raw operational data into clear business insights — using Power BI, SQL, Python and data modeling across data cleaning, analysis, dashboards and reporting.',
-    vi: 'Tôi xây dựng các giải pháp dữ liệu bằng Power BI, SQL, Python và data modeling — từ làm sạch, phân tích đến dashboard, nhằm chuyển dữ liệu vận hành thành insight rõ ràng phục vụ quyết định kinh doanh.',
-  },
-  'hero.quote2': {
-    en: 'Currently focused on building practical analytics projects and developing toward Data Analyst / BI roles.',
-    vi: 'Hiện tôi tập trung phát triển các dự án phân tích thực tế và định hướng theo Data Analyst / Business Intelligence.',
+  'home.aboutMe': { en: 'About Me', vi: 'Giới thiệu' },
+  'hero.aboutMe': {
+    en: 'I work across data cleaning, analysis, modeling and visualization, with a focus on turning operational data into clear business insights. I enjoy investigating why a metric changed, validating the data behind it, and communicating the result in a way that supports decisions.',
+    vi: 'Tôi tập trung vào quy trình từ làm sạch, phân tích và mô hình hóa dữ liệu đến trực quan hóa, với mục tiêu chuyển dữ liệu vận hành thành insight rõ ràng phục vụ quyết định. Tôi quan tâm đến việc tìm hiểu vì sao một chỉ số thay đổi, kiểm chứng dữ liệu và truyền đạt kết quả một cách dễ hiểu.',
   },
 
   'home.featured': { en: 'Selected Projects', vi: 'Dự án chọn lọc' },
   'home.allProjects': { en: 'All projects', vi: 'Tất cả dự án' },
+
+  'home.ctaEyebrow': { en: 'Interested in my work?', vi: 'Quan tâm đến các dự án của tôi?' },
+  'home.ctaBody': {
+    en: "I'm currently exploring Data Analyst and Business Intelligence internship opportunities.",
+    vi: 'Tôi hiện đang tìm kiếm cơ hội thực tập Data Analyst và Business Intelligence.',
+  },
+  'home.ctaEmail': { en: 'Email Me', vi: 'Liên hệ' },
 
   'projects.title': { en: 'Projects', vi: 'Dự án' },
   'projects.intro': {
@@ -74,6 +78,7 @@ export const strings = {
   'case.skillsPracticed': { en: 'Skills practiced', vi: 'Kỹ năng đã luyện tập' },
   'case.dataInsights': { en: 'Key data insights', vi: 'Phát hiện dữ liệu chính' },
   'case.page': { en: 'Page', vi: 'Trang' },
+  'case.myRole': { en: 'My Role', vi: 'Vai trò của tôi' },
 
   'notFound.title': { en: 'Page not found', vi: 'Không tìm thấy trang' },
   'notFound.body': {

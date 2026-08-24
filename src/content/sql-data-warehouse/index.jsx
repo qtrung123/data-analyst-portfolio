@@ -6,8 +6,10 @@ import {
   PipelineDiagram,
   SchemaDiagram,
   LinkCTA,
+  RoleSummary,
 } from '../../components/case/CaseBlocks.jsx'
 import { copy, snippets, model } from './copy.js'
+import { pick } from '../../i18n/pick.js'
 
 const REPO = 'https://github.com/qtrung123/sql-data-warehouse-project'
 
@@ -74,6 +76,20 @@ export const meta = {
   cover: { from: '#134e4a', to: '#0b2b28', glyph: '🗄️' },
   links: [{ label: { en: 'GitHub repository', vi: 'Repository GitHub' }, href: REPO }],
 
+  roleSummary: {
+    role: {
+      en: 'Individual data engineering / SQL project',
+      vi: 'Dự án cá nhân về data engineering / SQL',
+    },
+    skills: [
+      'Source integration',
+      'ETL',
+      'Transformation',
+      'Data modeling',
+      'Data-quality validation',
+    ],
+  },
+
   sections: [
     { id: 'problem', label: { en: 'Problem', vi: 'Vấn đề' } },
     { id: 'architecture', label: { en: 'Architecture', vi: 'Kiến trúc' } },
@@ -95,6 +111,8 @@ export default function SqlDataWarehouseCaseStudy({ lang = 'en' }) {
 
   return (
     <>
+      <RoleSummary role={pick(meta.roleSummary.role, lang)} skills={meta.roleSummary.skills} />
+
       <CaseSection id="problem" eyebrow={c.sections.problem} title={c.problem.title}>
         {c.problem.body.map((p, i) => (
           <p key={i}>{p}</p>
