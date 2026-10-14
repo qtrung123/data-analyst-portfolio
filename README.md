@@ -98,11 +98,6 @@ src/
 - Report screenshots live in `public/projects/<slug>/`. See
   `public/projects/terrafirm/README.md` for the filename map and the
   intrinsic-dimensions rule.
-- **The CV link** (Navbar, Footer, About) points at `cvUrl` in
-  [`src/data/site.js`](src/data/site.js), currently
-  `public/cv/NGUYEN_QUOC_TRUNG_PM_CV.pdf`. It's shown only while `cvEnabled`
-  is `true`; `cvType` is passed to the `cv_download` GA4 event so downloads
-  can be attributed to the right CV variant.
 
 ## Analytics (GA4)
 
@@ -115,7 +110,7 @@ src/
   `page_view` event on every route change (React Router doesn't reload the
   page, so gtag's own automatic pageview is disabled in favour of this).
 - Custom events already wired in: `project_open` (case-study opened, with
-  `project_slug`/`project_name`), `cv_download`, `github_click` (with a
+  `project_slug`/`project_name`), `github_click` (with a
   `link_context` and, for project repo links, `project_slug`), and
   `contact_click`.
 - Every call is wrapped in try/catch and no-ops if GA4 isn't configured or

@@ -12,7 +12,6 @@ export const DEFAULT_LANGUAGE = 'en'
 export const strings = {
   'nav.projects': { en: 'Projects', vi: 'Dự án' },
   'nav.about': { en: 'About', vi: 'Giới thiệu' },
-  'nav.cv': { en: 'CV', vi: 'CV' },
   'nav.github': { en: 'GitHub', vi: 'GitHub' },
   'nav.menu': { en: 'Toggle menu', vi: 'Mở menu' },
   'nav.home': { en: 'Home', vi: 'Trang chủ' },

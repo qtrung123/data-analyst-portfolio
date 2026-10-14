@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Container from './Container.jsx'
 import site from '../data/site.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { trackContactClick, trackCvDownload, trackGithubClick } from '../lib/analytics.js'
+import { trackContactClick, trackGithubClick } from '../lib/analytics.js'
 
 export default function Footer() {
   const { t, tr } = useLanguage()
@@ -24,18 +24,6 @@ export default function Footer() {
           <Link to="/about" className="hover:text-accent">
             {t('nav.about')}
           </Link>
-          {/* Hidden until site.cvEnabled is true (i.e. site.cvUrl's file exists). */}
-          {site.cvEnabled && (
-            <a
-              href={site.cvUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => trackCvDownload(site.cvType)}
-              className="hover:text-accent"
-            >
-              {t('nav.cv')}
-            </a>
-          )}
           <a
             href={site.links.github}
             target="_blank"

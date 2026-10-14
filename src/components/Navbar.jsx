@@ -5,7 +5,7 @@ import LanguageToggle from './LanguageToggle.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import site from '../data/site.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { trackCvDownload, trackGithubClick } from '../lib/analytics.js'
+import { trackGithubClick } from '../lib/analytics.js'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -18,10 +18,6 @@ export default function Navbar() {
     { to: '/about', label: t('nav.about') },
   ]
   const external = [
-    // Hidden until site.cvEnabled is true (i.e. site.cvUrl's file exists).
-    ...(site.cvEnabled
-      ? [{ href: site.cvUrl, label: t('nav.cv'), onClick: () => trackCvDownload(site.cvType) }]
-      : []),
     {
       href: site.links.github,
       label: t('nav.github'),

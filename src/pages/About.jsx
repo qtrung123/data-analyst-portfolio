@@ -2,7 +2,7 @@ import Container from '../components/Container.jsx'
 import Tag from '../components/Tag.jsx'
 import site from '../data/site.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { trackContactClick, trackCvDownload, trackGithubClick } from '../lib/analytics.js'
+import { trackContactClick, trackGithubClick } from '../lib/analytics.js'
 
 export default function About() {
   const { t, tr } = useLanguage()
@@ -51,18 +51,6 @@ export default function About() {
           >
             {site.email}
           </a>
-          {/* Hidden until site.cvEnabled is true (i.e. site.cvUrl's file exists). */}
-          {site.cvEnabled && (
-            <a
-              href={site.cvUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => trackCvDownload(site.cvType)}
-              className="rounded-lg px-5 py-2.5 text-sm font-semibold text-heading ring-1 ring-line transition hover:ring-accent-line"
-            >
-              {t('nav.cv')} &#8599;
-            </a>
-          )}
           <a
             href={site.links.github}
             target="_blank"

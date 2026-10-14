@@ -9,10 +9,6 @@ export const site = {
   location: { en: 'Vietnam · Open to remote', vi: 'Việt Nam · Sẵn sàng làm remote' },
   email: 'quoctrung121212@gmail.com',
 
-  // public/cv/NGUYEN_QUOC_TRUNG_PM_CV.pdf is the finalized Product Management CV.
-  cvUrl: '/cv/NGUYEN_QUOC_TRUNG_PM_CV.pdf',
-  cvType: 'product_management',
-  cvEnabled: true,
   links: {
     github: 'https://github.com/qtrung123',
     linkedin: 'https://www.linkedin.com/',
