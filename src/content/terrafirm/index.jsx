@@ -42,6 +42,11 @@ export const meta = {
 
   // Card content: one sentence on what I did, the core skills, one outcome.
   card: {
+    purpose: {
+      en: "Helps a safety team read injury outcomes alongside preventive activity and training readiness, and see which site needs attention first.",
+      vi: "Giúp đội an toàn đọc kết quả sự cố cùng với hoạt động phòng ngừa và mức sẵn sàng đào tạo, và thấy công trường nào cần ưu tiên xử lý trước.",
+    },
+    thumbs: ["/projects/terrafirm/page1.png","/projects/terrafirm/page6.png"],
     skills: ['Power BI', 'DAX', 'Power Query', 'Star Schema', 'Deneb'],
     did: {
       en: 'Built a 6-page Power BI solution from 9 operational datasets to connect safety outcomes with preventive activity, training readiness and site-level risk.',
@@ -75,6 +80,14 @@ export const meta = {
       note: { en: 'of all recordables', vi: 'tổng ca phải ghi nhận' },
     },
   ],
+
+  // All six report pages, for the homepage carousel. Labels come from the
+  // case-study copy so the two never drift apart.
+  gallery: shots.map((shot, i) => ({
+    src: `${IMG}/${shot.file}`,
+    name: { en: copy.en.dashboard.pages[i].name, vi: copy.vi.dashboard.pages[i].name },
+    label: { en: copy.en.dashboard.pages[i].question, vi: copy.vi.dashboard.pages[i].question },
+  })),
 
   cover: {
     from: '#0c4a6e',

@@ -38,6 +38,11 @@ export const meta = {
   tools: ['Power BI', 'Power Query', 'DAX', 'Data Modeling', 'Dashboard Design'],
 
   card: {
+    purpose: {
+      en: "Shows how I built a multi-page report from a relational model, the foundation I later extended in TerraFirm.",
+      vi: "Cho thấy cách tôi xây dựng báo cáo nhiều trang từ mô hình quan hệ, nền tảng mà sau này tôi mở rộng ở TerraFirm.",
+    },
+    thumbs: ["/projects/hptana/overview.png","/projects/hptana/sales.png"],
     skills: ['Power BI', 'Power Query', 'DAX', 'Data Modeling', 'Dashboard Design'],
     did: {
       en: 'Built a 4-page Power BI report covering overview, sales, production and inventory to practice end-to-end BI reporting across a multi-table data model.',

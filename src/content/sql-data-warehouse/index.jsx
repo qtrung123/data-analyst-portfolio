@@ -39,6 +39,11 @@ export const meta = {
 
   // Card content: one sentence on what I did, the core skills, one outcome.
   card: {
+    purpose: {
+      en: "Gives reporting one reconciled customer and sales model to query, instead of two systems that disagree on keys, dates and codes.",
+      vi: "Cho báo cáo một mô hình khách hàng và bán hàng đã được hợp nhất để truy vấn, thay vì hai hệ thống lệch nhau về khóa, ngày tháng và mã.",
+    },
+    thumbPills: ["Bronze","Silver","Gold"],
     skills: ['SQL Server', 'T-SQL', 'ETL', 'Data Modeling', 'Data Quality'],
     did: {
       en: 'Built an end-to-end SQL Server warehouse integrating CRM and ERP data through Bronze, Silver and Gold layers into an analytics-ready star schema.',

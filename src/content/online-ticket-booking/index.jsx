@@ -43,6 +43,11 @@ export const meta = {
 
   // Card content: one sentence on what I did, the core skills, one outcome.
   card: {
+    purpose: {
+      en: "Helps a ticketing platform judge whether promotions bring customers back, not only whether they win the first purchase.",
+      vi: "Giúp nền tảng bán vé đánh giá khuyến mãi có đưa khách quay lại hay không, thay vì chỉ xem nó có giúp chốt đơn đầu tiên.",
+    },
+    thumbs: ["/projects/online-ticket-booking/cohort-2022.png","/projects/online-ticket-booking/day-hour-heatmap.png"],
     skills: ['Python', 'Pandas', 'EDA', 'Cohort Analysis', 'Customer Retention'],
     did: {
       en: 'Cleaned and analyzed multi-table booking data in Python to understand customer behavior, purchase patterns and repeat retention.',

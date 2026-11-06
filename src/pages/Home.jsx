@@ -21,8 +21,20 @@ export default function Home() {
   const { t, tr } = useLanguage()
   const flagship = featuredProjects[0] ?? projects[0]
   const rest = projects.filter((p) => p.slug !== flagship?.slug)
-  const [tab, setTab] = useState(0)
-  const activeTab = site.skillTabs[tab]
+  const [tab, setTab] = useState('all')
+  const shown =
+    tab === 'all'
+      ? {
+          caseStudies: [...new Set(site.skillTabs.flatMap((s) => s.caseStudies))],
+          tools: [...new Set(site.skillTabs.flatMap((s) => s.tools))],
+        }
+      : site.skillTabs[tab]
+  const tabBtn = (active) =>
+    `rounded-full px-4 py-2 text-sm font-semibold transition ${
+      active
+        ? 'btn-grad'
+        : 'border border-line bg-panel text-body hover:border-accent-line hover:text-heading'
+    }`
   const paragraphs = tr(site.about) ?? []
 
   return (
@@ -141,6 +153,15 @@ export default function Home() {
           />
 
           <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label={t('sec.skills.eyebrow')}>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={tab === 'all'}
+              onClick={() => setTab('all')}
+              className={tabBtn(tab === 'all')}
+            >
+              {t('skills.all')}
+            </button>
             {site.skillTabs.map((s, i) => (
               <button
                 key={s.label.en}
@@ -148,11 +169,7 @@ export default function Home() {
                 role="tab"
                 aria-selected={tab === i}
                 onClick={() => setTab(i)}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  tab === i
-                    ? 'btn-grad'
-                    : 'border border-line bg-panel text-body hover:border-accent-line hover:text-heading'
-                }`}
+                className={tabBtn(tab === i)}
               >
                 {tr(s.label)}
               </button>
@@ -168,7 +185,7 @@ export default function Home() {
                 {t('skills.caseStudies')}
               </p>
               <ul className="mt-4 space-y-3">
-                {activeTab.caseStudies.map((slug) => {
+                {shown.caseStudies.map((slug) => {
                   const p = getProject(slug)
                   if (!p) return null
                   return (
@@ -192,7 +209,7 @@ export default function Home() {
                 {t('skills.tools')}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                {activeTab.tools.map((tool) => (
+                {shown.tools.map((tool) => (
                   <Tag key={tool} tone="accent">
                     {tool}
                   </Tag>
@@ -209,17 +226,25 @@ export default function Home() {
           <Avatar size={160} className="mx-auto md:mx-0" />
           <div>
             <SectionHeader index="04" eyebrow={t('sec.about.eyebrow')} />
-            <div className="mt-4 max-w-2xl space-y-4 text-lg leading-relaxed text-body">
+            <div className="mt-4 max-w-2xl space-y-4 text-base leading-relaxed text-body sm:text-lg">
               {paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
-            <Link
-              to="/about"
-              className="mt-6 inline-block text-sm font-semibold text-accent hover:underline"
-            >
-              {t('about.more')} &rarr;
-            </Link>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Link
+                to="/about"
+                className="btn-grad rounded-full px-6 py-3 text-sm font-semibold transition"
+              >
+                {t('about.more')} &rarr;
+              </Link>
+              <Link
+                to="/projects"
+                className="rounded-full border border-line bg-panel px-6 py-3 text-sm font-semibold text-heading transition hover:border-accent-line"
+              >
+                {t('about.viewProjects')}
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

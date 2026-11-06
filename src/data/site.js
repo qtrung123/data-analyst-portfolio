@@ -16,12 +16,14 @@ export const site = {
 
   about: {
     en: [
-      'I build end-to-end analytics: modelling the data, writing the measures, designing the report, and making sure the people reading it can act on what they see.',
-      'Most of my work sits between operations and analytics - taking data collected for compliance or record-keeping and turning it into something a manager can act on this week.',
+      "I'm a data analyst aiming for Data Analyst and Business Analyst roles. I build end-to-end analytics: modelling the data, writing the measures, designing the report, and making sure the people reading it can act on what they see.",
+      "Through four self-directed projects on public datasets, I've built a SQL Server data warehouse that reconciles CRM and ERP exports, a Python study of customer retention, and Power BI reports from a 4-page operations report to a 6-page safety dashboard.",
+      "What drives me is finding out why a number moved and making sure the data behind it can be trusted. I'm currently looking for Data Analyst, Business Analyst and BI internship opportunities.",
     ],
     vi: [
-      'Tôi xây dựng giải pháp phân tích end-to-end: mô hình hóa dữ liệu, viết measure, thiết kế báo cáo và bảo đảm người đọc có thể hành động dựa trên những gì họ thấy.',
-      'Phần lớn công việc của tôi nằm giữa vận hành và phân tích - lấy dữ liệu vốn thu thập để tuân thủ hoặc lưu hồ sơ và biến nó thành thứ mà người quản lý có thể dùng ngay trong tuần.',
+      'Tôi là data analyst đang hướng tới vị trí Data Analyst và Business Analyst. Tôi xây dựng giải pháp phân tích end-to-end: mô hình hóa dữ liệu, viết measure, thiết kế báo cáo và bảo đảm người đọc có thể hành động dựa trên những gì họ thấy.',
+      'Qua bốn dự án tự học trên dữ liệu công khai, tôi đã xây dựng data warehouse SQL Server hợp nhất dữ liệu CRM và ERP, một nghiên cứu giữ chân khách hàng bằng Python, và các báo cáo Power BI từ báo cáo vận hành 4 trang đến dashboard an toàn 6 trang.',
+      'Điều thúc đẩy tôi là tìm ra vì sao một con số thay đổi và bảo đảm dữ liệu phía sau đáng tin cậy. Hiện tôi đang tìm cơ hội thực tập Data Analyst, Business Analyst và BI.',
     ],
   },
 

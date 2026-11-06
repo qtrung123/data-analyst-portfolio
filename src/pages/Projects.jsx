@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Container from '../components/Container.jsx'
-import ProjectGrid from '../components/ProjectGrid.jsx'
+import ProjectRow from '../components/ProjectRow.jsx'
 import { projects, getCategories } from '../data/projects.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 
@@ -18,9 +18,7 @@ export default function Projects() {
 
   return (
     <Container className="py-12 sm:py-16">
-      <h1 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
-        {t('projects.title')}
-      </h1>
+      <h1 className="text-4xl font-bold text-heading sm:text-5xl">{t('projects.title')}</h1>
       <p className="mt-3 max-w-2xl text-body">{t('projects.intro')}</p>
 
       {categories.length > 1 && (
@@ -31,10 +29,10 @@ export default function Projects() {
               type="button"
               onClick={() => setFilter(c.key)}
               aria-pressed={filter === c.key}
-              className={`rounded-full px-3.5 py-1.5 text-sm font-medium ring-1 transition ${
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                 filter === c.key
-                  ? 'bg-accent-soft text-accent ring-accent-line'
-                  : 'text-body ring-line hover:text-heading'
+                  ? 'btn-grad'
+                  : 'border border-line bg-panel text-body hover:border-accent-line hover:text-heading'
               }`}
             >
               {c.label ?? tr(c.value)}
@@ -43,7 +41,17 @@ export default function Projects() {
         </div>
       )}
 
-      <ProjectGrid projects={visible} columns={3} className="mt-10" />
+      {visible.length === 0 ? (
+        <p className="mt-10 rounded-xl border border-dashed border-line p-10 text-center text-sm text-muted">
+          {t('projects.empty')}
+        </p>
+      ) : (
+        <div className="mt-10 border-b border-line">
+          {visible.map((p, i) => (
+            <ProjectRow key={p.slug} project={p} index={String(i + 1).padStart(2, '0')} />
+          ))}
+        </div>
+      )}
     </Container>
   )
 }
