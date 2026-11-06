@@ -4,9 +4,10 @@
  * case studies; the "when" text is the period shown on the CV.
  */
 export const resume = {
-  // CV PDFs are added here once the rewritten versions are ready, e.g.
-  // { key: 'resume.dlDa', href: '/cv/<file>.pdf' }. The buttons hide while empty.
-  downloads: [],
+  downloads: [
+    { key: 'resume.dlDa', href: '/cv/Nguyen-Quoc-Trung-Data-Analyst-CV.pdf' },
+    { key: 'resume.dlBa', href: '/cv/Nguyen-Quoc-Trung-Business-Analyst-CV.pdf' },
+  ],
   summary: {
     en: 'Final-year Information Technology student with hands-on experience in SQL, data cleaning, validation and reporting through self-directed projects. Looking for a Data Analyst or Business Analyst internship where I can turn data into insights a team can act on.',
     vi: 'Sinh viên năm cuối ngành Công nghệ thông tin, có kinh nghiệm thực hành SQL, làm sạch, kiểm tra dữ liệu và báo cáo qua các dự án tự học. Đang tìm vị trí thực tập Data Analyst hoặc Business Analyst để biến dữ liệu thành thông tin mà đội ngũ có thể hành động.',

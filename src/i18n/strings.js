@@ -94,7 +94,7 @@ export const strings = {
   'case.selfDirected': { en: 'Self-directed project', vi: 'Dự án tự học' },
   'resume.title': { en: 'Resume', vi: 'CV' },
   'resume.lead': {
-    en: 'A one-page summary of my background, projects and skills.  ',
+    en: 'A one-page summary of my background, projects and skills. Pick the version that matches the role.',
     vi: 'Bản tóm tắt một trang về nền tảng, dự án và kỹ năng của tôi. Chọn bản phù hợp với vị trí.',
   },
   'resume.dlDa': { en: 'Download · Data Analyst', vi: 'Tải về · Data Analyst' },
