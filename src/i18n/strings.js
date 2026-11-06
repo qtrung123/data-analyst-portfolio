@@ -14,6 +14,7 @@ export const strings = {
   'nav.about': { en: 'About', vi: 'Giới thiệu' },
   'nav.github': { en: 'GitHub', vi: 'GitHub' },
   'nav.menu': { en: 'Toggle menu', vi: 'Mở menu' },
+  'nav.resume': { en: 'Resume', vi: 'CV' },
   'nav.home': { en: 'Home', vi: 'Trang chủ' },
 
   'hero.name': { en: 'Quoc Trung Nguyen', vi: 'Nguyễn Quốc Trung' },
@@ -90,6 +91,20 @@ export const strings = {
     vi: 'Cách nhanh nhất để liên hệ với tôi là qua email.',
   },
 
+  'case.selfDirected': { en: 'Self-directed project', vi: 'Dự án tự học' },
+  'resume.title': { en: 'Resume', vi: 'CV' },
+  'resume.lead': {
+    en: 'A one-page summary of my background, projects and skills.  ',
+    vi: 'Bản tóm tắt một trang về nền tảng, dự án và kỹ năng của tôi. Chọn bản phù hợp với vị trí.',
+  },
+  'resume.dlDa': { en: 'Download · Data Analyst', vi: 'Tải về · Data Analyst' },
+  'resume.dlBa': { en: 'Download · Business Analyst', vi: 'Tải về · Business Analyst' },
+  'resume.summary': { en: 'Summary', vi: 'Tóm tắt' },
+  'resume.skills': { en: 'Technical skills', vi: 'Kỹ năng' },
+  'resume.projects': { en: 'Projects', vi: 'Dự án' },
+  'resume.experience': { en: 'Experience', vi: 'Kinh nghiệm' },
+  'resume.education': { en: 'Education', vi: 'Học vấn' },
+  'resume.viewCase': { en: 'Case study', vi: 'Xem case study' },
   'case.back': { en: 'All projects', vi: 'Tất cả dự án' },
   'case.onThisPage': { en: 'On this page', vi: 'Nội dung' },
   'case.previous': { en: 'Previous', vi: 'Trước' },

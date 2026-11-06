@@ -49,6 +49,11 @@ export default function Footer() {
             </Link>
           </li>
           <li>
+            <Link to="/resume" className="hover:text-accent">
+              {t('nav.resume')}
+            </Link>
+          </li>
+          <li>
             <Link to="/about" className="hover:text-accent">
               {t('nav.about')}
             </Link>

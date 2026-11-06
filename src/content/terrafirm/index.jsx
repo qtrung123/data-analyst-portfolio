@@ -36,6 +36,10 @@ export const meta = {
   },
   category: { en: 'Business Intelligence', vi: 'Business Intelligence' },
   year: '2025',
+  disclosure: {
+    en: 'Built by me for learning, using publicly available data. It is not employer or client work, and TerraFirm is a practice scenario.',
+    vi: 'Do tôi tự học và xây dựng trên dữ liệu công khai. Đây không phải công việc cho doanh nghiệp hay khách hàng, và TerraFirm là kịch bản thực hành.',
+  },
   status: 'flagship',
   featured: true,
   tools: ['Power BI', 'DAX', 'Power Query (M)', 'SQL', 'Star schema', 'Deneb'],

@@ -48,6 +48,14 @@ export default function CaseStudyLayout({ meta, children }) {
             </p>
           )}
           <p className="mt-4 max-w-3xl text-body">{tr(meta.summary)}</p>
+          {meta.disclosure && (
+            <p className="mt-4 max-w-3xl rounded-xl border border-accent-line bg-accent-soft px-4 py-3 text-sm text-body">
+              <span className="mr-2 font-mono text-[0.65rem] font-semibold uppercase tracking-widest text-accent">
+                {t('case.selfDirected')}
+              </span>
+              {tr(meta.disclosure)}
+            </p>
+          )}
 
           <div className="mt-6 flex flex-wrap gap-2">
             {meta.tools.map((tool) => (

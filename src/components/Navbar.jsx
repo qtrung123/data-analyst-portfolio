@@ -14,6 +14,7 @@ export default function Navbar() {
   const routes = [
     { to: '/', label: t('nav.home'), end: true },
     { to: '/projects', label: t('nav.projects') },
+    { to: '/resume', label: t('nav.resume') },
     { to: '/about', label: t('nav.about') },
   ]
 
