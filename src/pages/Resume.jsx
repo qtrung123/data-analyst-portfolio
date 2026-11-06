@@ -32,14 +32,15 @@ export default function Resume() {
           <a
             key={d.href}
             href={d.href}
-            download
+            target="_blank"
+            rel="noreferrer"
             className={
               i === 0
                 ? 'btn-grad rounded-full px-6 py-3 text-sm font-semibold transition'
                 : 'rounded-full border border-line bg-panel px-6 py-3 text-sm font-semibold text-heading transition hover:border-accent-line'
             }
           >
-            {t(d.key)} <span aria-hidden="true">&darr;</span>
+            {t(d.key)} <span aria-hidden="true">&#8599;</span>
           </a>
         ))}
       </div>
