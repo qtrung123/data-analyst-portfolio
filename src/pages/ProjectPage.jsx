@@ -6,7 +6,7 @@ import { getProjectModule, resolveProjectSlug } from '../data/projects.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { trackProjectOpen } from '../lib/analytics.js'
 
-const SITE_TITLE = 'Quoc Trung Nguyen — Data Analyst | Business Intelligence'
+const SITE_TITLE = 'Quoc Trung Nguyen — Data Analyst | Business Analyst | BI'
 
 /**
  * Generic case-study route. Looks the project up in the registry and renders

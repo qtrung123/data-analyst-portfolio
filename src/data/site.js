@@ -5,7 +5,7 @@
 export const site = {
   name: { en: 'Quoc Trung Nguyen', vi: 'Nguyễn Quốc Trung' },
   shortName: { en: 'Quoc Trung', vi: 'Quốc Trung' },
-  role: 'Data Analyst | Business Intelligence',
+  role: 'Data Analyst | Business Analyst | BI',
   location: { en: 'Vietnam · Open to remote', vi: 'Việt Nam · Sẵn sàng làm remote' },
   email: 'quoctrung121212@gmail.com',
 

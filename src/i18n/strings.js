@@ -18,13 +18,29 @@ export const strings = {
 
   'hero.name': { en: 'Quoc Trung Nguyen', vi: 'Nguyễn Quốc Trung' },
   'hero.role': {
-    en: 'Data Analyst | Business Intelligence',
-    vi: 'Data Analyst | Business Intelligence',
+    en: 'Data Analyst | Business Analyst | BI',
+    vi: 'Data Analyst | Business Analyst | BI',
   },
-  'home.aboutMe': { en: 'About Me', vi: 'Giới thiệu' },
+  'home.aboutMe': { en: 'What I can do', vi: 'Tôi có thể làm gì' },
   'hero.aboutMe': {
-    en: 'I work across data cleaning, analysis, modeling and visualization, with a focus on turning operational data into clear business insights. I enjoy investigating why a metric changed, validating the data behind it, and communicating the result in a way that supports decisions.',
-    vi: 'Tôi tập trung vào quy trình từ làm sạch, phân tích và mô hình hóa dữ liệu đến trực quan hóa, với mục tiêu chuyển dữ liệu vận hành thành insight rõ ràng phục vụ quyết định. Tôi quan tâm đến việc tìm hiểu vì sao một chỉ số thay đổi, kiểm chứng dữ liệu và truyền đạt kết quả một cách dễ hiểu.',
+    en: 'I turn raw operational data into answers a business can act on.',
+    vi: 'Tôi biến dữ liệu vận hành thô thành câu trả lời mà doanh nghiệp có thể hành động ngay.',
+  },
+  'hero.can1': {
+    en: 'Clean and combine messy, multi-source data with SQL, Python and Power Query',
+    vi: 'Làm sạch và hợp nhất dữ liệu nhiều nguồn, lộn xộn bằng SQL, Python và Power Query',
+  },
+  'hero.can2': {
+    en: 'Model it into trusted metrics: star schema, DAX measures, data-quality checks',
+    vi: 'Mô hình hóa thành các chỉ số đáng tin cậy: star schema, measure DAX, kiểm tra chất lượng dữ liệu',
+  },
+  'hero.can3': {
+    en: 'Build Power BI dashboards that answer a specific business question, and explain why a number moved',
+    vi: 'Xây dựng dashboard Power BI trả lời một câu hỏi kinh doanh cụ thể và giải thích vì sao một chỉ số thay đổi',
+  },
+  'hero.note': {
+    en: 'Self-directed projects built on public datasets, each documented end to end.',
+    vi: 'Các dự án tự học trên dữ liệu công khai, mỗi dự án được ghi lại từ đầu đến cuối.',
   },
 
   'home.featured': { en: 'Selected Projects', vi: 'Dự án chọn lọc' },
@@ -32,8 +48,8 @@ export const strings = {
 
   'home.ctaEyebrow': { en: 'Interested in my work?', vi: 'Quan tâm đến các dự án của tôi?' },
   'home.ctaBody': {
-    en: "I'm currently exploring Data Analyst and Business Intelligence internship opportunities.",
-    vi: 'Tôi hiện đang tìm kiếm cơ hội thực tập Data Analyst và Business Intelligence.',
+    en: "I'm currently looking for Data Analyst, Business Analyst and BI internship opportunities.",
+    vi: 'Tôi hiện đang tìm kiếm cơ hội thực tập Data Analyst, Business Analyst và BI.',
   },
   'home.ctaEmail': { en: 'Email Me', vi: 'Liên hệ' },
 

@@ -35,7 +35,16 @@ export default function Home() {
           <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-faint">
             {t('home.aboutMe')}
           </p>
-          <p className="mt-2 max-w-2xl text-body">{t('hero.aboutMe')}</p>
+          <p className="mt-2 max-w-2xl text-lg font-medium text-heading">{t('hero.aboutMe')}</p>
+          <ul className="mt-3 max-w-2xl space-y-1.5">
+            {['hero.can1', 'hero.can2', 'hero.can3'].map((k) => (
+              <li key={k} className="flex gap-3 text-body">
+                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                <span>{t(k)}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 max-w-2xl text-sm text-muted">{t('hero.note')}</p>
 
           <div className="mt-6 space-y-3">
             {site.homeSkills.map((g) => (
