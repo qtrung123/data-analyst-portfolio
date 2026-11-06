@@ -129,37 +129,21 @@ export default function FeaturedProject({ project }) {
         </div>
 
         {many && (
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-            <p className="min-w-0 text-sm text-body" aria-live="polite">
-              <span className="font-mono text-xs text-accent">
-                {t('case.page')} {i + 1}/{slides.length}
-              </span>
-              {current.label && (
-                <>
-                  <span className="mx-2 text-faint">·</span>
-                  <span className="font-medium text-heading">{tr(current.label)}</span>
-                </>
+          <div className="mt-4 flex items-start justify-between gap-4" aria-live="polite">
+            <div className="min-h-[5.5rem] min-w-0">
+              <p className="text-sm font-semibold text-heading">
+                {tr(current.name)}
+                {current.label && (
+                  <span className="font-normal text-muted"> &middot; {tr(current.label)}</span>
+                )}
+              </p>
+              {current.helps && (
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">{tr(current.helps)}</p>
               )}
-            </p>
-            <div className="flex gap-1.5" role="tablist" aria-label={tr(project.title)}>
-              {slides.map((s, n) => (
-                <button
-                  key={s.src}
-                  type="button"
-                  role="tab"
-                  aria-selected={n === i}
-                  aria-label={`${t('case.page')} ${n + 1}`}
-                  onClick={() => setI(n)}
-                  className={`h-8 w-8 rounded-full text-xs font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                    n === i
-                      ? 'btn-grad'
-                      : 'border border-line bg-panel text-body hover:border-accent-line hover:text-heading'
-                  }`}
-                >
-                  {n + 1}
-                </button>
-              ))}
             </div>
+            <span className="shrink-0 pt-0.5 font-mono text-xs text-faint">
+              {i + 1}/{slides.length}
+            </span>
           </div>
         )}
       </div>

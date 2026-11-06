@@ -97,6 +97,8 @@ export const copy = {
         {
           name: 'Executive Overview',
           question: 'Are we getting safer?',
+          helps:
+            "Shows whether recordable injuries are falling, comparing the company with its regions and with the same point last year, and where they concentrate by site.",
           alt: 'Executive overview — company safety outcome trend',
           caption: 'Rolling TRIR, site ranking and the year-over-year YTD comparison.',
           shows: [
@@ -110,6 +112,8 @@ export const copy = {
         {
           name: 'Leading Performance',
           question: 'Are sites doing the preventive work?',
+          helps:
+            "Shows whether sites are doing the preventive work: a combined leading-indicator score, consistency over 26 weeks by site, and performance against target.",
           alt: 'Leading performance — preventive activity by site',
           caption: 'Leading Indicator Score, the 26-week consistency heatmap and site ranking against target.',
           shows: [
@@ -123,6 +127,8 @@ export const copy = {
         {
           name: 'Field Quality & Culture',
           question: 'What are we seeing in the field?',
+          helps:
+            "Shows what the field is reporting: inspection results against findings, at-risk observation rates, and which sites and categories are hotspots.",
           alt: 'Field quality and culture — inspections and observations',
           caption: 'Inspection score against findings, observation metrics and the site by category matrix.',
           shows: [
@@ -136,6 +142,8 @@ export const copy = {
         {
           name: 'Incidents',
           question: 'What actually happened?',
+          helps:
+            "Shows what actually happened: severity from near misses to lost-time cases, the hazard categories behind most incidents, and recordables by site.",
           alt: 'Incidents — severity, hazard categories and site concentration',
           caption: 'Severity pyramid, hazard Pareto and site ranking with TRIR as exposure context.',
           shows: [
@@ -149,6 +157,8 @@ export const copy = {
         {
           name: 'Training & Readiness',
           question: 'Are people ready for the work?',
+          helps:
+            "Shows whether people are ready for the work: completion versus on-time, where overdue training concentrates, and which assignments need follow-up.",
           alt: 'Training and readiness — completion against on-time performance',
           caption: 'Completion against on-time, course and site analysis, and the follow-up action queue.',
           shows: [
@@ -162,6 +172,8 @@ export const copy = {
         {
           name: 'Site 360',
           question: 'Why is this site different?',
+          helps:
+            "Shows why one site differs: its outcome, cadence, field-risk and training signals set against company benchmarks, with incident and overdue-training detail.",
           alt: 'Site 360 — single-site drillthrough diagnostic',
           caption: 'Drillthrough view placing one site against company benchmarks, with supporting detail tables.',
           shows: [
@@ -314,6 +326,8 @@ DIVIDE (
         {
           name: 'Tổng quan điều hành',
           question: 'Chúng ta có an toàn hơn không?',
+          helps:
+            "Cho thấy sự cố phải ghi nhận có đang giảm không, so sánh toàn công ty với các khu vực và với cùng thời điểm năm trước, và tập trung ở công trường nào.",
           alt: 'Tổng quan điều hành — xu hướng kết quả an toàn toàn công ty',
           caption: 'TRIR trượt, xếp hạng công trường và so sánh YTD với cùng kỳ năm trước.',
           shows: [
@@ -327,6 +341,8 @@ DIVIDE (
         {
           name: 'Hiệu quả phòng ngừa',
           question: 'Các công trường có làm công tác phòng ngừa không?',
+          helps:
+            "Cho thấy các công trường có làm công tác phòng ngừa không: điểm chỉ số dẫn dắt tổng hợp, mức đều đặn trong 26 tuần theo công trường, và hiệu quả so với mục tiêu.",
           alt: 'Hiệu quả phòng ngừa — hoạt động phòng ngừa theo công trường',
           caption: 'Leading Indicator Score, heatmap 26 tuần và xếp hạng công trường so với mục tiêu.',
           shows: [
@@ -340,6 +356,8 @@ DIVIDE (
         {
           name: 'Chất lượng & văn hóa hiện trường',
           question: 'Hiện trường đang cho thấy điều gì?',
+          helps:
+            "Cho thấy hiện trường đang báo cáo điều gì: kết quả kiểm tra so với số phát hiện, tỷ lệ quan sát rủi ro, và công trường, nhóm nào là điểm nóng.",
           alt: 'Chất lượng và văn hóa hiện trường — kiểm tra và quan sát',
           caption: 'Điểm kiểm tra đối chiếu với số phát hiện, chỉ số quan sát và ma trận công trường × nhóm rủi ro.',
           shows: [
@@ -353,6 +371,8 @@ DIVIDE (
         {
           name: 'Sự cố',
           question: 'Chuyện gì đã thực sự xảy ra?',
+          helps:
+            "Cho thấy chuyện gì đã thực sự xảy ra: mức độ nghiêm trọng từ suýt xảy ra đến mất ngày công, nhóm nguy cơ gây nhiều sự cố nhất, và sự cố phải ghi nhận theo công trường.",
           alt: 'Sự cố — mức độ nghiêm trọng, nhóm nguy cơ và mức tập trung theo công trường',
           caption: 'Tháp mức độ nghiêm trọng, biểu đồ Pareto nhóm nguy cơ và xếp hạng công trường với TRIR làm bối cảnh phơi nhiễm.',
           shows: [
@@ -366,6 +386,8 @@ DIVIDE (
         {
           name: 'Đào tạo & mức sẵn sàng',
           question: 'Con người đã sẵn sàng cho công việc chưa?',
+          helps:
+            "Cho thấy con người đã sẵn sàng cho công việc chưa: hoàn thành so với đúng hạn, nơi tập trung đào tạo quá hạn, và phân công nào cần theo dõi.",
           alt: 'Đào tạo và mức sẵn sàng — hoàn thành so với đúng hạn',
           caption: 'Tỷ lệ hoàn thành đối chiếu đúng hạn, phân tích theo khóa học và công trường, cùng hàng đợi cần theo dõi.',
           shows: [
@@ -379,6 +401,8 @@ DIVIDE (
         {
           name: 'Site 360',
           question: 'Vì sao công trường này khác biệt?',
+          helps:
+            "Cho thấy vì sao một công trường khác biệt: tín hiệu kết quả, cadence, rủi ro hiện trường và đào tạo so với mặt bằng công ty, kèm chi tiết sự cố và đào tạo quá hạn.",
           alt: 'Site 360 — trang chẩn đoán drillthrough cho một công trường',
           caption: 'Trang drillthrough đặt một công trường cạnh mặt bằng công ty, kèm các bảng chi tiết bổ trợ.',
           shows: [

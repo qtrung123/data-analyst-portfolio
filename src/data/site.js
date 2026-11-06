@@ -78,27 +78,27 @@ export const site = {
     { value: 'Power BI', label: { en: '6-page report from 9 datasets', vi: 'Báo cáo 6 trang từ 9 nguồn dữ liệu' } },
   ],
 
-  // Dark card in the hero. Deliberately minimal: one source, three themes,
-  // one deliverable. Content mirrors the TerraFirm case study.
+  // Dark card in the hero. Deliberately minimal: one source, three steps,
+  // one finding. Content mirrors the Online Ticket Booking case study.
   heroCard: {
-    title: { en: 'Case study · TerraFirm Safety Analytics', vi: 'Case study · TerraFirm Safety Analytics' },
-    badge: { en: 'Power BI', vi: 'Power BI' },
+    title: { en: 'Case study · Online Ticket Booking', vi: 'Case study · Online Ticket Booking' },
+    badge: { en: 'Python', vi: 'Python' },
     source: {
       label: { en: 'Source', vi: 'Nguồn' },
-      text: { en: '9 operational datasets · 10 sites', vi: '9 nguồn dữ liệu vận hành · 10 công trường' },
+      text: { en: '5 raw tables · 154,723 transactions', vi: '5 bảng thô · 154.723 giao dịch' },
     },
     steps: [
-      { title: { en: 'Outcomes', vi: 'Kết quả' } },
-      { title: { en: 'Prevention', vi: 'Phòng ngừa' } },
-      { title: { en: 'Training', vi: 'Đào tạo' } },
+      { title: { en: 'Explore', vi: 'Khám phá' } },
+      { title: { en: 'Sequence', vi: 'Chuỗi lần mua' } },
+      { title: { en: 'Cohorts', vi: 'Cohort' } },
     ],
     out: {
-      label: { en: 'Delivered', vi: 'Sản phẩm' },
-      text: { en: '6-page Power BI report', vi: 'Báo cáo Power BI 6 trang' },
+      label: { en: 'Finding', vi: 'Phát hiện' },
+      text: { en: 'Repeat purchase 13.09% vs 12.20%', vi: 'Mua lại 13,09% so với 12,20%' },
     },
     caption: {
-      en: 'From safety outcomes to preventive risk signals.',
-      vi: 'Từ kết quả an toàn đến tín hiệu rủi ro phòng ngừa.',
+      en: 'Do customers won with a promotion come back?',
+      vi: 'Khách hàng có được nhờ khuyến mãi có quay lại không?',
     },
   },
 

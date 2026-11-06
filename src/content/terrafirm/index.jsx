@@ -87,6 +87,7 @@ export const meta = {
     src: `${IMG}/${shot.file}`,
     name: { en: copy.en.dashboard.pages[i].name, vi: copy.vi.dashboard.pages[i].name },
     label: { en: copy.en.dashboard.pages[i].question, vi: copy.vi.dashboard.pages[i].question },
+    helps: { en: copy.en.dashboard.pages[i].helps, vi: copy.vi.dashboard.pages[i].helps },
   })),
 
   cover: {
