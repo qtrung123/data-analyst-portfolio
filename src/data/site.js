@@ -76,22 +76,27 @@ export const site = {
     { value: 'Power BI', label: { en: '6-page report from 9 datasets', vi: 'Báo cáo 6 trang từ 9 nguồn dữ liệu' } },
   ],
 
-  // Dark architecture card in the hero. Mirrors the SQL Data Warehouse
-  // project: six CSV exports, three layers, one star schema.
-  pipeline: {
-    title: { en: 'Data pipeline · SQL Data Warehouse', vi: 'Data pipeline · SQL Data Warehouse' },
-    badge: { en: 'End to end', vi: 'End to end' },
-    source: { label: { en: 'Source', vi: 'Nguồn' }, text: { en: 'CRM + ERP · 6 CSV exports', vi: 'CRM + ERP · 6 file CSV' } },
-    load: { label: { en: 'Load', vi: 'Nạp' }, text: { en: 'BULK INSERT → Bronze', vi: 'BULK INSERT → Bronze' } },
+  // Dark card in the hero. Deliberately minimal: one source, three themes,
+  // one deliverable. Content mirrors the TerraFirm case study.
+  heroCard: {
+    title: { en: 'Case study · TerraFirm Safety Analytics', vi: 'Case study · TerraFirm Safety Analytics' },
+    badge: { en: 'Power BI', vi: 'Power BI' },
+    source: {
+      label: { en: 'Source', vi: 'Nguồn' },
+      text: { en: '9 operational datasets · 10 sites', vi: '9 nguồn dữ liệu vận hành · 10 công trường' },
+    },
     steps: [
-      { title: { en: 'Cleanse', vi: 'Làm sạch' }, sub: 'TRIM · dedupe · dates' },
-      { title: { en: 'Integrate', vi: 'Tích hợp' }, sub: 'CRM + ERP keys' },
-      { title: { en: 'Test', vi: 'Kiểm thử' }, sub: 'zero-row checks' },
+      { title: { en: 'Outcomes', vi: 'Kết quả' } },
+      { title: { en: 'Prevention', vi: 'Phòng ngừa' } },
+      { title: { en: 'Training', vi: 'Đào tạo' } },
     ],
-    out: { label: { en: 'Delivered', vi: 'Kết quả' }, text: { en: 'Gold star schema · fact_sales + 2 dimensions', vi: 'Star schema Gold · fact_sales + 2 dimension' } },
+    out: {
+      label: { en: 'Delivered', vi: 'Sản phẩm' },
+      text: { en: '6-page Power BI report', vi: 'Báo cáo Power BI 6 trang' },
+    },
     caption: {
-      en: 'The shape of my SQL Data Warehouse project: raw CRM and ERP exports into one analytics-ready model.',
-      vi: 'Hình dạng của dự án SQL Data Warehouse: dữ liệu CRM và ERP thô thành một mô hình sẵn sàng phân tích.',
+      en: 'From safety outcomes to preventive risk signals.',
+      vi: 'Từ kết quả an toàn đến tín hiệu rủi ro phòng ngừa.',
     },
   },
 

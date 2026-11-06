@@ -27,17 +27,14 @@ export const strings = {
   },
   'hero.eyebrow': { en: 'Data Analyst & Business Analyst', vi: 'Data Analyst & Business Analyst' },
   'hero.viewProjects': { en: 'View projects', vi: 'Xem dự án' },
-  'hero.note': {
-    en: 'Self-directed projects built on public datasets, each documented end to end.',
-    vi: 'Các dự án tự học trên dữ liệu công khai, mỗi dự án được ghi lại từ đầu đến cuối.',
-  },
 
   'sec.work.eyebrow': { en: 'Selected work', vi: 'Dự án chọn lọc' },
   'sec.work.title': { en: 'From raw data to decisions', vi: 'Từ dữ liệu thô đến quyết định' },
   'sec.work.lead': {
-    en: 'Four case studies, each written up with the problem, what I built and what it surfaced.',
-    vi: 'Bốn case study, mỗi dự án nêu rõ vấn đề, giải pháp đã xây dựng và điều phát hiện được.',
+    en: 'Self-directed case studies on public datasets, each written up with the problem, what I built and what it surfaced.',
+    vi: 'Các case study tự học trên dữ liệu công khai, mỗi dự án nêu rõ vấn đề, giải pháp và điều phát hiện được.',
   },
+  'work.flagship': { en: 'Flagship project', vi: 'Dự án chính' },
   'sec.focus.eyebrow': { en: 'What I work on', vi: 'Tôi làm gì' },
   'sec.focus.title': { en: 'The problems I like solving', vi: 'Những bài toán tôi thích giải' },
   'sec.skills.eyebrow': { en: 'Skills & tooling', vi: 'Kỹ năng & công cụ' },

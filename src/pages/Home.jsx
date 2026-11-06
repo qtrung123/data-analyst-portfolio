@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import Container from '../components/Container.jsx'
 import Avatar from '../components/Avatar.jsx'
 import PipelineCard from '../components/PipelineCard.jsx'
-import ProjectCard from '../components/ProjectCard.jsx'
-import ProjectGrid from '../components/ProjectGrid.jsx'
+import FeaturedProject from '../components/FeaturedProject.jsx'
+import ProjectRow from '../components/ProjectRow.jsx'
 import SectionHeader from '../components/SectionHeader.jsx'
 import Tag from '../components/Tag.jsx'
 import site from '../data/site.js'
@@ -70,7 +70,6 @@ export default function Home() {
                 {t('home.ctaEmail')}
               </a>
             </div>
-            <p className="mt-5 max-w-xl text-sm text-muted">{t('hero.note')}</p>
           </div>
 
           <PipelineCard className="lg:justify-self-end" />
@@ -88,10 +87,16 @@ export default function Home() {
           />
           {flagship && (
             <div className="mt-10">
-              <ProjectCard project={flagship} variant="feature" />
+              <FeaturedProject project={flagship} />
             </div>
           )}
-          {rest.length > 0 && <ProjectGrid projects={rest} columns={3} className="mt-6" />}
+          {rest.length > 0 && (
+            <div className="mt-12 border-b border-line">
+              {rest.map((p, i) => (
+                <ProjectRow key={p.slug} project={p} index={String(i + 1).padStart(2, '0')} />
+              ))}
+            </div>
+          )}
           <p className="mt-8">
             <Link to="/projects" className="text-sm font-semibold text-accent hover:underline">
               {t('home.allProjects')} &rarr;
