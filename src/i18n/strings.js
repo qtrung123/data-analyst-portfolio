@@ -21,28 +21,37 @@ export const strings = {
     en: 'Data Analyst | Business Analyst | BI',
     vi: 'Data Analyst | Business Analyst | BI',
   },
-  'home.aboutMe': { en: 'What I can do', vi: 'Tôi có thể làm gì' },
   'hero.aboutMe': {
-    en: 'I turn raw operational data into answers a business can act on.',
-    vi: 'Tôi biến dữ liệu vận hành thô thành câu trả lời mà doanh nghiệp có thể hành động ngay.',
+    en: 'I turn raw operational data into answers a business can act on, cleaning and modelling it with SQL and Python and reporting it in Power BI.',
+    vi: 'Tôi biến dữ liệu vận hành thô thành câu trả lời mà doanh nghiệp có thể hành động, làm sạch và mô hình hóa bằng SQL, Python và báo cáo bằng Power BI.',
   },
-  'hero.can1': {
-    en: 'Clean and combine messy, multi-source data with SQL, Python and Power Query',
-    vi: 'Làm sạch và hợp nhất dữ liệu nhiều nguồn, lộn xộn bằng SQL, Python và Power Query',
-  },
-  'hero.can2': {
-    en: 'Model it into trusted metrics: star schema, DAX measures, data-quality checks',
-    vi: 'Mô hình hóa thành các chỉ số đáng tin cậy: star schema, measure DAX, kiểm tra chất lượng dữ liệu',
-  },
-  'hero.can3': {
-    en: 'Build Power BI dashboards that answer a specific business question, and explain why a number moved',
-    vi: 'Xây dựng dashboard Power BI trả lời một câu hỏi kinh doanh cụ thể và giải thích vì sao một chỉ số thay đổi',
-  },
+  'hero.eyebrow': { en: 'Data Analyst & Business Analyst', vi: 'Data Analyst & Business Analyst' },
+  'hero.viewProjects': { en: 'View projects', vi: 'Xem dự án' },
   'hero.note': {
     en: 'Self-directed projects built on public datasets, each documented end to end.',
     vi: 'Các dự án tự học trên dữ liệu công khai, mỗi dự án được ghi lại từ đầu đến cuối.',
   },
 
+  'sec.work.eyebrow': { en: 'Selected work', vi: 'Dự án chọn lọc' },
+  'sec.work.title': { en: 'From raw data to decisions', vi: 'Từ dữ liệu thô đến quyết định' },
+  'sec.work.lead': {
+    en: 'Four case studies, each written up with the problem, what I built and what it surfaced.',
+    vi: 'Bốn case study, mỗi dự án nêu rõ vấn đề, giải pháp đã xây dựng và điều phát hiện được.',
+  },
+  'sec.focus.eyebrow': { en: 'What I work on', vi: 'Tôi làm gì' },
+  'sec.focus.title': { en: 'The problems I like solving', vi: 'Những bài toán tôi thích giải' },
+  'sec.skills.eyebrow': { en: 'Skills & tooling', vi: 'Kỹ năng & công cụ' },
+  'sec.skills.title': { en: 'The stack I reach for', vi: 'Bộ công cụ tôi dùng' },
+  'sec.skills.lead': {
+    en: 'Pick a skill area to see the case studies that show it.',
+    vi: 'Chọn một nhóm kỹ năng để xem các case study chứng minh nó.',
+  },
+  'skills.caseStudies': { en: 'Case studies', vi: 'Case study' },
+  'skills.tools': { en: 'Tools', vi: 'Công cụ' },
+  'sec.about.eyebrow': { en: 'About me', vi: 'Giới thiệu' },
+  'about.more': { en: 'More about me', vi: 'Xem thêm về tôi' },
+  'footer.pages': { en: 'Pages', vi: 'Trang' },
+  'footer.elsewhere': { en: 'Elsewhere', vi: 'Liên kết' },
   'home.featured': { en: 'Selected Projects', vi: 'Dự án chọn lọc' },
   'home.allProjects': { en: 'All projects', vi: 'Tất cả dự án' },
 

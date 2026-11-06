@@ -12,51 +12,53 @@
    rather than a second set of styles.
    --------------------------------------------------------------- */
 :root {
-  /* Light — professional navy on a cool off-white. */
-  --surface: #f6f8fc;
+  /* Light: clean white with an indigo/violet accent. */
+  --surface: #ffffff;
   --panel: #ffffff;
-  --panel-2: #eef3fa;
-  --line: #d9e2ef;
-  --heading: #0d1b2f;
-  --body: #33445e;
-  --muted: #5b6f8c;
-  --faint: #5f7391;
+  --panel-2: #f7f8fc;
+  --line: #e8eaf2;
+  --heading: #171a26;
+  --body: #4a5163;
+  --muted: #5b6377;
+  --faint: #6f768a;
 
-  --accent: #0b63c5;
-  --accent-solid: #0b63c5;
+  --accent: #4f46e5;
+  --accent-solid: #4f46e5;
   --on-accent: #ffffff;
-  --accent-soft: rgb(11 99 197 / 0.08);
-  --accent-line: rgb(11 99 197 / 0.28);
+  --accent-soft: rgb(79 70 229 / 0.08);
+  --accent-line: rgb(79 70 229 / 0.28);
+  --grad: linear-gradient(120deg, #4f46e5 0%, #7c3aed 100%);
 
   /* Validated categorical pair for the light surface. */
   --series-1: #2a78d6;
   --series-2: #eb6834;
 
-  --shadow-card: 0 1px 2px rgb(13 27 47 / 0.06), 0 8px 24px rgb(13 27 47 / 0.06);
+  --shadow-card: 0 1px 2px rgb(23 26 38 / 0.06), 0 10px 30px -12px rgb(23 26 38 / 0.18);
 }
 
 .dark {
-  /* Dark — charcoal navy, deliberately not pure black. */
-  --surface: #0d1119;
-  --panel: #161c27;
-  --panel-2: #1e2634;
-  --line: #2a3446;
-  --heading: #f6f8fb;
-  --body: #d3dce9;
-  --muted: #9fb1c9;
-  --faint: #7e94b3;
+  /* Dark: deep indigo-charcoal, not pure black. */
+  --surface: #0f1220;
+  --panel: #171a2b;
+  --panel-2: #1e2236;
+  --line: #2a2f45;
+  --heading: #f3f4fb;
+  --body: #c9cde0;
+  --muted: #9aa1bb;
+  --faint: #8189a6;
 
-  --accent: #38bdf8;
-  --accent-solid: #0ea5e9;
-  --on-accent: #06131f;
-  --accent-soft: rgb(56 189 248 / 0.10);
-  --accent-line: rgb(56 189 248 / 0.30);
+  --accent: #a5b4fc;
+  --accent-solid: #6366f1;
+  --on-accent: #ffffff;
+  --accent-soft: rgb(129 140 248 / 0.12);
+  --accent-line: rgb(129 140 248 / 0.32);
+  --grad: linear-gradient(120deg, #6366f1 0%, #8b5cf6 100%);
 
   /* Same two hues, stepped for the dark surface. */
   --series-1: #3987e5;
   --series-2: #d95926;
 
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px -12px rgb(0 0 0 / 0.5);
 }
 
 @theme inline {
@@ -78,6 +80,7 @@
   --color-series-1: var(--series-1);
   --color-series-2: var(--series-2);
 
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo,
@@ -122,4 +125,33 @@ body {
    defined edge in dark mode. */
 .shot-frame {
   box-shadow: var(--shadow-card);
+}
+
+/* Headings use the display face with tight tracking. */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+h1 {
+  letter-spacing: -0.035em;
+}
+
+.btn-grad {
+  background-image: var(--grad);
+  color: #fff;
+  box-shadow: 0 8px 20px -8px rgb(79 70 229 / 0.55);
+}
+.btn-grad:hover {
+  filter: brightness(1.08);
+}
+
+/* Faint blueprint grid behind the hero, fading out toward the bottom. */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-color: var(--panel-2);
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
 }
