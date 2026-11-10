@@ -32,8 +32,8 @@ export const strings = {
   'sec.work.eyebrow': { en: 'Selected work', vi: 'Dự án chọn lọc' },
   'sec.work.title': { en: 'From raw data to decisions', vi: 'Từ dữ liệu thô đến quyết định' },
   'sec.work.lead': {
-    en: 'Self-directed case studies on public datasets, each written up with the problem, what I built and what it surfaced.',
-    vi: 'Các case study tự học trên dữ liệu công khai, mỗi dự án nêu rõ vấn đề, giải pháp và điều phát hiện được.',
+    en: 'Self-directed case studies, each written up with the problem, what I built and what it surfaced.',
+    vi: 'Các case study tự học, mỗi dự án nêu rõ vấn đề, giải pháp và điều phát hiện được.',
   },
   'card.why': { en: 'Why it matters', vi: 'Giúp ích gì' },
   'gallery.prev': { en: 'Previous page', vi: 'Trang trước' },
@@ -67,8 +67,8 @@ export const strings = {
 
   'projects.title': { en: 'Projects', vi: 'Dự án' },
   'projects.intro': {
-    en: 'Analytics and BI work, each written up as a short case study: the problem, what I built, and what it surfaced.',
-    vi: 'Các dự án phân tích dữ liệu và BI, mỗi dự án là một case study ngắn: vấn đề, giải pháp đã xây dựng và phát hiện chính.',
+    en: 'Analytics, BI and AI work, each written up as a short case study: the problem, what I built, and what it surfaced.',
+    vi: 'Các dự án phân tích dữ liệu, BI và AI, mỗi dự án là một case study ngắn: vấn đề, giải pháp đã xây dựng và phát hiện chính.',
   },
   'projects.empty': {
     en: 'No projects in this category yet.',

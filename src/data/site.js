@@ -17,12 +17,12 @@ export const site = {
   about: {
     en: [
       "I'm a data analyst aiming for Data Analyst and Business Analyst roles. I build end-to-end analytics: modelling the data, writing the measures, designing the report, and making sure the people reading it can act on what they see.",
-      "Through four self-directed projects on public datasets, I've built a SQL Server data warehouse that reconciles CRM and ERP exports, a Python study of customer retention, and Power BI reports from a 4-page operations report to a 6-page safety dashboard.",
+      "Through self-directed projects, I've built a SQL Server data warehouse that reconciles CRM and ERP exports, a Python study of customer retention, Power BI reports from a 4-page operations report to a 6-page safety dashboard, and a local RAG study tutor in Python.",
       "What drives me is finding out why a number moved and making sure the data behind it can be trusted. I'm currently looking for Data Analyst, Business Analyst and BI internship opportunities.",
     ],
     vi: [
       'Tôi là data analyst đang hướng tới vị trí Data Analyst và Business Analyst. Tôi xây dựng giải pháp phân tích end-to-end: mô hình hóa dữ liệu, viết measure, thiết kế báo cáo và bảo đảm người đọc có thể hành động dựa trên những gì họ thấy.',
-      'Qua bốn dự án tự học trên dữ liệu công khai, tôi đã xây dựng data warehouse SQL Server hợp nhất dữ liệu CRM và ERP, một nghiên cứu giữ chân khách hàng bằng Python, và các báo cáo Power BI từ báo cáo vận hành 4 trang đến dashboard an toàn 6 trang.',
+      'Qua các dự án tự học, tôi đã xây dựng data warehouse SQL Server hợp nhất dữ liệu CRM và ERP, một nghiên cứu giữ chân khách hàng bằng Python, các báo cáo Power BI từ báo cáo vận hành 4 trang đến dashboard an toàn 6 trang, và một gia sư học tập RAG chạy cục bộ bằng Python.',
       'Điều thúc đẩy tôi là tìm ra vì sao một con số thay đổi và bảo đảm dữ liệu phía sau đáng tin cậy. Hiện tôi đang tìm cơ hội thực tập Data Analyst, Business Analyst và BI.',
     ],
   },
@@ -39,6 +39,10 @@ export const site = {
     {
       group: { en: 'Engineering', vi: 'Kỹ thuật' },
       items: ['Python', 'pandas', 'Git', 'Microsoft Fabric'],
+    },
+    {
+      group: { en: 'AI & LLM', vi: 'AI & LLM' },
+      items: ['RAG', 'LangChain', 'Ollama', 'FastAPI', 'Chroma'],
     },
   ],
 
@@ -73,7 +77,7 @@ export const site = {
   // Three headline facts under the hero. Every value is checkable on the
   // project pages themselves.
   heroStats: [
-    { value: '4', label: { en: 'End-to-end case studies', vi: 'Case study end-to-end' } },
+    { value: '5', label: { en: 'End-to-end case studies', vi: 'Case study end-to-end' } },
     { value: 'SQL · Python', label: { en: 'Warehouse, ETL and EDA', vi: 'Warehouse, ETL và EDA' } },
     { value: 'Power BI', label: { en: '6-page report from 9 datasets', vi: 'Báo cáo 6 trang từ 9 nguồn dữ liệu' } },
   ],
@@ -146,6 +150,11 @@ export const site = {
       label: { en: 'BI & Reporting', vi: 'BI & Báo cáo' },
       caseStudies: ['terrafirm-safety-analytics', 'hptana'],
       tools: ['Power BI', 'DAX', 'Power Query', 'Deneb', 'Dashboard design'],
+    },
+    {
+      label: { en: 'AI & LLM', vi: 'AI & LLM' },
+      caseStudies: ['ai-study-tutor'],
+      tools: ['Python', 'FastAPI', 'RAG', 'LangChain', 'Ollama', 'Chroma', 'OCR'],
     },
   ],
 }

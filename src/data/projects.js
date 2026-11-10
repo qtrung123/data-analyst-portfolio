@@ -30,12 +30,13 @@
  * }
  */
 import * as terrafirm from '../content/terrafirm/index.jsx'
+import * as aiStudyTutor from '../content/ai-study-tutor/index.jsx'
 import * as onlineTicketBooking from '../content/online-ticket-booking/index.jsx'
 import * as sqlDataWarehouse from '../content/sql-data-warehouse/index.jsx'
 import * as hptana from '../content/hptana/index.jsx'
 
 // Order here = order on the site.
-export const projectModules = [terrafirm, onlineTicketBooking, sqlDataWarehouse, hptana]
+export const projectModules = [terrafirm, aiStudyTutor, onlineTicketBooking, sqlDataWarehouse, hptana]
 
 export const projects = projectModules.map((m) => m.meta)
 
