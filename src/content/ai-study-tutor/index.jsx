@@ -1,6 +1,8 @@
 import {
   CaseSection,
   Callout,
+  ChartGrid,
+  Figure,
   Bullets,
   DataTable,
   PipelineDiagram,
@@ -11,6 +13,17 @@ import { copy } from './copy.js'
 import { pick } from '../../i18n/pick.js'
 
 const REPO = 'https://github.com/qtrung123/AI_Tutor2-Kaggle'
+const IMG = '/projects/ai-study-tutor'
+
+// Screenshot files expected in public/projects/ai-study-tutor/. Until a file
+// exists, Figure shows a labelled placeholder, so adding an image is just
+// dropping the file in with the right name.
+const SHOTS = [
+  '1-chat-citations.png',
+  '2-insufficient-context.png',
+  '3-materials.png',
+  '4-quiz.png',
+]
 
 /* ------------------------------------------------------------------
    Card + case-study header metadata.
@@ -90,6 +103,7 @@ export const meta = {
 
   sections: [
     { id: 'problem', label: { en: 'Problem', vi: 'Vấn đề' } },
+    { id: 'interface', label: { en: 'Interface', vi: 'Giao diện' } },
     { id: 'architecture', label: { en: 'How it works', vi: 'Cách hoạt động' } },
     { id: 'grounding', label: { en: 'Grounded answers', vi: 'Bám tài liệu' } },
     { id: 'figures', label: { en: 'Reading figures', vi: 'Đọc hình' } },
@@ -111,6 +125,15 @@ export default function AiStudyTutorCaseStudy({ lang = 'en' }) {
         {c.problem.body.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+      </CaseSection>
+
+      <CaseSection id="interface" eyebrow={c.sections.interface} title={c.interface.title} wide>
+        <p>{c.interface.intro}</p>
+        <ChartGrid columns={2}>
+          {c.interface.shots.map((s, i) => (
+            <Figure key={SHOTS[i]} src={`${IMG}/${SHOTS[i]}`} alt={s.alt} caption={s.caption} />
+          ))}
+        </ChartGrid>
       </CaseSection>
 
       <CaseSection

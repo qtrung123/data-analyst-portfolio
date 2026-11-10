@@ -11,6 +11,7 @@ export const copy = {
   en: {
     sections: {
       problem: 'Problem',
+      interface: 'Interface',
       architecture: 'How it works',
       grounding: 'Grounded answers',
       figures: 'Reading figures',
@@ -25,6 +26,17 @@ export const copy = {
       body: [
         'TutorFlow is a study application for people learning from their own PDFs and notes. You upload course materials, ask questions in a chat, and practise with generated quizzes and flashcards.',
         "Two constraints shaped it. Answers must come from the uploaded documents, with a page citation, rather than from the model's memory. And chat and quiz generation run on local models served by Ollama, so in the default setup documents and learning history are not sent to a cloud AI service.",
+      ],
+    },
+
+    interface: {
+      title: 'The application',
+      intro: 'Four screens that show the core idea: answers with evidence, a refusal when the documents do not cover the question, the indexed materials, and practice quizzes.',
+      shots: [
+        { alt: 'Chat answer with page citations', caption: 'A grounded answer with (source: page) citations and its grounding status.' },
+        { alt: 'Chat refusing an out-of-scope question', caption: 'A question the documents do not cover gets “I don’t know based on the provided documents”.' },
+        { alt: 'Materials page', caption: 'Indexed documents with their chunk counts.' },
+        { alt: 'Quiz in progress', caption: 'A multiple-choice quiz with immediate feedback, set by question count and difficulty.' },
       ],
     },
 
@@ -144,6 +156,7 @@ export const copy = {
   vi: {
     sections: {
       problem: 'Vấn đề',
+      interface: 'Giao diện',
       architecture: 'Cách hoạt động',
       grounding: 'Trả lời bám tài liệu',
       figures: 'Đọc hình trong PDF',
@@ -158,6 +171,17 @@ export const copy = {
       body: [
         'TutorFlow là ứng dụng học tập cho người tự học từ PDF và ghi chú của mình. Bạn tải tài liệu lên, hỏi đáp trong khung chat, và luyện tập bằng quiz và flashcard được tạo tự động.',
         'Hai ràng buộc định hình ứng dụng. Câu trả lời phải đến từ tài liệu đã tải lên, kèm trích dẫn trang, thay vì từ trí nhớ của mô hình. Và chat cùng việc tạo quiz chạy trên mô hình cục bộ qua Ollama, nên trong cấu hình mặc định tài liệu và lịch sử học không bị gửi tới dịch vụ AI đám mây.',
+      ],
+    },
+
+    interface: {
+      title: 'Ứng dụng',
+      intro: 'Bốn màn hình thể hiện ý tưởng cốt lõi: câu trả lời có bằng chứng, từ chối khi tài liệu không đề cập, các tài liệu đã index, và quiz luyện tập.',
+      shots: [
+        { alt: 'Câu trả lời trong chat có trích dẫn trang', caption: 'Một câu trả lời bám tài liệu, kèm trích dẫn (source: page) và trạng thái bám nguồn.' },
+        { alt: 'Chat từ chối câu hỏi ngoài phạm vi', caption: 'Câu hỏi mà tài liệu không đề cập được trả lời bằng “I don’t know based on the provided documents”.' },
+        { alt: 'Trang Materials', caption: 'Các tài liệu đã index cùng số chunk của từng tài liệu.' },
+        { alt: 'Quiz đang làm', caption: 'Quiz trắc nghiệm có phản hồi ngay, chọn theo số câu và mức độ khó.' },
       ],
     },
 
