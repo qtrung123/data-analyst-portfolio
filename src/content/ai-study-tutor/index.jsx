@@ -33,9 +33,9 @@ export const meta = {
   },
   category: { en: 'AI / LLM Engineering', vi: 'AI / LLM Engineering' },
   year: '2026',
-  status: 'in-progress',
+  status: 'live',
   featured: false,
-  tools: ['Python', 'FastAPI', 'RAG', 'LangChain', 'Ollama', 'Chroma', 'SQLite'],
+  tools: ['Python', 'LLM', 'RAG', 'FastAPI', 'LangChain', 'Ollama', 'Vector Search', 'Chroma', 'OCR'],
 
   card: {
     purpose: {
@@ -43,7 +43,7 @@ export const meta = {
       vi: 'Cho sinh viên hỏi đáp trên chính tài liệu học của mình và nhận câu trả lời gắn với một trang cụ thể, thay vì phỏng đoán của một chatbot đa năng.',
     },
     thumbPills: ['Upload', 'Retrieve', 'Cite'],
-    skills: ['Python', 'FastAPI', 'RAG', 'LangChain', 'Ollama'],
+    skills: ['RAG', 'LLM', 'Python', 'FastAPI', 'Ollama'],
     did: {
       en: 'Built a retrieval-augmented study tutor: document ingestion, vector search, grounded chat, quiz and flashcard generation, and figure indexing with OCR and a vision model.',
       vi: 'Xây dựng gia sư học tập dùng truy xuất tăng cường: nạp tài liệu, tìm kiếm vector, chat bám tài liệu, tạo quiz và flashcard, và index hình bằng OCR cùng mô hình thị giác.',
@@ -85,7 +85,7 @@ export const meta = {
       en: 'Individual AI / LLM engineering project',
       vi: 'Dự án cá nhân về AI / LLM engineering',
     },
-    skills: ['RAG', 'Document ingestion', 'Prompt design', 'REST API', 'Testing'],
+    skills: ['LLM application', 'RAG', 'Prompt design', 'Vector search', 'REST API', 'Testing'],
   },
 
   sections: [

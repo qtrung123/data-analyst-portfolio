@@ -42,7 +42,7 @@ export const site = {
     },
     {
       group: { en: 'AI & LLM', vi: 'AI & LLM' },
-      items: ['RAG', 'LangChain', 'Ollama', 'FastAPI', 'Chroma'],
+      items: ['LLM', 'RAG', 'LangChain', 'Ollama', 'FastAPI'],
     },
   ],
 
@@ -154,7 +154,7 @@ export const site = {
     {
       label: { en: 'AI & LLM', vi: 'AI & LLM' },
       caseStudies: ['ai-study-tutor'],
-      tools: ['Python', 'FastAPI', 'RAG', 'LangChain', 'Ollama', 'Chroma', 'OCR'],
+      tools: ['Python', 'LLM', 'RAG', 'FastAPI', 'LangChain', 'Ollama', 'Chroma', 'OCR'],
     },
   ],
 }
